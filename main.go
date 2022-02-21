@@ -63,7 +63,7 @@ var (
 var Articles []Article
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the HomePagesss!")
+	fmt.Fprintf(w, "Welcome to THPDApi!")
 	fmt.Println("Endpoint Hit: homePage")
 }
 
