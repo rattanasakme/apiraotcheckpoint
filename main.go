@@ -36,6 +36,7 @@ type (
 		Truck_type      string `json:"Truck_type"`
 		Truck_plate     string `json:"Truck_plate"`
 		Driver_name     string `json:"Driver_name"`
+		Driver_Phone    string `json:"DriverTel"`
 		Total_chest     string `json:"Total_chest"`
 		Total_pack      string `json:"Total_pack"`
 		To_created_date string `json:"To_created_date"`
@@ -43,22 +44,9 @@ type (
 )
 
 var (
-	APIKey    = "" //"698df76d1a543a37451d7a63e4be19043dfca0459461654505e614da278ae9b2"
-	shopID    = "" //"6615"
-	partnerID = ""
 	// scheduleTimes          = ""
-	APIName                = ""
-	insertErr              = `INSERT INTO tblShopeeErrorLog(ErrorMsg,CreateDT,Ordersn) values (?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),?)  `                                                                                                 //"1000757"
-	insertEventQuery       = `INSERT INTO tblShopeeOrder(Ordersn, Order_status, Update_time,Is_actual_shipping_fee_confirmed,CreateDT,TrackingNo,SendTrackIdDT,APIName) values (?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'','',?)  ` //ON DUPLICATE KEY UPDATE Order_status = VALUES(Order_status)
-	selectEventByIdQuery   = `SELECT * FROM THPDTOATDB.VW_TOAT_TRACKING_API WHERE InvoiceNo = ?`
-	insertEventDownloadLog = `INSERT INTO tblAPIDownloadLog(DownLoadDT, DownLoadMsg, Remark) values ( CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), ?, ? )`
-	insertOrderDetail      = `INSERT INTO tblShopeeOrderDetail(Ordersn, EstimatedShippingFee, Order_flag,Payment_method,Update_time,Message_to_seller,Shipping_carrier,Currency,Create_time,Pay_time,Note,Credit_card_number,Days_to_ship,Is_split_up,Ship_by_date,Plp_number,Escrow_tax ,Tracking_no,Order_status,Note_update_time,Checkout_shipping_carrier,Town,City,Name,District,Country ,Zipcode ,Full_address ,Phone ,State ,Cancel_by , Escrow_amount,Buyer_cancel_reason,Goods_to_declare ,Total_amount  ,Cod ,Is_actual_shipping_fee_confirmed ,Buyer_username,CreateDT) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))`
-	selectOrder            = `SELECT * FROM tblShopeeOrder WHERE OrderSN = ?`
-	insertOrderItem        = `INSERT INTO tblShopeeOrderItems(OrderSN,GroupID,Weight,ItemName,IsWholesale ,PromotionType,ItemSku,VariationDiscountedPrice,VariationID ,VariationName,IsSetItem,IsAddOnDeal ,	ItemID,PromotionID,AddOnDealID,VariationQuantityPurchased,VariationSku,VariationOriginalPrice,IsMainItem,OrderItemID ,CreateDT  ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )`
-	UpdateTransOrder       = `CALL ShopeeGenItem`
-	Barcodelist            = `CALL ShopeeGenItem`
-	insertTHPDeliveryed    = `INSERT INTO THPDDB.tblTHPDeliverySuccessFromAPI(Itemid,StatusCode,StatusDesc,DeliveryDate,Location ,PostCode,CreateDT  ) values ( ?, ?, ?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )`
-	selectTHPDeliveryed    = `SELECT * FROM THPDDB.VW_Show_itemsDeliveryTHP LIMIT 100 `
+	APIName                  = ""
+	selectEventByIdQueryTOAT = `SELECT * FROM THPDTOATDB.VW_Tracking_TOAT WHERE InvoiceNo = ?`
 )
 var Articles []Article
 
@@ -90,8 +78,8 @@ func getDNSString(dbName, dbUser, dbPassword, conn string) string {
 		dbName)
 }
 func selectEventById(db *sql.DB, id string, event *Event0) error {
-	row := db.QueryRow(selectEventByIdQuery, id)
-	err := row.Scan(&event.InvoiceNo, &event.TrackingID, &event.Truck_type, &event.Truck_plate, &event.Driver_name, &event.Total_chest, &event.Total_pack, &event.To_created_date)
+	row := db.QueryRow(selectEventByIdQueryTOAT, id)
+	err := row.Scan(&event.InvoiceNo, &event.TrackingID, &event.Truck_type, &event.Truck_plate, &event.Driver_name, &event.Driver_Phone, &event.Total_chest, &event.Total_pack, &event.To_created_date)
 	if err != nil {
 		return err
 	}
@@ -129,6 +117,7 @@ func returnSingleArticle2(w http.ResponseWriter, r *http.Request) {
 	resp["Truck_type"] = firstEvent.Truck_type
 	resp["Truck_plate"] = firstEvent.Truck_plate
 	resp["Driver_name"] = firstEvent.Driver_name
+	resp["Driver_Phone"] = firstEvent.Driver_Phone
 	resp["Total_chest"] = firstEvent.Total_chest
 	resp["Total_pack"] = firstEvent.Total_pack
 	resp["Start_date"] = firstEvent.To_created_date
