@@ -1,10 +1,6 @@
 FROM golang:1.16 as final
 
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-
 COPY go.mod .
 COPY go.sum .
 RUN go mod download
