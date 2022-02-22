@@ -170,7 +170,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/article", createNewArticle).Methods("POST")
 	myRouter.HandleFunc("/article/{id}", deleteArticle).Methods("DELETE")
 	myRouter.HandleFunc("/article/{id}", returnSingleArticle)
-	log.Fatal(http.ListenAndServe(":8080", myRouter))
+	log.Fatal(http.ListenAndServe(":80", myRouter))
 	
 	//log.Fatal(http.ListenAndServe(":8081", myRouter))
 }
