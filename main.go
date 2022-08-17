@@ -1120,7 +1120,15 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("ReplyToken: \n", ReplyToken)
 	fmt.Printf("MsgText: \n", MsgText)
 
-	matched, err := regexp.MatchString(`AX([0-9]+)TX`, MsgText)
+	//matched, err := regexp.MatchString(`AX([0-9]+)TX`, MsgText)
+
+	matched, err := regexp.MatchString(`FT([0-9]+)TX`, MsgText)
+
+	if !matched {
+		matched, err = regexp.MatchString(`LT([0-9]+)TX`, MsgText)
+		fmt.Println(err)
+	}
+
 	fmt.Println(matched)
 
 	//var bearerToken = "YBAnQHA776xhZVp5IiPGWG556tuo5hU3h0Ke0afe2LBi2pCAymiz0fgLcjLAEeWQZ+9+oJkjH1RFYyA676vOmk78/CCb7Bgns1eSm7GRrGf7GKlwGhp944byiEQZbhV5X1QXpAQMXSM0nN/zusI6yAdB04t89/1O/w1cDnyilFU=" line oongang
@@ -1501,7 +1509,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprintf(w, "Welcome to THPDApi!")
+	fmt.Fprintf(w, "Welcome to OMS THPDDE App Api!")
 	fmt.Println("Endpoint Hit: homePage")
 
 }
