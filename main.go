@@ -1510,7 +1510,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprintf(w, "Welcome to OMS THPDDE App19-8-202213:50!")
+	fmt.Fprintf(w, "Welcome to OMS THPDDE App19_8")
 	fmt.Println("Endpoint Hit: homePage")
 
 }
