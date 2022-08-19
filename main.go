@@ -1510,7 +1510,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprintf(w, "Welcome to OMS THPDDE App Api update 18-8-2022 9:50!")
+	fmt.Fprintf(w, "Welcome to OMS THPDDE App Api update 19-8-2022 13:50!")
 	fmt.Println("Endpoint Hit: homePage")
 
 }
@@ -1912,7 +1912,7 @@ func OMSMobileCreateOrder(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("thpdmpdb", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
 
 	db, err := sql.Open("mysql", dns)
 
@@ -4809,7 +4809,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/webhook", handleWebhook)
 	log.Fatal(http.ListenAndServe(":80", myRouter)) // production
 	//log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
-	//log.Fatal(http.ListenAndServe(":5678", myRouter)) // test
+	//log.Fatal(http.ListenAndServe(":3306", myRouter)) // test
 }
 
 func main() {
