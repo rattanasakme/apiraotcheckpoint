@@ -1120,15 +1120,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("ReplyToken: \n", ReplyToken)
 	fmt.Printf("MsgText: \n", MsgText)
 
-	//matched, err := regexp.MatchString(`AX([0-9]+)TX`, MsgText)
-
-	matched, err := regexp.MatchString(`FT([0-9]+)TH`, MsgText)
-
-	if !matched {
-		matched, err = regexp.MatchString(`LT([0-9]+)TH`, MsgText)
-		fmt.Println(err)
-	}
-
+	matched, err := regexp.MatchString(`AX([0-9]+)TX`, MsgText)
 	fmt.Println(matched)
 
 	//var bearerToken = "YBAnQHA776xhZVp5IiPGWG556tuo5hU3h0Ke0afe2LBi2pCAymiz0fgLcjLAEeWQZ+9+oJkjH1RFYyA676vOmk78/CCb7Bgns1eSm7GRrGf7GKlwGhp944byiEQZbhV5X1QXpAQMXSM0nN/zusI6yAdB04t89/1O/w1cDnyilFU=" line oongang
@@ -1188,8 +1180,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 		} else {
 
 			//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-			//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-			dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+			dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 			db, err := sql.Open("mysql", dns)
 
@@ -1510,7 +1501,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprintf(w, "Welcome to OMS THPDDE App198")
+	fmt.Fprintf(w, "Welcome to THPDApi!")
 	fmt.Println("Endpoint Hit: homePage")
 
 }
@@ -1609,8 +1600,7 @@ func GenlblPrint(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 	db, err := sql.Open("mysql", dns)
 
@@ -1911,9 +1901,7 @@ func OMSMobileCreateOrder(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("thpdmpdb", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2025,9 +2013,7 @@ func OMSMobileConnect(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2097,9 +2083,7 @@ func OMSMobileUpdateDriverJobMaster(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2169,9 +2153,7 @@ func OMSMobileGetTrcukSize(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2245,9 +2227,7 @@ func OMSMobileGetCoupon(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2320,9 +2300,7 @@ func OMSMobileGetRateAddOn(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2395,9 +2373,7 @@ func OMSMobileGetWareHouse(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2476,9 +2452,7 @@ func EncodeToString(max int) string {
 }
 func UpdateAPIDriverToLoadboard(trackID string, carrier_id string, drivername string) string {
 
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 	if err != nil {
 		panic(err)
@@ -2554,9 +2528,7 @@ func UpdateAPIDriverToLoadboard(trackID string, carrier_id string, drivername st
 }
 func UpdateAPIPaymentToLoadboard(trackID string, paymentDetail string, drivername string) string {
 
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	var app_id = "de_oms"
@@ -2692,9 +2664,7 @@ func PreparePayload(trackID string) string {
 // }
 func ChkAuth(Authorization []string, Channel []string) int {
 
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2747,9 +2717,7 @@ func ChkAuth(Authorization []string, Channel []string) int {
 func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//db, err := sql.Open("mysql", dns)
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3331,9 +3299,7 @@ func Sign(Data map[string]interface{}, SecrePublicKeyEnvName string, ExpiredAt t
 }
 func GetAPIDriverFromLoadboard(trackID string) string {
 
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3500,9 +3466,7 @@ func SendMessageToDriver(trackingID string, CustomerPhone string, CarID string, 
 }
 func SendMessage(trackingID string, CustomerPhone string, CarID string, DriverName string) string {
 
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 	if err != nil {
 		panic(err)
@@ -3575,9 +3539,7 @@ func OMSMobileGetAdvertise(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3692,9 +3654,7 @@ func OMSMobileGetDriver(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3829,9 +3789,7 @@ func OMSMobileGetOTP(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3905,9 +3863,7 @@ func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -4015,9 +3971,7 @@ func OMSMobileGetMember(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -4103,9 +4057,7 @@ func OMSMobileGetPostcode(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -4198,8 +4150,7 @@ func OMSMobileSelectOrder(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var article OMSOrderStruct
 	json.Unmarshal(reqBody, &article)
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
@@ -4294,8 +4245,7 @@ func OMSMobileDiscount(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var article OMSOrderStruct
 	json.Unmarshal(reqBody, &article)
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
@@ -4390,8 +4340,7 @@ func OMSMobileGetJobDriverBookingMatchAlready(w http.ResponseWriter, r *http.Req
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var article DriverTracking
 	json.Unmarshal(reqBody, &article)
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
@@ -4476,8 +4425,7 @@ func OMSMobileGetJobDriverBooking(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var article DriverTracking
 	json.Unmarshal(reqBody, &article)
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
@@ -4566,8 +4514,7 @@ func OMSMobileSelectOrderWithIMG(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var article DriverTracking
 	json.Unmarshal(reqBody, &article)
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
@@ -4659,8 +4606,7 @@ func OMSMobileSelectOrderNoIMG(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var article OMSOrderStruct
 	json.Unmarshal(reqBody, &article)
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
@@ -4809,7 +4755,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/webhook", handleWebhook)
 	log.Fatal(http.ListenAndServe(":80", myRouter)) // production
 	//log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
-	//log.Fatal(http.ListenAndServe(":3306", myRouter)) // test
+	//log.Fatal(http.ListenAndServe(":5678", myRouter)) // test
 }
 
 func main() {
