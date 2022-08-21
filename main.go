@@ -3440,7 +3440,63 @@ func GetAPIDriverFromLoadboard(trackID string) string {
 
 	return string("ok")
 }
+func SendOTPToCustomer(OTPCode string, CustomerPhone string) string {
 
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//db, err := sql.Open("mysql", dns)
+
+	var bearerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cudGhzbXMuY29tXC9hcGkta2V5IiwiaWF0IjoxNjQ4MDkwNjUyLCJuYmYiOjE2NDgxMDEzMjUsImp0aSI6Ik00RkdVQjN5OFd6NnZuYzciLCJzdWIiOjEwNDE2MCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.PwmdMYwIdXIWRftvcrnqTDiulwTfcFVsLDpBj4REyI4"
+
+	var emp THSMS
+	emp.Sender = "Now"
+	emp.Msisdn = []string{CustomerPhone}
+	emp.Message = "THPD DE : หมายเลข OTP: " + OTPCode + "\n   "
+
+	var data []byte
+	// Convert struct to jsonข
+	data, _ = json.MarshalIndent(emp, "", "    ")
+
+	url := "https://thsms.com/api/send-sms"
+	//req, err := http.Post(url, "application/json", bytes.NewBuffer(jsonStr))
+
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
+	if err != nil {
+		panic(err)
+	}
+
+	req.Header.Add("Authorization", "Bearer "+bearerToken)
+	req.Header.Add("Content-Type", "application/json")
+	fmt.Println(req.Header)
+
+	//req.Body.Read(json_data)
+	//Send req using http Client
+	client := &http.Client{}
+	resp2, err := client.Do(req)
+
+	if resp2 != nil {
+		//panic(err)
+	}
+	if err == nil {
+		/// update tracking send message already
+		// ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET SendSMSFirstJob = 1 WHERE TrackingID = '" + trackingID + "'")
+		// defer ress.Close()
+		// if err != nil {
+
+		// 	panic(err)
+		// } else {
+		// 	ress2, err := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder SET Status = 'ผู้ขนส่งรับงานแล้ว' WHERE JobID in ( SELECT Customer_Po FROM THPDMPDB.tblOrderMaster WHERE TrackingID = '" + trackingID + "')")
+		// 	defer ress2.Close()
+		// 	if err != nil {
+		// 		panic(err)
+		// 	} else {
+
+		// 	}
+
+		// }
+		//panic(err)
+	}
+	return string("OK")
+}
 func SendMessageToDriver(trackingID string, CustomerPhone string, CarID string, DriverName string) string {
 
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
@@ -3890,6 +3946,9 @@ func OMSMobileGetOTP(w http.ResponseWriter, r *http.Request) {
 				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
 				return
 			}
+
+			SendOTPToCustomer(article.Password, article.MobileID)
+
 			w.Write(b)
 			//counter = 0
 
@@ -4807,8 +4866,8 @@ func handleRequests() {
 	myRouter.HandleFunc("/article/{id}", returnSingleArticle)
 
 	myRouter.HandleFunc("/webhook", handleWebhook)
-	log.Fatal(http.ListenAndServe(":80", myRouter)) // production
-	//log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
+	//log.Fatal(http.ListenAndServe(":80", myRouter)) // production
+	log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
 	//log.Fatal(http.ListenAndServe(":3306", myRouter)) // test
 }
 
