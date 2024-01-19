@@ -32,6 +32,80 @@ import (
 // 	Content string `json:"content"`
 // 	Token   string `json:"token"`
 // }
+type KTBApproveJson struct {
+	User     string  `json:"user"`
+	Password string  `json:"password"`
+	ComCode  string  `json:"comCode"`
+	ProdCode string  `json:"prodCode"`
+	Command  string  `json:"command"`
+	BankCode int     `json:"bankCode"`
+	BankRef  string  `json:"bankRef"`
+	DateTime string  `json:"dateTime"`
+	EffDate  string  `json:"effDate"`
+	Amount   float64 `json:"amount"`
+	Channel  string  `json:"channel"`
+	CusName  string  `json:"cusName"`
+	Ref1     string  `json:"ref1"`
+	Ref2     string  `json:"ref2"`
+	Ref3     string  `json:"ref3"`
+	Ref4     string  `json:"ref4"`
+}
+type MobileVersion struct {
+	MobileType string `json:"MobileType"`
+	VersionNow string `json:"VersionNow"`
+}
+type KTBReponseApproveJson struct {
+	TranxID  string  `json:"tranxId"`
+	BankRef  string  `json:"bankRef"`
+	RespCode int     `json:"respCode"`
+	RespMsg  string  `json:"respMsg"`
+	Balance  float64 `json:"balance"`
+	CusName  string  `json:"cusName"`
+	Info     string  `json:"info"`
+	Print1   string  `json:"print1"`
+	Print2   string  `json:"print2"`
+	Print3   string  `json:"print3"`
+	Print4   string  `json:"print4"`
+	Print5   string  `json:"print5"`
+	Print6   string  `json:"print6"`
+	Print7   string  `json:"print7"`
+}
+
+type KTBChargeJson struct {
+	User     string  `json:"user"`
+	Password string  `json:"password"`
+	ComCode  string  `json:"comCode"`
+	ProdCode string  `json:"prodCode"`
+	Command  string  `json:"command"`
+	BankCode int     `json:"bankCode"`
+	BankRef  string  `json:"bankRef"`
+	TranxID  string  `json:"tranxId"`
+	DateTime string  `json:"dateTime"`
+	EffDate  string  `json:"effDate"`
+	Amount   float64 `json:"amount"`
+	Channel  string  `json:"channel"`
+	CusName  string  `json:"cusName"`
+	Ref1     string  `json:"ref1"`
+	Ref2     string  `json:"ref2"`
+	Ref3     string  `json:"ref3"`
+	Ref4     string  `json:"ref4"`
+}
+type KTBChargeResponseJson struct {
+	TranxID  string  `json:"tranxId"`
+	BankRef  string  `json:"bankRef"`
+	RespCode int     `json:"respCode"`
+	RespMsg  string  `json:"respMsg"`
+	Balance  float64 `json:"balance"`
+	CusName  string  `json:"cusName"`
+	Info     string  `json:"info"`
+	Print1   string  `json:"print1"`
+	Print2   string  `json:"print2"`
+	Print3   string  `json:"print3"`
+	Print4   string  `json:"print4"`
+	Print5   string  `json:"print5"`
+	Print6   string  `json:"print6"`
+	Print7   string  `json:"print7"`
+}
 type PaymentChannel struct {
 	Amount         int      `json:"amount"`
 	CurrencyCode   string   `json:"currencyCode"`
@@ -132,197 +206,664 @@ type DriverLoadboard struct {
 	Success bool   `json:"success"`
 	Msg     string `json:"msg"`
 	Data    struct {
-		Success  bool   `json:"success"`
-		Status   string `json:"status"`
-		Message  string `json:"message"`
-		Shipment struct {
-			ShipmentNo     string `json:"shipment_no"`
-			ShipmentType   string `json:"shipment_type"`
-			MatchMode      string `json:"match_mode"`
-			MatchPriority2 string `json:"match_priority_2"`
-			MatchPriority3 string `json:"match_priority_3"`
-			AutoMatchTime  string `json:"auto_match_time"`
-			CustomerRating string `json:"customer_rating"`
-			RecipientName  string `json:"recipient_name"`
-			Broker         struct {
-				Oid     string `json:"oid"`
-				Title   string `json:"title"`
-				Address string `json:"address"`
-				Contact string `json:"contact"`
-				Phone   string `json:"phone"`
-			} `json:"broker"`
-			Owner   string `json:"owner"`
-			Carrier struct {
-				Oid     string `json:"oid"`
-				Title   string `json:"title"`
-				Address string `json:"address"`
-				Contact string `json:"contact"`
-				Phone   string `json:"phone"`
-			} `json:"carrier"`
-			TruckPlate             string      `json:"truck_plate"`
-			DriverName             string      `json:"driver_name"`
-			DriverImgURL           string      `json:"driver_img_url"`
-			SignatureURL           string      `json:"signature_url"`
-			Age                    string      `json:"age"`
-			PickupDate             string      `json:"pickup_date"`
-			DeliveryDate           string      `json:"delivery_date"`
-			OriginLocation         string      `json:"origin_location"`
-			OriginAddress          string      `json:"origin_address"`
-			OriginSubdistrict      string      `json:"origin_subdistrict"`
-			OriginDistrict         string      `json:"origin_district"`
-			OriginProvince         string      `json:"origin_province"`
-			OriginPostal           string      `json:"origin_postal"`
-			OriginLatitude         string      `json:"origin_latitude"`
-			OriginLongitude        string      `json:"origin_longitude"`
-			DestinationLocation    string      `json:"destination_location"`
-			DestinationAddress     string      `json:"destination_address"`
-			DestinationSubdistrict string      `json:"destination_subdistrict"`
-			DestinationDistrict    string      `json:"destination_district"`
-			DestinationProvince    string      `json:"destination_province"`
-			DestinationPostal      string      `json:"destination_postal"`
-			DestinationLatitude    string      `json:"destination_latitude"`
-			DestinationLongitude   string      `json:"destination_longitude"`
-			JobCount               string      `json:"job_count"`
-			Trip                   string      `json:"trip"`
-			Weight                 int         `json:"weight"`
-			TruckType              string      `json:"truck_type"`
-			TruckTypeTitle         string      `json:"truck_type_title"`
-			PriceStandard          string      `json:"price_standard"`
-			PriceExpress           string      `json:"price_express"`
-			PriceFestival          string      `json:"price_festival"`
-			PriceAsking            string      `json:"price_asking"`
-			PriceOffer             string      `json:"price_offer"`
-			PriceUnit              string      `json:"price_unit"`
-			PriceRateWeight        string      `json:"price_rate_weight"`
-			PriceRateDistance      string      `json:"price_rate_distance"`
-			PaymentType            string      `json:"payment_type"`
-			BoxAmount              string      `json:"box_amount"`
-			DeliveryRemark         string      `json:"delivery_remark"`
-			StatusID               string      `json:"status_id"`
-			Status                 string      `json:"status"`
-			Remark                 string      `json:"remark"`
-			CancelReason           interface{} `json:"cancel_reason"`
-			BookingCount           int         `json:"booking_count"`
-			JobData                []struct {
-				RefOrderNo       string `json:"ref_order_no"`
-				ConNo            string `json:"con_no"`
-				SName            string `json:"s_name"`
-				SAddress         string `json:"s_address"`
-				SSubdistrict     string `json:"s_subdistrict"`
-				SDistrict        string `json:"s_district"`
-				SProvince        string `json:"s_province"`
-				SLat             string `json:"s_lat"`
-				SLon             string `json:"s_lon"`
-				SZipcode         string `json:"s_zipcode"`
-				STel             string `json:"s_tel"`
-				SEmail           string `json:"s_email"`
-				SContact         string `json:"s_contact"`
-				SRefCode         string `json:"s_ref_code"`
-				SRefLink         string `json:"s_ref_link"`
-				RName            string `json:"r_name"`
-				RAddress         string `json:"r_address"`
-				RSubdistrict     string `json:"r_subdistrict"`
-				RDistrict        string `json:"r_district"`
-				RProvince        string `json:"r_province"`
-				RLat             string `json:"r_lat"`
-				RLon             string `json:"r_lon"`
-				RZipcode         string `json:"r_zipcode"`
-				RTel             string `json:"r_tel"`
-				REmail           string `json:"r_email"`
-				RContact         string `json:"r_contact"`
-				RRefCode         string `json:"r_ref_code"`
-				RRefLink         string `json:"r_ref_link"`
-				CName            string `json:"c_name"`
-				CAddress         string `json:"c_address"`
-				CSubdistrict     string `json:"c_subdistrict"`
-				CDistrict        string `json:"c_district"`
-				CProvince        string `json:"c_province"`
-				CZipcode         string `json:"c_zipcode"`
-				CTel             string `json:"c_tel"`
-				CEmail           string `json:"c_email"`
-				CContact         string `json:"c_contact"`
-				CRefCode         string `json:"c_ref_code"`
-				ServiceCode      string `json:"service_code"`
-				CodType          string `json:"cod_type"`
-				TransportCompany string `json:"transport_company"`
-				CompanyCode      string `json:"company_code"`
-				GroupRefID       string `json:"group_ref_id"`
-				PickupDate       string `json:"pickup_date"`
-				DeliveryDate     string `json:"delivery_date"`
-				BoxAmount        string `json:"box_amount"`
-				TotalWeight      int    `json:"total_weight"`
-				TotalCbm         int    `json:"total_cbm"`
-				Endpoint         string `json:"endpoint"`
-				EndpointUID      string `json:"endpoint_uid"`
-				EndpointOid      string `json:"endpoint_oid"`
-				NodeID           string `json:"node_id"`
-				TransportPrice   string `json:"transport_price"`
-				ProductDetail    []struct {
-					RefID       string `json:"ref_id"`
-					Name        string `json:"name"`
-					Sku         string `json:"sku"`
-					Code        string `json:"code"`
-					Qty         string `json:"qty"`
-					Unit        string `json:"unit"`
-					Width       string `json:"width"`
-					Length      string `json:"length"`
-					Height      string `json:"height"`
-					Weight      string `json:"weight"`
-					GrossWeight string `json:"gross_weight"`
-					TotalWeight string `json:"total_weight"`
-					TotalCbm    string `json:"total_cbm"`
-				} `json:"product_detail"`
-			} `json:"job_data"`
-		} `json:"shipment"`
-		Booking []struct {
-			BookingID         string `json:"booking_id"`
-			BookingStatus     string `json:"booking_status"`
-			Price             string `json:"price"`
-			PriceUnit         string `json:"price_unit"`
-			TruckPlate        string `json:"truck_plate"`
-			DriverName        string `json:"driver_name"`
-			Oid               string `json:"oid"`
-			Company           string `json:"company"`
-			Address           string `json:"address"`
-			Contact           string `json:"contact"`
-			Phone             string `json:"phone"`
-			Email             string `json:"email"`
-			Rating            string `json:"rating"`
-			BookingScore      string `json:"booking_score"`
-			Time              string `json:"time"`
-			PositionLatitude  string `json:"position_latitude"`
-			PositionLongitude string `json:"position_longitude"`
-			PositionTime      string `json:"position_time"`
-		} `json:"booking"`
-		ShipmentUpdate struct {
-			Num40 struct {
-				ShipmentStatus     string `json:"shipment_status"`
-				ActionTime         string `json:"action_time"`
-				PositionLat        string `json:"position_lat"`
-				PositionLon        string `json:"position_lon"`
-				PositionTime       string `json:"position_time"`
-				DistributionCenter string `json:"distribution_center"`
-				Status             string `json:"status"`
-				UID                string `json:"uid"`
-				Created            string `json:"created"`
-				Changed            string `json:"changed"`
-			} `json:"40"`
-			Num59 struct {
-				ShipmentStatus     string `json:"shipment_status"`
-				ActionTime         string `json:"action_time"`
-				PositionLat        string `json:"position_lat"`
-				PositionLon        string `json:"position_lon"`
-				PositionTime       string `json:"position_time"`
-				DistributionCenter string `json:"distribution_center"`
-				Status             string `json:"status"`
-				UID                string `json:"uid"`
-				Created            string `json:"created"`
-				Changed            string `json:"changed"`
-			} `json:"59"`
-		} `json:"shipment_update"`
-		ShipmentImage []interface{} `json:"shipment_image"`
+		PostRes struct {
+			Success  bool          `json:"success"`
+			Status   string        `json:"status"`
+			Message  string        `json:"message"`
+			Error    []interface{} `json:"error"`
+			Shipment struct {
+				ShipmentID       string `json:"shipment_id"`
+				ShipmentNo       string `json:"shipment_no"`
+				ShipmentType     string `json:"shipment_type"`
+				MatchMode        string `json:"match_mode"`
+				MatchPriority2   string `json:"match_priority_2"`
+				MatchPriority3   string `json:"match_priority_3"`
+				AutoMatchTime    string `json:"auto_match_time"`
+				CustomerRating   string `json:"customer_rating"`
+				RecipientName    string `json:"recipient_name"`
+				Owner            string `json:"owner"`
+				OwnerContact     string `json:"owner_contact"`
+				OwnerTel         string `json:"owner_tel"`
+				OwnerRating      int    `json:"owner_rating"`
+				OwnerRatingCount int    `json:"owner_rating_count"`
+				Broker           struct {
+					UUID    string `json:"uuid"`
+					Title   string `json:"title"`
+					Address string `json:"address"`
+					Contact string `json:"contact"`
+					Phone   string `json:"phone"`
+					LogoURL string `json:"logo_url"`
+				} `json:"broker"`
+				Carrier struct {
+					UUID         string `json:"uuid"`
+					Title        string `json:"title"`
+					Address      string `json:"address"`
+					Contact      string `json:"contact"`
+					Phone        string `json:"phone"`
+					LogoURL      string `json:"logo_url"`
+					Rating       string `json:"rating"`
+					RatingCount  string `json:"rating_count"`
+					BookingScore string `json:"booking_score"`
+				} `json:"carrier"`
+				TruckPlate             string  `json:"truck_plate"`
+				DriverName             string  `json:"driver_name"`
+				DriverImgURL           string  `json:"driver_img_url"`
+				SignatureURL           string  `json:"signature_url"`
+				Age                    string  `json:"age"`
+				PickupDate             string  `json:"pickup_date"`
+				DeliveryDate           string  `json:"delivery_date"`
+				OriginLocation         string  `json:"origin_location"`
+				OriginAddress          string  `json:"origin_address"`
+				OriginSubdistrict      string  `json:"origin_subdistrict"`
+				OriginDistrict         string  `json:"origin_district"`
+				OriginProvince         string  `json:"origin_province"`
+				OriginPostal           string  `json:"origin_postal"`
+				OriginLatitude         string  `json:"origin_latitude"`
+				OriginLongitude        string  `json:"origin_longitude"`
+				DestinationLocation    string  `json:"destination_location"`
+				DestinationAddress     string  `json:"destination_address"`
+				DestinationSubdistrict string  `json:"destination_subdistrict"`
+				DestinationDistrict    string  `json:"destination_district"`
+				DestinationProvince    string  `json:"destination_province"`
+				DestinationPostal      string  `json:"destination_postal"`
+				DestinationLatitude    string  `json:"destination_latitude"`
+				DestinationLongitude   string  `json:"destination_longitude"`
+				JobCount               string  `json:"job_count"`
+				Trip                   string  `json:"trip"`
+				Weight                 float64 `json:"weight"`
+				TruckType              string  `json:"truck_type"`
+				TruckTypeTitle         string  `json:"truck_type_title"`
+				PriceStandard          string  `json:"price_standard"`
+				PriceExpress           string  `json:"price_express"`
+				PriceFestival          string  `json:"price_festival"`
+				PriceAsking            string  `json:"price_asking"`
+				PriceOffer             string  `json:"price_offer"`
+				PriceUnit              string  `json:"price_unit"`
+				PriceRateWeight        string  `json:"price_rate_weight"`
+				PriceRateDistance      string  `json:"price_rate_distance"`
+				PaymentType            string  `json:"payment_type"`
+				BoxAmount              string  `json:"box_amount"`
+				DeliveryRemark         string  `json:"delivery_remark"`
+				StatusID               string  `json:"status_id"`
+				Status                 string  `json:"status"`
+				Remark                 string  `json:"remark"`
+				CancelReason           string  `json:"cancel_reason"`
+				JobData                []struct {
+					RefOrderNo       string `json:"ref_order_no"`
+					ConNo            string `json:"con_no"`
+					Type             string `json:"type"`
+					PickupDate       string `json:"pickup_date"`
+					DeliveryDate     string `json:"delivery_date"`
+					BoxAmount        string `json:"box_amount"`
+					TotalWeight      int    `json:"total_weight"`
+					TotalCbm         int    `json:"total_cbm"`
+					Endpoint         string `json:"endpoint"`
+					EndpointUID      string `json:"endpoint_uid"`
+					EndpointOid      string `json:"endpoint_oid"`
+					NodeID           string `json:"node_id"`
+					TransportPrice   string `json:"transport_price"`
+					SName            string `json:"s_name"`
+					SAddress         string `json:"s_address"`
+					SSubdistrict     string `json:"s_subdistrict"`
+					SDistrict        string `json:"s_district"`
+					SProvince        string `json:"s_province"`
+					SLat             string `json:"s_lat"`
+					SLon             string `json:"s_lon"`
+					SZipcode         string `json:"s_zipcode"`
+					STel             string `json:"s_tel"`
+					SEmail           string `json:"s_email"`
+					SContact         string `json:"s_contact"`
+					SRefCode         string `json:"s_ref_code"`
+					SRefLink         string `json:"s_ref_link"`
+					RName            string `json:"r_name"`
+					RAddress         string `json:"r_address"`
+					RSubdistrict     string `json:"r_subdistrict"`
+					RDistrict        string `json:"r_district"`
+					RProvince        string `json:"r_province"`
+					RLat             string `json:"r_lat"`
+					RLon             string `json:"r_lon"`
+					RZipcode         string `json:"r_zipcode"`
+					RTel             string `json:"r_tel"`
+					REmail           string `json:"r_email"`
+					RContact         string `json:"r_contact"`
+					RRefCode         string `json:"r_ref_code"`
+					RRefLink         string `json:"r_ref_link"`
+					CName            string `json:"c_name"`
+					CAddress         string `json:"c_address"`
+					CSubdistrict     string `json:"c_subdistrict"`
+					CDistrict        string `json:"c_district"`
+					CProvince        string `json:"c_province"`
+					CZipcode         string `json:"c_zipcode"`
+					CTel             string `json:"c_tel"`
+					CEmail           string `json:"c_email"`
+					CContact         string `json:"c_contact"`
+					CRefCode         string `json:"c_ref_code"`
+					ServiceCode      string `json:"service_code"`
+					CodType          string `json:"cod_type"`
+					CodPrice         string `json:"cod_price"`
+					TransportCompany string `json:"transport_company"`
+					CompanyCode      string `json:"company_code"`
+					GroupRefID       string `json:"group_ref_id"`
+					SignatureURL     string `json:"signature_url"`
+					SignatureName    string `json:"signature_name"`
+					Remark           string `json:"remark"`
+					Status           string `json:"status"`
+					Created          string `json:"created"`
+					CreatedUID       string `json:"created_uid"`
+					Removed          string `json:"removed"`
+					RemovedUID       string `json:"removed_uid"`
+					ProductDetail    []struct {
+						RefID       string `json:"ref_id"`
+						Name        string `json:"name"`
+						Sku         string `json:"sku"`
+						Code        string `json:"code"`
+						Qty         string `json:"qty"`
+						Unit        string `json:"unit"`
+						Width       string `json:"width"`
+						Length      string `json:"length"`
+						Height      string `json:"height"`
+						Weight      string `json:"weight"`
+						GrossWeight string `json:"gross_weight"`
+						TotalWeight string `json:"total_weight"`
+						TotalCbm    string `json:"total_cbm"`
+						Status      string `json:"status"`
+						Created     string `json:"created"`
+						Changed     string `json:"changed"`
+					} `json:"product_detail"`
+				} `json:"job_data"`
+				BookingCount int `json:"booking_count"`
+				Booking      []struct {
+					BookingID         string `json:"booking_id"`
+					BookingStatus     string `json:"booking_status"`
+					Price             string `json:"price"`
+					PriceUnit         string `json:"price_unit"`
+					TruckPlate        string `json:"truck_plate"`
+					DriverName        string `json:"driver_name"`
+					UUID              string `json:"uuid"`
+					Company           string `json:"company"`
+					Address           string `json:"address"`
+					Contact           string `json:"contact"`
+					Phone             string `json:"phone"`
+					Email             string `json:"email"`
+					LogoURL           string `json:"logo_url"`
+					Rating            string `json:"rating"`
+					BookingScore      string `json:"booking_score"`
+					Time              string `json:"time"`
+					PositionLatitude  string `json:"position_latitude"`
+					PositionLongitude string `json:"position_longitude"`
+					PositionTime      string `json:"position_time"`
+					Oid               string `json:"oid"`
+				} `json:"booking"`
+			} `json:"shipment"`
+		} `json:"post_res"`
+		To struct {
+			ToID                    string      `json:"to_id"`
+			Oid                     string      `json:"oid"`
+			OwnerID                 string      `json:"owner_id"`
+			Owner                   string      `json:"owner"`
+			OwnerRating             string      `json:"owner_rating"`
+			OwnerRatingCount        string      `json:"owner_rating_count"`
+			MatchMode               string      `json:"match_mode"`
+			MatchTime               interface{} `json:"match_time"`
+			MatchPriority2          string      `json:"match_priority_2"`
+			MatchPriority3          string      `json:"match_priority_3"`
+			ToNumber                string      `json:"to_number"`
+			TransportType           string      `json:"transport_type"`
+			NodeID                  string      `json:"node_id"`
+			TransportStatus         string      `json:"transport_status"`
+			CarrierUUID             interface{} `json:"carrier_uuid"`
+			CarrierName             interface{} `json:"carrier_name"`
+			TruckID                 string      `json:"truck_id"`
+			TruckType               string      `json:"truck_type"`
+			TruckPlate              interface{} `json:"truck_plate"`
+			TailPlateID             string      `json:"tail_plate_id"`
+			TailPlate               string      `json:"tail_plate"`
+			Cooling                 string      `json:"cooling"`
+			Gps                     string      `json:"gps"`
+			Lift                    string      `json:"lift"`
+			DriverID                string      `json:"driver_id"`
+			DriverName              string      `json:"driver_name"`
+			DriverPhone             string      `json:"driver_phone"`
+			DriverMail              string      `json:"driver_mail"`
+			DatePickupPlan          string      `json:"date_pickup_plan"`
+			DateDeliveryPlan        string      `json:"date_delivery_plan"`
+			DatePickupActual        string      `json:"date_pickup_actual"`
+			DateDeliveryActual      string      `json:"date_delivery_actual"`
+			LocationOriginID        string      `json:"location_origin_id"`
+			LocationDestinationID   string      `json:"location_destination_id"`
+			OriginAddress           string      `json:"origin_address"`
+			DestinationAddress      string      `json:"destination_address"`
+			LocationOriginName      string      `json:"location_origin_name"`
+			LocationDestinationName string      `json:"location_destination_name"`
+			SourceType              string      `json:"source_type"`
+			OperationType           string      `json:"operation_type"`
+			Quantity                string      `json:"quantity"`
+			Weight                  string      `json:"weight"`
+			Volume                  string      `json:"volume"`
+			Remark                  string      `json:"remark"`
+			StandardPrice           string      `json:"standard_price"`
+			AskingPrice             string      `json:"asking_price"`
+			OfferPrice              string      `json:"offer_price"`
+			TransportPrice          string      `json:"transport_price"`
+			InsurancePrice          string      `json:"insurance_price"`
+			PriceRateWeight         interface{} `json:"price_rate_weight"`
+			PriceRateDistance       interface{} `json:"price_rate_distance"`
+			PriceUnit               string      `json:"price_unit"`
+			AssignDate              string      `json:"assign_date"`
+			AcceptDate              string      `json:"accept_date"`
+			OriginArriveDate        string      `json:"origin_arrive_date"`
+			DestinationArriveDate   string      `json:"destination_arrive_date"`
+			CompleteDate            string      `json:"complete_date"`
+			AFailedDerveryDate      string      `json:"a_failed_dervery_date"`
+			ASortingDate            string      `json:"a_sorting_date"`
+			AScanReceiveDate        string      `json:"a_scan_receive_date"`
+			CanceledDate            string      `json:"canceled_date"`
+			UID                     string      `json:"uid"`
+			ChangedUID              string      `json:"changed_uid"`
+			Created                 string      `json:"created"`
+			Changed                 string      `json:"changed"`
+			Gate                    interface{} `json:"gate"`
+			RealTruckID             string      `json:"real_truck_id"`
+			RealDriverID            string      `json:"real_driver_id"`
+			CashFlag                string      `json:"cash_flag"`
+			GrossWeight             string      `json:"gross_weight"`
+			GrossVolume             string      `json:"gross_volume"`
+			EmergencyRemark         interface{} `json:"emergency_remark"`
+			ToTrack                 string      `json:"to_track"`
+			TotalDuration           string      `json:"total_duration"`
+			TotalDistance           string      `json:"total_distance"`
+			DriverName2             string      `json:"driver_name2"`
+			RealDriverID2           string      `json:"real_driver_id2"`
+			TempRate                string      `json:"temp_rate"`
+			RefNumber               interface{} `json:"ref_number"`
+			Line                    string      `json:"line"`
+			PaymentType             string      `json:"payment_type"`
+			PaymentOption           string      `json:"payment_option"`
+			IsPost                  string      `json:"is_post"`
+			IsPaid                  string      `json:"is_paid"`
+			FromLoad                string      `json:"from_load"`
+			LbID                    string      `json:"lb_id"`
+			WithdrawID              string      `json:"withdraw_id"`
+			CusRatingTruck          string      `json:"cus_rating_truck"`
+			CusRatingTruckComment   interface{} `json:"cus_rating_truck_comment"`
+			TruckRatingCus          string      `json:"truck_rating_cus"`
+			TruckRatingCusComment   string      `json:"truck_rating_cus_comment"`
+			ShipmentNo              string      `json:"shipment_no"`
+		} `json:"to"`
 	} `json:"data"`
 }
+
+// type DriverLoadboard struct {
+// 	Success bool   `json:"success"`
+// 	Msg     string `json:"msg"`
+// 	Data    struct {
+// 		PostRes struct {
+// 			Success  bool   `json:"success"`
+// 			Status   string `json:"status"`
+// 			Message  string `json:"message"`
+// 			Shipment struct {
+// 				Sid            string `json:"sid"`
+// 				ShipmentNo     string `json:"shipment_no"`
+// 				ShipmentType   string `json:"shipment_type"`
+// 				MatchMode      string `json:"match_mode"`
+// 				MatchPriority2 string `json:"match_priority_2"`
+// 				MatchPriority3 string `json:"match_priority_3"`
+// 				AutoMatchTime  string `json:"auto_match_time"`
+// 				CustomerRating string `json:"customer_rating"`
+// 				RecipientName  string `json:"recipient_name"`
+// 				Broker         struct {
+// 					Oid     string `json:"oid"`
+// 					Title   string `json:"title"`
+// 					Address string `json:"address"`
+// 					Contact string `json:"contact"`
+// 					Phone   string `json:"phone"`
+// 				} `json:"broker"`
+// 				Carrier                []interface{} `json:"carrier"`
+// 				TruckPlate             string        `json:"truck_plate"`
+// 				DriverName             string        `json:"driver_name"`
+// 				DriverImgURL           string        `json:"driver_img_url"`
+// 				SignatureURL           string        `json:"signature_url"`
+// 				Age                    string        `json:"age"`
+// 				PickupDate             string        `json:"pickup_date"`
+// 				DeliveryDate           string        `json:"delivery_date"`
+// 				OriginLocation         string        `json:"origin_location"`
+// 				OriginAddress          string        `json:"origin_address"`
+// 				OriginSubdistrict      string        `json:"origin_subdistrict"`
+// 				OriginDistrict         string        `json:"origin_district"`
+// 				OriginProvince         string        `json:"origin_province"`
+// 				OriginPostal           string        `json:"origin_postal"`
+// 				OriginLatitude         string        `json:"origin_latitude"`
+// 				OriginLongitude        string        `json:"origin_longitude"`
+// 				DestinationLocation    string        `json:"destination_location"`
+// 				DestinationAddress     string        `json:"destination_address"`
+// 				DestinationSubdistrict string        `json:"destination_subdistrict"`
+// 				DestinationDistrict    string        `json:"destination_district"`
+// 				DestinationProvince    string        `json:"destination_province"`
+// 				DestinationPostal      string        `json:"destination_postal"`
+// 				DestinationLatitude    string        `json:"destination_latitude"`
+// 				DestinationLongitude   string        `json:"destination_longitude"`
+// 				JobCount               string        `json:"job_count"`
+// 				Trip                   string        `json:"trip"`
+// 				Weight                 float64       `json:"weight"`
+// 				TruckType              string        `json:"truck_type"`
+// 				TruckTypeTitle         string        `json:"truck_type_title"`
+// 				PriceStandard          string        `json:"price_standard"`
+// 				PriceExpress           string        `json:"price_express"`
+// 				PriceFestival          string        `json:"price_festival"`
+// 				PriceAsking            string        `json:"price_asking"`
+// 				PriceOffer             string        `json:"price_offer"`
+// 				PriceUnit              string        `json:"price_unit"`
+// 				PriceRateWeight        string        `json:"price_rate_weight"`
+// 				PriceRateDistance      string        `json:"price_rate_distance"`
+// 				PaymentType            string        `json:"payment_type"`
+// 				BoxAmount              string        `json:"box_amount"`
+// 				DeliveryRemark         string        `json:"delivery_remark"`
+// 				StatusID               string        `json:"status_id"`
+// 				Status                 string        `json:"status"`
+// 				Remark                 string        `json:"remark"`
+// 				CancelReason           interface{}   `json:"cancel_reason"`
+// 				BookingCount           int           `json:"booking_count"`
+// 				JobData                []struct {
+// 					RefOrderNo       string `json:"ref_order_no"`
+// 					ConNo            string `json:"con_no"`
+// 					SName            string `json:"s_name"`
+// 					SAddress         string `json:"s_address"`
+// 					SSubdistrict     string `json:"s_subdistrict"`
+// 					SDistrict        string `json:"s_district"`
+// 					SProvince        string `json:"s_province"`
+// 					SLat             string `json:"s_lat"`
+// 					SLon             string `json:"s_lon"`
+// 					SZipcode         string `json:"s_zipcode"`
+// 					STel             string `json:"s_tel"`
+// 					SEmail           string `json:"s_email"`
+// 					SContact         string `json:"s_contact"`
+// 					SRefCode         string `json:"s_ref_code"`
+// 					SRefLink         string `json:"s_ref_link"`
+// 					RName            string `json:"r_name"`
+// 					RAddress         string `json:"r_address"`
+// 					RSubdistrict     string `json:"r_subdistrict"`
+// 					RDistrict        string `json:"r_district"`
+// 					RProvince        string `json:"r_province"`
+// 					RLat             string `json:"r_lat"`
+// 					RLon             string `json:"r_lon"`
+// 					RZipcode         string `json:"r_zipcode"`
+// 					RTel             string `json:"r_tel"`
+// 					REmail           string `json:"r_email"`
+// 					RContact         string `json:"r_contact"`
+// 					RRefCode         string `json:"r_ref_code"`
+// 					RRefLink         string `json:"r_ref_link"`
+// 					CName            string `json:"c_name"`
+// 					CAddress         string `json:"c_address"`
+// 					CSubdistrict     string `json:"c_subdistrict"`
+// 					CDistrict        string `json:"c_district"`
+// 					CProvince        string `json:"c_province"`
+// 					CZipcode         string `json:"c_zipcode"`
+// 					CTel             string `json:"c_tel"`
+// 					CEmail           string `json:"c_email"`
+// 					CContact         string `json:"c_contact"`
+// 					CRefCode         string `json:"c_ref_code"`
+// 					ServiceCode      string `json:"service_code"`
+// 					CodType          string `json:"cod_type"`
+// 					TransportCompany string `json:"transport_company"`
+// 					CompanyCode      string `json:"company_code"`
+// 					GroupRefID       string `json:"group_ref_id"`
+// 					PickupDate       string `json:"pickup_date"`
+// 					DeliveryDate     string `json:"delivery_date"`
+// 					BoxAmount        string `json:"box_amount"`
+// 					TotalWeight      int    `json:"total_weight"`
+// 					TotalCbm         int    `json:"total_cbm"`
+// 					Endpoint         string `json:"endpoint"`
+// 					EndpointUID      string `json:"endpoint_uid"`
+// 					EndpointOid      string `json:"endpoint_oid"`
+// 					NodeID           string `json:"node_id"`
+// 					TransportPrice   string `json:"transport_price"`
+// 					ProductDetail    []struct {
+// 						RefID       string `json:"ref_id"`
+// 						Name        string `json:"name"`
+// 						Sku         string `json:"sku"`
+// 						Code        string `json:"code"`
+// 						Qty         string `json:"qty"`
+// 						Unit        string `json:"unit"`
+// 						Width       string `json:"width"`
+// 						Length      string `json:"length"`
+// 						Height      string `json:"height"`
+// 						Weight      string `json:"weight"`
+// 						GrossWeight string `json:"gross_weight"`
+// 						TotalWeight string `json:"total_weight"`
+// 						TotalCbm    string `json:"total_cbm"`
+// 					} `json:"product_detail"`
+// 				} `json:"job_data"`
+// 				Owner        string `json:"owner"`
+// 				OwnerContact string `json:"owner_contact"`
+// 				OwnerTel     string `json:"owner_tel"`
+// 			} `json:"shipment"`
+// 			Booking []struct {
+// 				BookingID         string `json:"booking_id"`
+// 				BookingStatus     string `json:"booking_status"`
+// 				Price             string `json:"price"`
+// 				PriceUnit         string `json:"price_unit"`
+// 				TruckPlate        string `json:"truck_plate"`
+// 				DriverName        string `json:"driver_name"`
+// 				Oid               string `json:"oid"`
+// 				Company           string `json:"company"`
+// 				Address           string `json:"address"`
+// 				Contact           string `json:"contact"`
+// 				Phone             string `json:"phone"`
+// 				Email             string `json:"email"`
+// 				Rating            string `json:"rating"`
+// 				BookingScore      string `json:"booking_score"`
+// 				Time              string `json:"time"`
+// 				PositionLatitude  string `json:"position_latitude"`
+// 				PositionLongitude string `json:"position_longitude"`
+// 				PositionTime      string `json:"position_time"`
+// 			} `json:"booking"`
+// 			BookingCount    int           `json:"booking_count"`
+// 			MatchedBackhaul []interface{} `json:"matched_backhaul"`
+// 			Backhaul        []interface{} `json:"backhaul"`
+// 			ShipmentUpdate  []interface{} `json:"shipment_update"`
+// 			ShipmentImage   []interface{} `json:"shipment_image"`
+// 		} `json:"post_res"`
+// 		To struct {
+// 			ShipmentNo string `json:"shipment_no"`
+// 		} `json:"to"`
+// 	} `json:"data"`
+// }
+
+// type DriverLoadboard struct {
+// 	Success bool   `json:"success"`
+// 	Msg     string `json:"msg"`
+// 	Data    struct {
+// 		Success  bool   `json:"success"`
+// 		Status   string `json:"status"`
+// 		Message  string `json:"message"`
+// 		Shipment struct {
+// 			ShipmentNo     string `json:"shipment_no"`
+// 			ShipmentType   string `json:"shipment_type"`
+// 			MatchMode      string `json:"match_mode"`
+// 			MatchPriority2 string `json:"match_priority_2"`
+// 			MatchPriority3 string `json:"match_priority_3"`
+// 			AutoMatchTime  string `json:"auto_match_time"`
+// 			CustomerRating string `json:"customer_rating"`
+// 			RecipientName  string `json:"recipient_name"`
+// 			Broker         struct {
+// 				Oid     string `json:"oid"`
+// 				Title   string `json:"title"`
+// 				Address string `json:"address"`
+// 				Contact string `json:"contact"`
+// 				Phone   string `json:"phone"`
+// 			} `json:"broker"`
+// 			Owner   string `json:"owner"`
+// 			Carrier struct {
+// 				Oid     string `json:"oid"`
+// 				Title   string `json:"title"`
+// 				Address string `json:"address"`
+// 				Contact string `json:"contact"`
+// 				Phone   string `json:"phone"`
+// 			} `json:"carrier"`
+// 			TruckPlate             string      `json:"truck_plate"`
+// 			DriverName             string      `json:"driver_name"`
+// 			DriverImgURL           string      `json:"driver_img_url"`
+// 			SignatureURL           string      `json:"signature_url"`
+// 			Age                    string      `json:"age"`
+// 			PickupDate             string      `json:"pickup_date"`
+// 			DeliveryDate           string      `json:"delivery_date"`
+// 			OriginLocation         string      `json:"origin_location"`
+// 			OriginAddress          string      `json:"origin_address"`
+// 			OriginSubdistrict      string      `json:"origin_subdistrict"`
+// 			OriginDistrict         string      `json:"origin_district"`
+// 			OriginProvince         string      `json:"origin_province"`
+// 			OriginPostal           string      `json:"origin_postal"`
+// 			OriginLatitude         string      `json:"origin_latitude"`
+// 			OriginLongitude        string      `json:"origin_longitude"`
+// 			DestinationLocation    string      `json:"destination_location"`
+// 			DestinationAddress     string      `json:"destination_address"`
+// 			DestinationSubdistrict string      `json:"destination_subdistrict"`
+// 			DestinationDistrict    string      `json:"destination_district"`
+// 			DestinationProvince    string      `json:"destination_province"`
+// 			DestinationPostal      string      `json:"destination_postal"`
+// 			DestinationLatitude    string      `json:"destination_latitude"`
+// 			DestinationLongitude   string      `json:"destination_longitude"`
+// 			JobCount               string      `json:"job_count"`
+// 			Trip                   string      `json:"trip"`
+// 			Weight                 int         `json:"weight"`
+// 			TruckType              string      `json:"truck_type"`
+// 			TruckTypeTitle         string      `json:"truck_type_title"`
+// 			PriceStandard          string      `json:"price_standard"`
+// 			PriceExpress           string      `json:"price_express"`
+// 			PriceFestival          string      `json:"price_festival"`
+// 			PriceAsking            string      `json:"price_asking"`
+// 			PriceOffer             string      `json:"price_offer"`
+// 			PriceUnit              string      `json:"price_unit"`
+// 			PriceRateWeight        string      `json:"price_rate_weight"`
+// 			PriceRateDistance      string      `json:"price_rate_distance"`
+// 			PaymentType            string      `json:"payment_type"`
+// 			BoxAmount              string      `json:"box_amount"`
+// 			DeliveryRemark         string      `json:"delivery_remark"`
+// 			StatusID               string      `json:"status_id"`
+// 			Status                 string      `json:"status"`
+// 			Remark                 string      `json:"remark"`
+// 			CancelReason           interface{} `json:"cancel_reason"`
+// 			BookingCount           int         `json:"booking_count"`
+// 			JobData                []struct {
+// 				RefOrderNo       string `json:"ref_order_no"`
+// 				ConNo            string `json:"con_no"`
+// 				SName            string `json:"s_name"`
+// 				SAddress         string `json:"s_address"`
+// 				SSubdistrict     string `json:"s_subdistrict"`
+// 				SDistrict        string `json:"s_district"`
+// 				SProvince        string `json:"s_province"`
+// 				SLat             string `json:"s_lat"`
+// 				SLon             string `json:"s_lon"`
+// 				SZipcode         string `json:"s_zipcode"`
+// 				STel             string `json:"s_tel"`
+// 				SEmail           string `json:"s_email"`
+// 				SContact         string `json:"s_contact"`
+// 				SRefCode         string `json:"s_ref_code"`
+// 				SRefLink         string `json:"s_ref_link"`
+// 				RName            string `json:"r_name"`
+// 				RAddress         string `json:"r_address"`
+// 				RSubdistrict     string `json:"r_subdistrict"`
+// 				RDistrict        string `json:"r_district"`
+// 				RProvince        string `json:"r_province"`
+// 				RLat             string `json:"r_lat"`
+// 				RLon             string `json:"r_lon"`
+// 				RZipcode         string `json:"r_zipcode"`
+// 				RTel             string `json:"r_tel"`
+// 				REmail           string `json:"r_email"`
+// 				RContact         string `json:"r_contact"`
+// 				RRefCode         string `json:"r_ref_code"`
+// 				RRefLink         string `json:"r_ref_link"`
+// 				CName            string `json:"c_name"`
+// 				CAddress         string `json:"c_address"`
+// 				CSubdistrict     string `json:"c_subdistrict"`
+// 				CDistrict        string `json:"c_district"`
+// 				CProvince        string `json:"c_province"`
+// 				CZipcode         string `json:"c_zipcode"`
+// 				CTel             string `json:"c_tel"`
+// 				CEmail           string `json:"c_email"`
+// 				CContact         string `json:"c_contact"`
+// 				CRefCode         string `json:"c_ref_code"`
+// 				ServiceCode      string `json:"service_code"`
+// 				CodType          string `json:"cod_type"`
+// 				TransportCompany string `json:"transport_company"`
+// 				CompanyCode      string `json:"company_code"`
+// 				GroupRefID       string `json:"group_ref_id"`
+// 				PickupDate       string `json:"pickup_date"`
+// 				DeliveryDate     string `json:"delivery_date"`
+// 				BoxAmount        string `json:"box_amount"`
+// 				TotalWeight      int    `json:"total_weight"`
+// 				TotalCbm         int    `json:"total_cbm"`
+// 				Endpoint         string `json:"endpoint"`
+// 				EndpointUID      string `json:"endpoint_uid"`
+// 				EndpointOid      string `json:"endpoint_oid"`
+// 				NodeID           string `json:"node_id"`
+// 				TransportPrice   string `json:"transport_price"`
+// 				ProductDetail    []struct {
+// 					RefID       string `json:"ref_id"`
+// 					Name        string `json:"name"`
+// 					Sku         string `json:"sku"`
+// 					Code        string `json:"code"`
+// 					Qty         string `json:"qty"`
+// 					Unit        string `json:"unit"`
+// 					Width       string `json:"width"`
+// 					Length      string `json:"length"`
+// 					Height      string `json:"height"`
+// 					Weight      string `json:"weight"`
+// 					GrossWeight string `json:"gross_weight"`
+// 					TotalWeight string `json:"total_weight"`
+// 					TotalCbm    string `json:"total_cbm"`
+// 				} `json:"product_detail"`
+// 			} `json:"job_data"`
+// 		} `json:"shipment"`
+// 		Booking []struct {
+// 			BookingID         string `json:"booking_id"`
+// 			BookingStatus     string `json:"booking_status"`
+// 			Price             string `json:"price"`
+// 			PriceUnit         string `json:"price_unit"`
+// 			TruckPlate        string `json:"truck_plate"`
+// 			DriverName        string `json:"driver_name"`
+// 			Oid               string `json:"oid"`
+// 			Company           string `json:"company"`
+// 			Address           string `json:"address"`
+// 			Contact           string `json:"contact"`
+// 			Phone             string `json:"phone"`
+// 			Email             string `json:"email"`
+// 			Rating            string `json:"rating"`
+// 			BookingScore      string `json:"booking_score"`
+// 			Time              string `json:"time"`
+// 			PositionLatitude  string `json:"position_latitude"`
+// 			PositionLongitude string `json:"position_longitude"`
+// 			PositionTime      string `json:"position_time"`
+// 		} `json:"booking"`
+// 		ShipmentUpdate struct {
+// 			Num40 struct {
+// 				ShipmentStatus     string `json:"shipment_status"`
+// 				ActionTime         string `json:"action_time"`
+// 				PositionLat        string `json:"position_lat"`
+// 				PositionLon        string `json:"position_lon"`
+// 				PositionTime       string `json:"position_time"`
+// 				DistributionCenter string `json:"distribution_center"`
+// 				Status             string `json:"status"`
+// 				UID                string `json:"uid"`
+// 				Created            string `json:"created"`
+// 				Changed            string `json:"changed"`
+// 			} `json:"40"`
+// 			Num59 struct {
+// 				ShipmentStatus     string `json:"shipment_status"`
+// 				ActionTime         string `json:"action_time"`
+// 				PositionLat        string `json:"position_lat"`
+// 				PositionLon        string `json:"position_lon"`
+// 				PositionTime       string `json:"position_time"`
+// 				DistributionCenter string `json:"distribution_center"`
+// 				Status             string `json:"status"`
+// 				UID                string `json:"uid"`
+// 				Created            string `json:"created"`
+// 				Changed            string `json:"changed"`
+// 			} `json:"59"`
+// 		} `json:"shipment_update"`
+// 		ShipmentImage []interface{} `json:"shipment_image"`
+// 	} `json:"data"`
+// }
 type DriverLoadboard0 struct {
 	Success bool   `json:"success"`
 	Msg     string `json:"msg"`
@@ -725,13 +1266,46 @@ type (
 		MemberDiscount string `json:"MemberDiscount"`
 	}
 )
+type AccountBank struct {
+	TrackingID             string
+	AccountID              string
+	AccountName            string
+	AccType                string
+	PhoneNo                string
+	Email                  string
+	BankName               string
+	BankAccNo              string
+	BankType               string
+	PromptPayID            string
+	UserType               string
+	PrimaryTransferAccount string
+	AmountPrice            string
+	ComCode                string
+}
+type AmountCOD struct {
+	TrackingID string
+	AmountCOD  string
+}
+type Appversion struct {
+	Appid     string
+	AppType   string
+	Version   string
+	LastestDT string
+}
+
 type Mobile struct {
-	MobileID  string
-	Password  string
-	TypeEvent string
-	Lang      string
-	BG        string
-	LoginType string
+	MobileID           string
+	Password           string
+	TypeEvent          string
+	Lang               string
+	BG                 string
+	LoginType          string
+	AccName            string
+	AccBankName        string
+	AccNo              string
+	AccPromptPay       string
+	AccTransferPrimary string
+	AccType            string
 }
 type TruckType struct {
 	TruckID          string
@@ -741,6 +1315,12 @@ type TruckType struct {
 	RateServiceStart string
 	RateOilPerKM     string
 	IsUse            string
+}
+type MerchantRep struct {
+	MerchantID string
+	RepType    string
+	SDT        string
+	EDT        string
 }
 type Merchant struct {
 	MerchantID   string
@@ -776,6 +1356,23 @@ type PaymentQRCode struct {
 	QRCodetxt string
 	ExpDT     string
 }
+type RepPayment struct {
+	PMerchantID string
+	Ftypes      string
+	SumAmount   string
+}
+type RepSummary struct {
+	UserID       string
+	Status_Name  string
+	CStatus_Name string
+}
+type ChecksendPrice struct {
+	Jobid         string
+	TrackingID    string
+	THPDRatePrice string
+	AmountCOD     string
+	FTLFinalPrice string
+}
 type UrlAdvise struct {
 	UrlText string
 }
@@ -804,15 +1401,28 @@ type DriverJobMasterBooking struct {
 	JobTruckPlate string
 }
 type Get2c2ppaymentToken struct {
-	TrackingID  string
-	Amount      string
-	PhoneNumber string
-	PaymentType string
+	TrackingID          string
+	Amount              string
+	PhoneNumber         string
+	PaymentType         string
+	ComCode             string
+	TransportationPrice string
+	ProductPrice        string
+	NumberOfPieces      string
 }
 type GetPostPrintOnline struct {
 	PostCode   string
 	CountItems int
 }
+type GetCancel struct {
+	Shipment_no string
+	Remark      string
+}
+type GetAccount struct {
+	Shipment_no string
+	Remark      string
+}
+
 type TblTMSItemEvents struct {
 	DBID        string `json:"DBID"`
 	TrackingID  string `json:"TrackingID"`
@@ -991,7 +1601,7 @@ type Data struct {
 var (
 	// Options
 	//flagAlg     = flag.String("alg", "HS256", algHelp())
-	flagKey     = flag.String("key", "CD229682D3297390B9F66FF4020B758F4A5E625AF4992E5D75D311D6458B38E2", "path to key file or '-' to read from stdin")
+	flagKey     = flag.String("key", "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", "path to key file or '-' to read from stdin")
 	flagCompact = flag.Bool("compact", false, "output compact JSON")
 	flagDebug   = flag.Bool("debug", false, "print out all kinds of debug data")
 	//flagClaims  = make(ArgList)
@@ -1050,7 +1660,7 @@ var (
 	selectEventByToken  = `SELECT Email,MerchantName FROM THPDMPDB.tblMerchant WHERE MerchantID = ? and APIAuthenKey = ? limit 1`
 	insertOrderItem     = `INSERT INTO THPDMPDB.tblMobileOMSOrder(JobID,MobileID,ReceiveName,ReceiveAddress,ReceiveTumbon,ReceiveDistrict,ReceiveProvince,ReceiveZipcode,ReceivePhoneNo,SenderZipcode,SendPrice,PickupStartDt,DeliveryEndDt,PaymentFlag,PaymentDetail,CreateDt,JobDesc,JobType,WarehouseID,MerchantID,Status) values (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),?,?,?,?,? )`
 	insertOrderItemDesc = `INSERT INTO THPDMPDB.tblMobileOMSOrderDesc(JobID,MobileID,IMG1,IMG2,IMG3,IMG4,CreateDt) values ( ?, ?, ?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )`
-	insertGetDriver     = `INSERT INTO THPDMPDB.tblMobileOMSJobDriverBooking(JobID, TrackingID, CarID, DriverName, DriverPhoneNo, Company, Price, CustomerSelect, CustomConfirmDT, GetBeforeDT,CreateDT) values ( ?, ?, ?, ?,?, ?, ?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )`
+	insertGetDriver     = `INSERT INTO THPDMPDB.tblMobileOMSJobDriverBooking(JobID, TrackingID, CarID, DriverName, DriverPhoneNo, Company, Price, CustomerSelect, CustomConfirmDT, GetBeforeDT,CreateDT) values ( ?, ?, ?, ?, ?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )`
 	insertGetPayment    = `INSERT INTO THPDMPDB.tblPayment( Refid,TrackingID, MerchantID, PhoneNumber, Amount, PaymentType, CreditCardNo, PaymentComplete, PaymentCreateDT, PaymentModifyDT,RefCode) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),? )`
 
 	selectOrderOMS = `SELECT * FROM THPDMPDB.tblMobileOMSOrder WHERE MobileID = ? `
@@ -1093,10 +1703,16 @@ var OMSOrderStructs []OMSOrderStruct
 var Zipcodes []Zipcode
 var Mobiles []Mobile
 var Merchants []Merchant
+var MerchantReps []MerchantRep
 var DriverTrackings []DriverTracking
 var DriverJobMasterBookings []DriverJobMasterBooking
 var Get2c2ppaymentTokens []Get2c2ppaymentToken
-var GetPostPrintOnlines []GetPostPrintOnline
+var GetCancels []GetCancel
+var GetAccounts []AccountBank
+var GetKTBApproveJson []KTBApproveJson
+var GetMobileVersion []MobileVersion
+
+//var GetPostPrintOnlines []GetPostPrintOnline
 
 func handleWebhook(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("headers: %v\n", r.Header)
@@ -1120,19 +1736,27 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("ReplyToken: \n", ReplyToken)
 	fmt.Printf("MsgText: \n", MsgText)
 
-	//matched, err := regexp.MatchString(`AX([0-9]+)TX`, MsgText)
-
-	matched, err := regexp.MatchString(`FT([0-9]+)TH`, MsgText)
+	matched, err := regexp.MatchString(`FT([0-9]+)DB`, MsgText)
+	//fmt.Println(matched)
 
 	if !matched {
-		matched, err = regexp.MatchString(`LT([0-9]+)TH`, MsgText)
+		matched, err := regexp.MatchString(`LT([0-9]+)DB`, MsgText)
+		fmt.Println(matched)
+		fmt.Println(err)
+	}
+	if !matched {
+		matched, err := regexp.MatchString(`GD([0-9]+)TH`, MsgText)
+		fmt.Println(matched)
+		fmt.Println(err)
+	}
+	if !matched {
+		matched, err := regexp.MatchString(`B([0-9]+)`, MsgText)
+		fmt.Println(matched)
 		fmt.Println(err)
 	}
 
-	fmt.Println(matched)
-
 	//var bearerToken = "YBAnQHA776xhZVp5IiPGWG556tuo5hU3h0Ke0afe2LBi2pCAymiz0fgLcjLAEeWQZ+9+oJkjH1RFYyA676vOmk78/CCb7Bgns1eSm7GRrGf7GKlwGhp944byiEQZbhV5X1QXpAQMXSM0nN/zusI6yAdB04t89/1O/w1cDnyilFU=" line oongang
-	var bearerToken = "cpQfHAyvCAB1gAnYn7elBKCo8DQJhxsa+tWVSWz0EbkkTbFQbkm47EZgoeWwMZQrzSXzvsbN7Ay9MK/ET7EZQMcob5ZuL3FmW6zO5WTMpv++kVZmI+/VV6Z82IbOkLQkATft7vFh8Hca48OdMsMhUAdB04t89/1O/w1cDnyilFU="
+	var bearerToken = "OuTmwv2qDq9DJQw4+nIF6nYUv3WQt2dZFeKt3sxMyJY5x+X5wnSliG/vzkH/LSqOb1MIaTNPpIGo/aAiYxiArKY+HzWm8P+oNdO6sL1/16GygzZu6WO84ZMKz1v6xzAhlOJwrL+uVC02wWRixEFBVgdB04t89/1O/w1cDnyilFU="
 	var myJsonString = []byte(`{"replyToken":"` + ReplyToken + `","messages":[{"type":"text","text":"ระบบบริหารแพลตฟอร์มขนส่ง THPD DE ยินดีให้บริการ "},{"type":"text","text":"ท่านสามารถค้นหาสิ่งของโดยพิมพ์หมายเลข TrackID 13 หลัก"}]}`)
 
 	if matched {
@@ -1189,8 +1813,8 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 			//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 			//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-			dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+			//dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+			dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 			db, err := sql.Open("mysql", dns)
 
 			if err != nil {
@@ -1201,7 +1825,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 				panic(err)
 			}
 			count := 0
-			ress2, err := db.Query("SELECT  DBID,TrackingID,Status_Name,CreateDT,PaymentFlag,OfferPrice FROM THPDMPDB.VW_OMSMobileJobPayment  where trackingid = '" + MsgText + "' order by DBID DESC ")
+			ress2, err := db.Query("SELECT  DBID,TrackingID,Status_Name,CreateDT,IFNULL(PaymentFlag,'N')PaymentFlag,IFNULL(OfferPrice,'0')OfferPrice FROM THPDMPDB.VW_OMSMobileJobPayment  where trackingid = '" + MsgText + "' and  createdt > CURRENT_TIME()-30 order by createdt desc ")
 
 			if err == nil {
 
@@ -1215,8 +1839,10 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 						panic(err)
 					}
 					paymentMassage := "ยังไม่ชำระเงินค่าขนส่ง"
-					if event.PaymentFlag == "Y" {
+					if event.PaymentFlag == "Success" {
 						paymentMassage = "ชำระเงินค่าขนส่งแล้วจำนวน " + event.OfferPrice
+					} else {
+
 					}
 
 					dt := strings.Split(event.CreateDT, "T")[0]
@@ -1225,7 +1851,9 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 					tt := strings.Split(event.CreateDT, "T")[1]
 					tt = strings.Replace(tt, "Z", "", -1)
 
-					myJsonString = []byte(`{"replyToken":"` + ReplyToken + `","messages":[{"type":"text","text":"สถานะการค้นหา "},{"type":"text","text":" TrackID : ` + MsgText + `"},{"type":"text","text":" สถานะจัดส่งล่าสุด : ` + event.Status_Name + ` วันที่ ` + dt + ` เวลา ` + tt + ` "},{"type":"text","text":" การชำระเงิน : ` + paymentMassage + `"},{
+					if event.PaymentFlag != "Success" {
+
+						myJsonString = []byte(`{"replyToken":"` + ReplyToken + `","messages":[{"type":"text","text":"สถานะการค้นหา "},{"type":"text","text":" TrackID : ` + MsgText + `"},{"type":"text","text":" สถานะจัดส่งล่าสุด : ` + event.Status_Name + ` วันที่ ` + dt + ` เวลา ` + tt + ` "},{"type":"text","text":" การชำระเงิน : ` + paymentMassage + `"},{
 						"type": "template",
 						"altText": "This is a buttons template",
 						"template": {
@@ -1238,26 +1866,27 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 							"text": "โปรดเลือกวิธีการชำระเงิน",
 							"defaultAction": {
 								"type": "uri",
-								"label": "เข้าสู่เว็ปไซต์มาเก็ตเพรส",
+								"label": "เข้าสู่เว็บไซต์พร้อมสั่ง",
 								"uri": "http://example.com/page/123"
 							},
 							"actions": [
 								{
 									"type": "uri",
 									"label": "ชำระผ่าน Credit Card",
-									"uri": "https://report.thpdlogistics.com?Credit=` + MsgText + `"  
+									"uri": "https://oms-report.promptsong.co/?Credit=` + MsgText + `"  
 									
 								},
 								{
 								  "type": "uri",
 								  "label": "ชำระผ่าน QRCode",
-								  "uri": "https://report.thpdlogistics.com?QRCode=` + MsgText + `" 
+								  "uri": "https://oms-report.promptsong.co/?QRCode=` + MsgText + `" 
 								}
 							]
 						}
 					  }	 ]}`)
-
-					if event.PaymentFlag == "Y" {
+					}
+					//https://uat-oms-report.azurewebsites.net/?QRCode
+					if event.PaymentFlag == "Success" {
 
 						myJsonString = []byte(`{"replyToken":"` + ReplyToken + `","messages":[{"type":"text","text":"สถานะการค้นหา "},{"type":"text","text":" TrackID : ` + MsgText + `"},{"type":"text","text":" สถานะจัดส่งล่าสุด : ` + event.Status_Name + ` วันที่ ` + dt + ` เวลา ` + tt + ` "},{"type":"text","text":" การชำระเงิน : ` + paymentMassage + `"}	 ]}`)
 					}
@@ -1316,27 +1945,27 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 						"altText": "This is a buttons template",
 						"template": {
 							"type": "buttons",
-							"thumbnailImageUrl": "https://www.thpd.co.th/images/c-home/aw_infographic-5-steps-service-chain_2.png",
+							"thumbnailImageUrl": "https://uat-oms-report.azurewebsites.net/images/B2.png",
 							"imageAspectRatio": "rectangle",
 							"imageSize": "cover",
 							"imageBackgroundColor": "#FFFFFF",
-							"title": "เลือกช่องทางที่ท่านสนใจ",
-							"text": "Please select",
+							"title": "โปรดตอบแบบสอบถามเพื่อให้เรารู้จักท่านยิ่งดียิ่งขึ้น",
+							"text": "กดทำแบบสอบถาม",
 							"defaultAction": {
 								"type": "uri",
-								"label": "เข้าสู่เว็ปไซต์มาเก็ตเพรส",
-								"uri": "http://example.com/page/123"
+								"label": "เข้าสู่เว็บไซต์พร้อมสั่ง",
+								"uri": "https://docs.google.com/forms/d/1c3asJE0eHvlsPPxmqh6nZU9m0LPkR-_GZHYo_ydIgTY/viewform?edit_requested=true"
 							},
 							"actions": [
 								{
 									"type": "uri",
-									"label": "เข้าสู่เว็ปไซต์มาเก็ตเพรส",
-									"uri": "http://example.com/page/123"
+									"label": "เข้าสู่เว็บไซต์พร้อมสั่ง",
+									"uri": "https://www.promptsung.co"
 								},
 								{
 								  "type": "uri",
-								  "label": "เข้าสู่ระบบ OMS",
-								  "uri": "http://example.com/page/123"
+								  "label": "เข้าสู่เว็บไซต์พร้อมส่ง",
+								  "uri": "https://www.promptsong.co"
 								},
 								{
 								  "type": "postback",
@@ -1357,32 +1986,32 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 						"type": "carousel",
 						"columns": [
 							{
-							  "thumbnailImageUrl": "https://img.freepik.com/free-photo/durian-fruit-with-slices-leaves-isolated-white-surface_252965-910.jpg?w=2000",
+							  "thumbnailImageUrl": "https://uat-api-marketplace-frontend.azurewebsites.net/user-content/42324ab2db88408490684088d36a1ce7.jpg",
 							  "imageBackgroundColor": "#FFFFFF",
-							  "title": "ทุเรียนหมอนทองระยอง  ",
-							  "text": "โลละ 80 บาท (มีแค่ 200 กก.เท่านั้น) รีบจองเลย",
+							  "title": "มะม่วงเขียวสามรส มะม่วงมัน กรอบ หวาน  ",
+							  "text": "ชุดละ 70 บาท (มีแค่ 200 ชุด.เท่านั้น) สั่งเลย",
 							  "defaultAction": {
 								  "type": "uri",
 								  "label": "View detail",
-								  "uri": "http://example.com/page/123"
+								  "uri": "https://www.promptsung.co/"
 							  },"actions": [
 								{
 									"type": "uri",
 									"label": "View detail",
-									"uri": "http://example.com/page/111"
+									"uri": "https://www.promptsung.co/product/default/7e81b39c-2030-42bb-b114-08da75edfdce"
 								}
 							]
 							 
 							},
 							{
-								"thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJagqaIctMtB-So04pAmAPr_MrUaXdNMyry08N16ghCsL7fMrUX9MUI7Hsg_OJcjXZzg&usqp=CAU",
+								"thumbnailImageUrl": "https://uat-api-marketplace-frontend.azurewebsites.net/user-content/7aff36fd238148779173d9d9fe8034e2.jpg",
 								"imageBackgroundColor": "#FFFFFF",
-								"title": "ทุเรียนภูเขาไฟ ศรีษะเกษแท้ ",
-								"text": "โลละ 80 บาท",
+								"title": "ทุเรียนหมอนทองเนื้อล้วน (ราคาต่อขีดจ้า) หอมหวานมัน กรอบนอกนุ่มใน ",
+								"text": "โลละ 140 บาท",
 								"defaultAction": {
 									"type": "uri",
 									"label": "View detail",
-									"uri": "http://example.com/page/123"
+									"uri": "http://example.com/page/111"
 								},"actions": [
 						
 								  {
@@ -1510,9 +2139,47 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprintf(w, "Welcome to OMS THPDDE App198")
+	fmt.Fprintf(w, "Welcome to THPD DEApi PRD V 1.0.3G")
 	fmt.Println("Endpoint Hit: homePage")
-
+	// version V 1.0.2
+	// j  ecit for sent update driver to DX and stamp update mobileorder
+	// k  edit for driver offer price
+	// m insert phone to tblpaymentrequest
+	// M edit payment LTL api name OMSMobileSelectOrderFromBooking
+	// n edit update auto from backend
+	// N edit checkprice
+	// o update webhook O update vieworder loadboard
+	// p update cancel
+	// P update payment report
+	// q update
+	// Q update edit problem auto matching driver in MobileGetDriver
+	// r edit first time login insert to tblmobileomsmemberconfig
+	// R keep log smsotp use
+	// s edit OMSCheckPrice
+	// S add OMSGetBankAccount
+	// t edit webhook line
+	// T update api UAT from Chitman
+	// u getCOD
+	// U set ThaiQR When call Create QRCode
+	// v update uattme to tms
+	// V update tms
+	// w update 2c2p golive
+	// W update 2c2p to Sandbox
+	// y update ktb gen qrcode
+	// Y update ktb json structure
+	// z update del warehouse update isenable = 0
+	// Z update PromptSong SMS Sendername
+	// V 1.0.3a  update ktb approve
+	// 1.0.3A update getdriver insert or update แก้ไขเรื่องเบิ้ล
+	// 1.0.3b update ktb not approve
+	// 1.0.3B update FntGetpaymentToken for market place
+	// 1.0.3c update login tikky not accbank
+	// 1.0.3d update db to prd.
+	// 1.0.3e update payment qrcode to 2c2p.
+	// 1.0.3f update app version update.
+	// 1.0.3F update Auth All.
+	// 1.0.3g update 2C2P Production.
+	// 1.0.3G update QRCode Direct link Production.
 }
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
@@ -1609,8 +2276,7 @@ func GenlblPrint(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
 	db, err := sql.Open("mysql", dns)
 
@@ -1776,8 +2442,7 @@ func insertPayment(db *sql.DB, event EventPayment) (int64, error) {
 
 }
 func insertGetDriverTrack(db *sql.DB, event EventDriverTrack) (int64, error) {
-	res, err := db.Exec(insertGetDriver, event.JobID, event.TrackingID, event.CarID, event.DriverName, event.DriverPhoneNo, event.Company, event.Price, event.CustomerSelect,
-		event.CustomConfirmDT, event.GetBeforeDT)
+	res, err := db.Exec(insertGetDriver, event.JobID, event.TrackingID, event.CarID, event.DriverName, event.DriverPhoneNo, event.Company, event.Price, event.CustomerSelect)
 	if err != nil {
 		return 0, err
 	}
@@ -1912,8 +2577,124 @@ func OMSMobileCreateOrder(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("thpdmpdb", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
 
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MobileID
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+
+	if typefind != "" {
+		//var unixTime int64 = int64(m.Date)
+
+		event5 := Event5{
+			JobID:           string(article.JobID),
+			MobileID:        string(article.MobileID),
+			ReceiveName:     string(article.ReceiveName),
+			ReceiveAddress:  string(article.ReceiveAddress),
+			ReceiveTumbon:   string(article.ReceiveTumbon),
+			ReceiveDistrict: string(article.ReceiveDistrict),
+			ReceiveProvince: string(article.ReceiveProvince),
+			ReceivePhoneNo:  string(article.ReceivePhoneNo),
+			ReceiveZipcode:  string(article.ReceiveZipcode),
+			SenderZipcode:   string(article.SenderZipcode),
+			SendPrice:       string(article.SendPrice),
+			PickupStartDt:   string(article.PickupStartDt),
+			DeliveryEndDt:   string(article.DeliveryEndDt),
+			PaymentFlag:     string(article.PaymentFlag),
+			PaymentDetail:   string(article.PaymentDetail),
+			IMG1:            string(article.IMG1),
+			IMG2:            string(article.IMG2),
+			IMG3:            string(article.IMG3),
+			IMG4:            string(article.IMG4),
+			JobDesc:         string(article.JobDesc),
+			JobType:         string(article.JobType),
+			MerchantID:      string(article.MerchantID),
+			WarehouseID:     string(article.WarehouseID),
+			Status:          "รอดำเนินการ",
+			//CreateDt:        string(article.CreateDt),
+		}
+		insertedId, err := insertOrderItems(db, event5)
+		fmt.Println(insertedId)
+		if err != nil {
+			//panic(err)
+			resperr := make(map[string]string)
+			resperr["errmsg"] = err.Error()
+
+			jsonResp, err := json.Marshal(resperr)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			}
+			w.Write(jsonResp)
+			return
+		} else {
+			respok := make(map[string]string)
+			respok["Success"] = "Insert Success"
+			jsonResp, err := json.Marshal(respok)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			}
+			w.Write(jsonResp)
+			return
+		}
+		//fmt.Println(insertedId)
+	}
+
+	//return
+
+}
+func OMSMobileCreateOrderWithAuth(w http.ResponseWriter, r *http.Request) {
+	//vars := mux.Vars(r)
+	//key := vars["id"]
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article OMSOrderStruct
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2026,8 +2807,7 @@ func OMSMobileConnect(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2063,6 +2843,12 @@ func OMSMobileConnect(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		} else {
 
+			/// ยิง api เลือกคนขับ
+			UpdateAPIDriverToLoadboard(article.TrackingID, article.DriverID, drivercompany)
+
+			// ยิงเสริม
+			UpdateAPIDriverToLoadboard2(article.TrackingID, article.DriverID, drivercompany)
+
 			ress2, err2 := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET CustomerSelect = '1', CustomConfirmDT = NOW() WHERE  TrackingID = '" + article.TrackingID + "' and DriverName = '" + drivername + "' ")
 			defer ress2.Close()
 			if err2 != nil {
@@ -2073,8 +2859,6 @@ func OMSMobileConnect(w http.ResponseWriter, r *http.Request) {
 			if err3 != nil {
 				panic(err)
 			}
-			/// ยิง api เลือกคนขับ
-			UpdateAPIDriverToLoadboard(article.TrackingID, article.DriverID, drivercompany)
 
 			resp := make(map[string]string)
 			resp["TrackingID"] = article.TrackingID
@@ -2098,8 +2882,7 @@ func OMSMobileUpdateDriverJobMaster(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2129,24 +2912,130 @@ func OMSMobileUpdateDriverJobMaster(w http.ResponseWriter, r *http.Request) {
 		drivername := strings.Split(article.DriverName, ",")[0]
 		drivercompany := strings.Split(article.DriverName, ",")[1]
 
-		ress, err := db.Query("UPDATE THPDMPDB.tblJobMaster SET JobDriverID = '" + article.DriverID + "',JobDriverName = '" + drivername + "', JobTruckPlate = '" + article.Plate + "' , FTLFinalPrice= '" + article.FinalPrice + "' , JobAssignDT = NOW() , jobupdatedt = NOW()  WHERE JobID in (SELECT JobID FROM THPDMPDB.tblOrderMaster WHERE TrackingID = '" + article.TrackingID + "' ) ")
+		ress, err := db.Query("UPDATE THPDMPDB.tblJobMaster SET JobDriverID = '" + article.DriverID + "',JobDriverName = '" + drivername + "', JobTruckPlate = '" + article.Plate + "' , FTLFinalPrice= '" + article.FinalPrice + "' , JobAssignDT = NOW() , jobupdatedt = NOW()  WHERE JobID in (SELECT JobID FROM THPDMPDB.tblOrderMaster WHERE JobID = '" + article.TrackingID + "' ) ")
 		defer ress.Close()
 		if err != nil {
 			panic(err)
 		} else {
+
+			/// ยิง api เลือกคนขับ
+			UpdateAPIDriverToLoadboard(article.TrackingID, article.DriverID, drivercompany)
+
+			// ยิงเสริม
+			UpdateAPIDriverToLoadboard2(article.TrackingID, article.DriverID, drivercompany)
 
 			ress2, err2 := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET CustomerSelect = '1', CustomConfirmDT = NOW() WHERE  TrackingID = '" + article.TrackingID + "' and DriverName = '" + drivername + "' ")
 			defer ress2.Close()
 			if err2 != nil {
 				panic(err)
 			}
-			ress3, err3 := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder SET Status = 'Booking' WHERE JobID in ( SELECT Customer_Po FROM THPDMPDB.tblOrderMaster WHERE TrackingID = '" + article.TrackingID + "')")
+			ress3, err3 := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder SET Status = 'Booking' WHERE JobID in ( SELECT Customer_Po FROM THPDMPDB.tblOrderMaster WHERE JobID = '" + article.TrackingID + "')")
 			defer ress3.Close()
 			if err3 != nil {
 				panic(err)
 			}
+
+			resp := make(map[string]string)
+			resp["TrackingID"] = article.TrackingID
+			b, _ := json.Marshal(resp)
+
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+		}
+
+	}
+
+}
+func OMSMobileUpdateDriverJobMasterWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article DriverTracking
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.TrackingID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	// tUnix := t.Unix()
+	// fmt.Printf("timeUnix: %d\n", tUnix)
+	// strOTP := strconv.FormatInt(tUnix, 6)
+	// strOTP = substr(strOTP, 5, 6)
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+
+		//counter := 0
+		drivername := strings.Split(article.DriverName, ",")[0]
+		drivercompany := strings.Split(article.DriverName, ",")[1]
+
+		ress, err := db.Query("UPDATE THPDMPDB.tblJobMaster SET JobDriverID = '" + article.DriverID + "',JobDriverName = '" + drivername + "', JobTruckPlate = '" + article.Plate + "' , FTLFinalPrice= '" + article.FinalPrice + "' , JobAssignDT = NOW() , jobupdatedt = NOW()  WHERE JobID in (SELECT JobID FROM THPDMPDB.tblOrderMaster WHERE JobID = '" + article.TrackingID + "' ) ")
+		defer ress.Close()
+		if err != nil {
+			panic(err)
+		} else {
+
 			/// ยิง api เลือกคนขับ
 			UpdateAPIDriverToLoadboard(article.TrackingID, article.DriverID, drivercompany)
+
+			// ยิงเสริม
+			UpdateAPIDriverToLoadboard2(article.TrackingID, article.DriverID, drivercompany)
+
+			ress2, err2 := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET CustomerSelect = '1', CustomConfirmDT = NOW() WHERE  TrackingID = '" + article.TrackingID + "' and DriverName = '" + drivername + "' ")
+			defer ress2.Close()
+			if err2 != nil {
+				panic(err)
+			}
+			ress3, err3 := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder SET Status = 'Booking' WHERE JobID in ( SELECT Customer_Po FROM THPDMPDB.tblOrderMaster WHERE JobID = '" + article.TrackingID + "')")
+			defer ress3.Close()
+			if err3 != nil {
+				panic(err)
+			}
 
 			resp := make(map[string]string)
 			resp["TrackingID"] = article.TrackingID
@@ -2170,8 +3059,7 @@ func OMSMobileGetTrcukSize(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2237,7 +3125,107 @@ func OMSMobileGetTrcukSize(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+func OMSMobileGetTrcukSizeWithAuth(w http.ResponseWriter, r *http.Request) {
 
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article TruckType
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.TruckID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	// tUnix := t.Unix()
+	// fmt.Printf("timeUnix: %d\n", tUnix)
+	// strOTP := strconv.FormatInt(tUnix, 6)
+	// strOTP = substr(strOTP, 5, 6)
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT  TruckID, TruckName, TruckDesc, TruckSize, RateServiceStart, OilStandardPrice as RateOilPerKM, IsUse FROM THPDDB.VW_TruckType ")
+
+		if err == nil {
+
+			boxes := []TruckType{}
+
+			resp := make(map[string]string)
+			resp["TruckID"] = article.TruckID
+
+			for ress2.Next() {
+				var event TruckType
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.TruckID, &event.TruckName, &event.TruckDesc, &event.TruckSize, &event.RateServiceStart, &event.RateOilPerKM, &event.IsUse)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, TruckType{TruckID: event.TruckID, TruckName: event.TruckName, TruckDesc: event.TruckDesc, TruckSize: event.TruckSize, RateServiceStart: event.RateServiceStart, RateOilPerKM: event.RateOilPerKM, IsUse: event.IsUse})
+
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+
+		}
+
+	}
+
+}
 func OMSMobileGetCoupon(w http.ResponseWriter, r *http.Request) {
 
 	reqBody, _ := ioutil.ReadAll(r.Body)
@@ -2246,8 +3234,108 @@ func OMSMobileGetCoupon(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
 
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MerchantID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	// tUnix := t.Unix()
+	// fmt.Printf("timeUnix: %d\n", tUnix)
+	// strOTP := strconv.FormatInt(tUnix, 6)
+	// strOTP = substr(strOTP, 5, 6)
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT CouponName,CouponCode,CouponDiscount,CouponExpireDT FROM THPDMPDB.tblCoupons  ")
+
+		if err == nil {
+
+			boxes := []Coupon{}
+
+			resp := make(map[string]string)
+			resp["MerchantID"] = article.MerchantID
+
+			for ress2.Next() {
+				var event Coupon
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.CouponName, &event.CouponCode, &event.CouponDiscount, &event.CouponExpireDT)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, Coupon{CouponName: event.CouponName, CouponCode: event.CouponCode, CouponDiscount: event.CouponDiscount, CouponExpireDT: event.CouponExpireDT})
+
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+
+		}
+
+	}
+
+}
+func OMSMobileGetCouponWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Merchant
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2321,8 +3409,7 @@ func OMSMobileGetRateAddOn(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2388,6 +3475,216 @@ func OMSMobileGetRateAddOn(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
+func OMSMobileDelWareHouse(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Merchant
+	json.Unmarshal(reqBody, &article)
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MerchantID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	// tUnix := t.Unix()
+	// fmt.Printf("timeUnix: %d\n", tUnix)
+	// strOTP := strconv.FormatInt(tUnix, 6)
+	// strOTP = substr(strOTP, 5, 6)
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+
+		//counter := 0
+		ress3, err3 := db.Query("UPDATE THPDMPDB.tblMerchantWH SET IsEnable = 0 WHERE WarehouseID = '" + article.WarehouseID + "'  ")
+		defer ress3.Close()
+		if err3 != nil {
+			panic(err3)
+		}
+
+		if err == nil {
+
+			ress2, err := db.Query("SELECT MerchantID, Address1, Address2, IFNULL(LocationGPS,'0,0')LocationGPS, WarehouseID, IFNULL(SubDistrict,'')SubDistrict, IFNULL(District,'0,0')District,ProvinceName,PostCode FROM THPDMPDB.tblMerchantWH WHERE MerchantID = '" + article.MerchantID + "' and IsEnable = 1 ")
+
+			boxes := []Merchant{}
+
+			resp := make(map[string]string)
+			resp["MerchantID"] = article.MerchantID
+
+			for ress2.Next() {
+				var event Merchant
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.MerchantID, &event.Address1, &event.Address2, &event.LocationGPS, &event.WarehouseID, &event.SubDistrict, &event.District, &event.ProvinceName, &event.PostCode)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
+
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+
+			// respok := make(map[string]string)
+			// respok["Success"] = "true"
+			// respok["WarehouseID"] = article.WarehouseID
+
+			// jsonResp, err := json.Marshal(respok)
+
+			// if err != nil {
+			// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			// }
+			// w.Write(jsonResp)
+			// return
+
+		}
+
+	}
+
+}
+func OMSMobileDelWareHouseWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Merchant
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MerchantID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	// tUnix := t.Unix()
+	// fmt.Printf("timeUnix: %d\n", tUnix)
+	// strOTP := strconv.FormatInt(tUnix, 6)
+	// strOTP = substr(strOTP, 5, 6)
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+
+		//counter := 0
+		ress3, err3 := db.Query("UPDATE THPDMPDB.tblMerchantWH SET IsEnable = 0 WHERE WarehouseID = '" + article.WarehouseID + "'  ")
+		defer ress3.Close()
+		if err3 != nil {
+			panic(err3)
+		}
+
+		if err == nil {
+
+			ress2, err := db.Query("SELECT MerchantID, Address1, Address2, IFNULL(LocationGPS,'0,0')LocationGPS, WarehouseID, IFNULL(SubDistrict,'')SubDistrict, IFNULL(District,'0,0')District,ProvinceName,PostCode FROM THPDMPDB.tblMerchantWH WHERE MerchantID = '" + article.MerchantID + "' and IsEnable = 1 ")
+
+			boxes := []Merchant{}
+
+			resp := make(map[string]string)
+			resp["MerchantID"] = article.MerchantID
+
+			for ress2.Next() {
+				var event Merchant
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.MerchantID, &event.Address1, &event.Address2, &event.LocationGPS, &event.WarehouseID, &event.SubDistrict, &event.District, &event.ProvinceName, &event.PostCode)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
+
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+
+			// respok := make(map[string]string)
+			// respok["Success"] = "true"
+			// respok["WarehouseID"] = article.WarehouseID
+
+			// jsonResp, err := json.Marshal(respok)
+
+			// if err != nil {
+			// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			// }
+			// w.Write(jsonResp)
+			// return
+
+		}
+
+	}
+
+}
 func OMSMobileGetWareHouse(w http.ResponseWriter, r *http.Request) {
 
 	reqBody, _ := ioutil.ReadAll(r.Body)
@@ -2396,8 +3693,7 @@ func OMSMobileGetWareHouse(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2425,7 +3721,107 @@ func OMSMobileGetWareHouse(w http.ResponseWriter, r *http.Request) {
 
 		//counter := 0
 
-		ress2, err := db.Query("SELECT MerchantID, Address1, Address2, IFNULL(LocationGPS,'0,0')LocationGPS, WarehouseID, IFNULL(SubDistrict,'')SubDistrict, IFNULL(District,'0,0')District,ProvinceName,PostCode FROM THPDMPDB.tblMerchantWH WHERE MerchantID = '" + article.MerchantID + "'  ")
+		ress2, err := db.Query("SELECT MerchantID, Address1, Address2, IFNULL(LocationGPS,'0,0')LocationGPS, WarehouseID, IFNULL(SubDistrict,'')SubDistrict, IFNULL(District,'0,0')District,ProvinceName,PostCode FROM THPDMPDB.tblMerchantWH WHERE MerchantID = '" + article.MerchantID + "' and IsEnable = 1 ")
+
+		if err == nil {
+
+			boxes := []Merchant{}
+
+			resp := make(map[string]string)
+			resp["MerchantID"] = article.MerchantID
+
+			for ress2.Next() {
+				var event Merchant
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.MerchantID, &event.Address1, &event.Address2, &event.LocationGPS, &event.WarehouseID, &event.SubDistrict, &event.District, &event.ProvinceName, &event.PostCode)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
+
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+
+		}
+
+	}
+
+}
+func OMSMobileGetWareHouseWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Merchant
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MerchantID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	// tUnix := t.Unix()
+	// fmt.Printf("timeUnix: %d\n", tUnix)
+	// strOTP := strconv.FormatInt(tUnix, 6)
+	// strOTP = substr(strOTP, 5, 6)
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT MerchantID, Address1, Address2, IFNULL(LocationGPS,'0,0')LocationGPS, WarehouseID, IFNULL(SubDistrict,'')SubDistrict, IFNULL(District,'0,0')District,ProvinceName,PostCode FROM THPDMPDB.tblMerchantWH WHERE MerchantID = '" + article.MerchantID + "' and IsEnable = 1 ")
 
 		if err == nil {
 
@@ -2474,11 +3870,10 @@ func EncodeToString(max int) string {
 	}
 	return string(b)
 }
-func UpdateAPIDriverToLoadboard(trackID string, carrier_id string, drivername string) string {
+func CancelJobToLoadboard(trackID string, remark string) string {
 
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 	if err != nil {
 		panic(err)
@@ -2496,13 +3891,18 @@ func UpdateAPIDriverToLoadboard(trackID string, carrier_id string, drivername st
 	emp.con_no = trackID
 
 	//var data []byte
+
 	//// Convert struct to json
 	//data, _ = json.MarshalIndent(emp, "", "    ")
 
-	payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
+	if trackID == "" {
+		return "0"
+	}
+
+	payload := strings.NewReader(`{"shipment_no": "` + trackID + `" ,"remark": "` + remark + `"}`)
 
 	method := "POST"
-	url := "https://broker.dxplace.com/API/Gateways/selectCarrier"
+	url := "https://tms-api.promptsong.co/API/BrokerGateways/cancelPostLoad"
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
@@ -2528,8 +3928,167 @@ func UpdateAPIDriverToLoadboard(trackID string, carrier_id string, drivername st
 	}
 	fmt.Println(string(body))
 
-	//sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
-	//fmt.Println(string(sqlstr))
+	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
+	// fmt.Println(string(sqlstr))
+
+	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
+	defer ress3.Close()
+	if err2 != nil {
+		panic(err)
+	}
+
+	// ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET PriceUnit = '1'  WHERE TrackingID = '" + trackID + "'  ")
+	// defer ress.Close()
+	// if err != nil {
+	// 	panic(err)
+	// } else {
+	/// SMS ให้คนขับ ///
+
+	SendMessageToDriver(trackID, "0850270971", "ยกเลิกการจัดส่ง", remark)
+
+	//}
+	if err == nil {
+	}
+
+	return string("ok")
+}
+func CancelJobToLoadboard2(trackID string, remark string) string {
+
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	var app_id = "de_oms"
+	var app_key = "dx1234"
+
+	var emp Con_no
+	emp.con_no = trackID
+
+	//var data []byte
+
+	//// Convert struct to json
+	//data, _ = json.MarshalIndent(emp, "", "    ")
+
+	if trackID == "" {
+		return "0"
+	}
+
+	payload := strings.NewReader(`{"shipment_no": "` + trackID + `" ,"remark": "` + remark + `"}`)
+
+	method := "POST"
+	url := "https://demo-api.dxplace.com/API/BrokerGateways/cancelPostLoad"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+	if err != nil {
+		panic(err)
+	}
+
+	req.Header.Add("app_id", app_id)
+	req.Header.Add("app_key", app_key)
+	req.Header.Add("Content-Type", "application/json")
+
+	resp2, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return err.Error()
+	}
+	defer resp2.Body.Close()
+
+	body, err := ioutil.ReadAll(resp2.Body)
+	if err != nil {
+		fmt.Println(err)
+		return string(err.Error())
+	}
+	fmt.Println(string(body))
+
+	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
+	// fmt.Println(string(sqlstr))
+
+	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
+	defer ress3.Close()
+	if err2 != nil {
+		panic(err)
+	}
+
+	// ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET PriceUnit = '1'  WHERE TrackingID = '" + trackID + "'  ")
+	// defer ress.Close()
+	// if err != nil {
+	// 	panic(err)
+	// } else {
+	/// SMS ให้คนขับ ///
+
+	//SendMessageToDriver(trackID, "0850270971", "ยกเลิกการจัดส่ง", remark)
+
+	//}
+	if err == nil {
+	}
+
+	return string("ok")
+}
+func UpdateAPIDriverToLoadboard(trackID string, carrier_id string, drivername string) string {
+
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	var app_id = "de_oms"
+	var app_key = "dx1234"
+
+	var emp Con_no
+	emp.con_no = trackID
+
+	//var data []byte
+	//// Convert struct to json
+	//data, _ = json.MarshalIndent(emp, "", "    ")
+
+	payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
+
+	method := "POST"
+	url := "https://tms-api.promptsong.co/API/BrokerGateways/selectCarrier"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+	if err != nil {
+		panic(err)
+	}
+
+	req.Header.Add("app_id", app_id)
+	req.Header.Add("app_key", app_key)
+	req.Header.Add("Content-Type", "application/json")
+
+	resp2, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return err.Error()
+	}
+	defer resp2.Body.Close()
+
+	body, err := ioutil.ReadAll(resp2.Body)
+	if err != nil {
+		fmt.Println(err)
+		return string(err.Error())
+	}
+	fmt.Println(string(body))
+
+	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
+	// fmt.Println(string(sqlstr))
 
 	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
 	defer ress3.Close()
@@ -2552,11 +4111,86 @@ func UpdateAPIDriverToLoadboard(trackID string, carrier_id string, drivername st
 
 	return string("ok")
 }
+func UpdateAPIDriverToLoadboard2(trackID string, carrier_id string, drivername string) string {
+
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	var app_id = "de_oms"
+	var app_key = "dx1234"
+
+	var emp Con_no
+	emp.con_no = trackID
+
+	//var data []byte
+	//// Convert struct to json
+	//data, _ = json.MarshalIndent(emp, "", "    ")
+
+	payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
+
+	method := "POST"
+	url := "https://demo-api.dxplace.com/API/BrokerGateways/selectCarrier"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+	if err != nil {
+		panic(err)
+	}
+
+	req.Header.Add("app_id", app_id)
+	req.Header.Add("app_key", app_key)
+	req.Header.Add("Content-Type", "application/json")
+
+	resp2, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return err.Error()
+	}
+	defer resp2.Body.Close()
+
+	body, err := ioutil.ReadAll(resp2.Body)
+	if err != nil {
+		fmt.Println(err)
+		return string(err.Error())
+	}
+	fmt.Println(string(body))
+
+	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
+	// fmt.Println(string(sqlstr))
+
+	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
+	defer ress3.Close()
+	if err2 != nil {
+		panic(err)
+	}
+
+	// ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET PriceUnit = '1'  WHERE TrackingID = '" + trackID + "'  ")
+	// defer ress.Close()
+	// if err != nil {
+	// 	panic(err)
+	// } else {
+	// 	/// SMS ให้คนขับ ///
+
+	// 	//SendMessageToDriver(trackID, "0850270971", carrier_id, drivername)
+
+	// }
+	// if err == nil {
+	// }
+	return string("ok")
+}
 func UpdateAPIPaymentToLoadboard(trackID string, paymentDetail string, drivername string) string {
 
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	var app_id = "de_oms"
@@ -2591,15 +4225,16 @@ func UpdateAPIPaymentToLoadboard(trackID string, paymentDetail string, drivernam
 
 	//payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
 	payload := strings.NewReader(`{
+		"shipment_no": "` + trackID + `",
 		"status": 51,
 		"actual_time": ` + s + `,
 		"action_time": ` + s + `,
-		"jobs": [{ "con_no": "` + trackID + `" }],
+	
 		"doc_link": ""
 	  }`)
-
+	//  "jobs": [{ "con_no": "` + trackID + `" }],
 	method := "POST"
-	url := "https://broker.dxplace.com/API/Gateways/updateStatus"
+	url := "https://tms-api.promptsong.co/API/BrokerGateways/updateStatus"
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
@@ -2633,7 +4268,7 @@ func UpdateAPIPaymentToLoadboard(trackID string, paymentDetail string, drivernam
 
 	msgbody := paymentDetail + " , DXResponse: " + strings.ReplaceAll(string(body), "'", `\'`)
 	// price unit = ลูกค้าชำระเงินแล้ว
-	ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder a  INNER JOIN THPDMPDB.VW_OMSMobileOrderNoIMG2 b INNER JOIN THPDMPDB.tblPayment c ON a.JobID = b.JobID and b.TrackingID = c.TrackingID SET a.PaymentFlag =  'Y' , a.PaymentDetail = '" + msgbody + "'   WHERE b.TrackingID = '" + trackID + "'  ")
+	ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder a  INNER JOIN THPDMPDB.VW_OMSMobileOrderNoIMG2 b INNER JOIN THPDMPDB.tblPayment c ON a.JobID = b.JobID and SUBSTRING_INDEX(b.JobType,'|', -1) = c.TrackingID SET a.PaymentFlag =  'Y' , a.PaymentDetail = 'Payment Gateway Msg: " + paymentDetail + " Dx Msg : " + msgbody + "'   WHERE c.TrackingID = '" + trackID + "'  ")
 	defer ress.Close()
 	if err != nil {
 		panic(err)
@@ -2645,6 +4280,102 @@ func UpdateAPIPaymentToLoadboard(trackID string, paymentDetail string, drivernam
 	}
 	if err == nil {
 	}
+
+	return string("Success")
+}
+func UpdateAPIPaymentToLoadboard2(trackID string, paymentDetail string, drivername string) string {
+
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	var app_id = "de_oms"
+	var app_key = "dx1234"
+
+	var emp Con_no
+	emp.con_no = trackID
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	//var data []byte
+	//// Convert struct to json
+	//data, _ = json.MarshalIndent(emp, "", "    ")
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	tUnix := t.Unix()
+	fmt.Printf("timeUnix: %d\n", tUnix)
+
+	var n int64 = tUnix
+
+	s := strconv.FormatInt(n, 10)
+
+	fmt.Printf("%d\n", tUnix)
+	//strOTP := strconv.FormatInt(tUnix, 6)
+
+	//payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
+	payload := strings.NewReader(`{
+		"shipment_no": "` + trackID + `",
+		"status": 51,
+		"actual_time": ` + s + `,
+		"action_time": ` + s + `,
+	
+		"doc_link": ""
+	  }`)
+	//  "jobs": [{ "con_no": "` + trackID + `" }],
+	method := "POST"
+	url := "https://demo-api.dxplace.com/API/BrokerGateways/updateStatus"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+	if err != nil {
+		panic(err)
+	}
+
+	req.Header.Add("app_id", app_id)
+	req.Header.Add("app_key", app_key)
+	req.Header.Add("Content-Type", "application/json")
+
+	resp2, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return err.Error()
+	}
+	defer resp2.Body.Close()
+
+	body, err := ioutil.ReadAll(resp2.Body)
+	if err != nil {
+		fmt.Println(err)
+		return string(err.Error())
+	}
+	fmt.Println(string(body))
+
+	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
+	defer ress3.Close()
+	if err2 != nil {
+		panic(err)
+	}
+
+	//msgbody := paymentDetail + " , DXResponse: " + strings.ReplaceAll(string(body), "'", `\'`)
+	//// price unit = ลูกค้าชำระเงินแล้ว
+	// ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder a  INNER JOIN THPDMPDB.VW_OMSMobileOrderNoIMG2 b INNER JOIN THPDMPDB.tblPayment c ON a.JobID = b.JobID and SUBSTRING_INDEX(b.JobType,'|', -1) = c.TrackingID SET a.PaymentFlag =  'Y' , a.PaymentDetail = 'Payment Gateway Msg: " + paymentDetail + " Dx Msg : " + msgbody + "'   WHERE c.TrackingID = '" + trackID + "'  ")
+	// defer ress.Close()
+	// if err != nil {
+	// 	panic(err)
+	// } else {
+	// 	/// SMS ให้คนขับ ///
+
+	// 	//SendMessageToDriver(trackID, "0850270971", carrier_id, drivername)
+
+	// }
+	// if err == nil {
+	// }
 
 	return string("Success")
 }
@@ -2693,8 +4424,7 @@ func PreparePayload(trackID string) string {
 func ChkAuth(Authorization []string, Channel []string) int {
 
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2744,12 +4474,194 @@ func ChkAuth(Authorization []string, Channel []string) int {
 
 	return returnval
 }
+
+func GetKTBApprove(w http.ResponseWriter, r *http.Request) {
+
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	// Authorization := r.Header["Authorization"]
+	// if Authorization[0] != "Basic QjAwNlQwMTpsb3N7MTJMbw==" {
+	// 	return
+	// 	//panic(err)
+	// }
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article KTBApproveJson
+	json.Unmarshal(reqBody, &article)
+
+	//KTBReponseApproveJson
+	// insert payment request ktb
+	//KTBApproveJson
+
+	//jsonResp, err := json.Marshal(b)
+	// if err != nil {
+	// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	// 	return
+	// }
+
+	//SendOTPToCustomer(strOTP, event.PhoneNumber)
+
+	//var s string = strconv.FormatFloat(f, 'E', -1, 32)
+	Amount := fmt.Sprintf("%v", article.Amount)
+	BankCode := fmt.Sprintf("%v", article.BankCode)
+
+	haveitem := 0
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	//Tkid := substr(article.Ref2, 4, 1)
+	Tkid := substr(article.Ref2, 0, 1)
+
+	if Tkid == "B" {
+		//jobid := substr(article.Ref2, 4, 10)
+		jobid := substr(article.Ref2, 0, 10)
+		ress2, err := db.Query("SELECT * FROM thpdmpdb.vw_omschecksendprice  where Jobid = '" + jobid + "'  ")
+
+		if err == nil {
+
+			for ress2.Next() {
+				haveitem = 1
+
+			}
+		}
+	} else {
+		//obid := substr(article.Ref2, 4, 13)
+		jobid := substr(article.Ref2, 0, 13)
+		ress2, err := db.Query("SELECT * FROM thpdmpdb.vw_omschecksendprice  where TrackingID = '" + jobid + "'  ")
+
+		if err == nil {
+
+			for ress2.Next() {
+				haveitem = 1
+
+			}
+		}
+	}
+
+	if haveitem == 1 {
+
+		tUnix := t.Unix()
+		strtUnix := strconv.FormatInt(tUnix, 10)
+		fmt.Println(strtUnix)
+
+		ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblpaymentktbapprove ( tranxId, ComCode, ProdCode, Command, BankCode, BankRef, DateTime, EffDate, Amount, Channel, CusName, Ref1, Ref2, Ref3, Ref4,CreateDT) Values (" + strtUnix + ",'" + article.ComCode + "','" + article.ProdCode + "','" + article.Command + "','" + BankCode + "','" + article.BankRef + "','" + article.DateTime + "','" + article.EffDate + "','" + Amount + "','" + article.Channel + "','" + article.CusName + "','" + article.Ref1 + "','" + article.Ref2 + "','" + article.Ref3 + "','" + article.Ref4 + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))")
+		defer ress3.Close()
+		if err2 != nil {
+			panic(err)
+		}
+		defer ress3.Close()
+		err = ress3.Close()
+
+		//boxes := []KTBReponseApproveJson{}
+		resp := make(map[string]string)
+		resp["bankRef"] = article.BankRef
+
+		//boxes = append(boxes, KTBReponseApproveJson{TranxID: strtUnix, BankRef: article.BankRef, RespCode: 0, RespMsg: "Successful", Balance: article.Amount, CusName: article.CusName, Info: "", Print1: "ไปรษณ๊ย์ไทยดิสทริบ้วชั่น ขอขอบพระคุณ"})
+		boxes1 := KTBReponseApproveJson{TranxID: strtUnix, BankRef: article.BankRef, RespCode: 0, RespMsg: "Successful", Balance: article.Amount, CusName: article.CusName, Info: "", Print1: "ไปรษณ๊ย์ไทยดิสทริบ้วชั่น ขอขอบพระคุณ"}
+
+		b, _ := json.Marshal(boxes1)
+
+		w.Write(b)
+	} else {
+		//boxes := []KTBReponseApproveJson{}
+
+		tUnix := t.Unix()
+		strtUnix := strconv.FormatInt(tUnix, 10)
+		fmt.Println(strtUnix)
+
+		ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblpaymentktbapprove ( tranxId, ComCode, ProdCode, Command, BankCode, BankRef, DateTime, EffDate, Amount, Channel, CusName, Ref1, Ref2, Ref3, Ref4,CreateDT) Values (" + strtUnix + ",'" + article.ComCode + "','" + article.ProdCode + "','Not Approve','" + BankCode + "','" + article.BankRef + "','" + article.DateTime + "','" + article.EffDate + "','" + Amount + "','" + article.Channel + "','" + article.CusName + "','" + article.Ref1 + "','" + article.Ref2 + "','" + article.Ref3 + "','" + article.Ref4 + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))")
+		defer ress3.Close()
+		if err2 != nil {
+			panic(err)
+		}
+		defer ress3.Close()
+		err = ress3.Close()
+
+		resp := make(map[string]string)
+		resp["bankRef"] = article.BankRef
+
+		//boxes = append(boxes, KTBReponseApproveJson{TranxID: "", BankRef: article.BankRef, RespCode: 0, RespMsg: "Not Success", Balance: article.Amount, CusName: article.CusName, Info: "", Print1: ""})
+		boxes1 := KTBReponseApproveJson{TranxID: strtUnix, BankRef: article.BankRef, RespCode: 104, RespMsg: "Invalid reference", Balance: article.Amount, CusName: article.CusName, Info: "", Print1: ""}
+
+		b, _ := json.Marshal(boxes1)
+
+		w.Write(b)
+	}
+}
+func GetKTBCharge(w http.ResponseWriter, r *http.Request) {
+
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	// Authorization := r.Header["Authorization"]
+	// if Authorization[0] != "Basic QjAwNlQwMTpsb3N7MTJMbw==" {
+	// 	return
+	// 	//panic(err)
+	// }
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article KTBChargeJson
+	json.Unmarshal(reqBody, &article)
+
+	//KTBReponseApproveJson
+	// insert payment request ktb
+	//KTBApproveJson
+	boxes := []KTBChargeResponseJson{}
+	resp := make(map[string]string)
+	resp["bankRef"] = article.BankRef
+
+	boxes = append(boxes, KTBChargeResponseJson{TranxID: article.TranxID, BankRef: article.BankRef, RespCode: 0, RespMsg: "Successful", Balance: article.Amount, CusName: article.CusName, Info: "information", Print1: "ไปรษณ๊ย์ไทยดิสทริบ้วชั่น ขอขอบพระคุณ"})
+	boxes1 := KTBChargeResponseJson{TranxID: article.TranxID, BankRef: article.BankRef, RespCode: 0, RespMsg: "Successful", Balance: article.Amount, CusName: article.CusName, Info: "information", Print1: "ไปรษณ๊ย์ไทยดิสทริบ้วชั่น ขอขอบพระคุณ"}
+
+	b, _ := json.Marshal(boxes1)
+
+	//jsonResp, err := json.Marshal(b)
+	// if err != nil {
+	// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	// 	return
+	// }
+
+	//SendOTPToCustomer(strOTP, event.PhoneNumber)
+
+	Amount := fmt.Sprintf("%v", article.Amount)
+	BankCode := fmt.Sprintf("%v", article.BankCode)
+
+	ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblpaymentktbcharge ( tranxId, ComCode, ProdCode, Command, BankCode, BankRef, DateTime, EffDate, Amount, Channel, CusName, Ref1, Ref2, Ref3, Ref4,CreateDT) Values (" + article.TranxID + ",'" + article.ComCode + "','" + article.ProdCode + "','" + article.Command + "','" + BankCode + "','" + article.BankRef + "','" + article.DateTime + "','" + article.EffDate + "','" + Amount + "','" + article.Channel + "','" + article.CusName + "','" + article.Ref1 + "','" + article.Ref2 + "','" + article.Ref3 + "','" + article.Ref4 + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))")
+	defer ress3.Close()
+	if err2 != nil {
+		panic(err)
+	}
+	defer ress3.Close()
+	err = ress3.Close()
+
+	w.Write(b)
+	//KTBChargeJson
+	//KTBChargeResponseJson
+}
+
 func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//db, err := sql.Open("mysql", dns)
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -2796,58 +4708,134 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 
 	TrackingID := article.TrackingID
 	Amount, err := strconv.Atoi(article.Amount)
-	PhoneNumber := article.PhoneNumber
-	TypePayment := article.PaymentType
-
-	chars := []rune(TrackingID)
-	//strArray := strings.Fields(MsgText)
-	//var tx =
-	t1x, err := strconv.Atoi(string(chars[2]))
-	t2x, err := strconv.Atoi(string(chars[3]))
-	t3x, err := strconv.Atoi(string(chars[4]))
-	t4x, err := strconv.Atoi(string(chars[5]))
-	t5x, err := strconv.Atoi(string(chars[6]))
-	t6x, err := strconv.Atoi(string(chars[7]))
-	t7x, err := strconv.Atoi(string(chars[8]))
-	t8x, err := strconv.Atoi(string(chars[9]))
-	t9x, err := strconv.Atoi(string(chars[10]))
-
 	if err != nil {
 		panic(err)
 	}
+	PhoneNumber := article.PhoneNumber
+	TypePayment := article.PaymentType
+	ComCode := article.ComCode
+	TransportationPrice := article.TransportationPrice
+	ProductPrice := article.ProductPrice
+	NumberOfPieces := article.ProductPrice
 
-	t1 := t1x * 8
-	t2 := t2x * 6
-	t3 := t3x * 4
+	// CRC Checksum test
+	THQR1 := "000201010212"
+	THQR2 := "30" // 3077 = length 77 util  thqr5
+	THQR3 := "0016A0000006770101120115010555700458001"
 
-	t4 := t4x * 2
-	t5 := t5x * 3
-	t6 := t6x * 5
+	THQR41 := strconv.Itoa(len(ComCode + TrackingID))
 
-	t7 := t7x * 9
-	t8 := t8x * 7
+	THQR4 := "02" + THQR41 + ComCode + TrackingID //"022010090000037030000071" ref1
 
-	t9 := t9x * 1
+	lentrack := strconv.Itoa(len(TrackingID))
+	THQR5 := "03" + lentrack + TrackingID //"0310B000003703" ref2
 
-	tall := (t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8) % 11
+	THQR51 := THQR3 + THQR4 + THQR5
+	THQR2 = THQR2 + strconv.Itoa(len(THQR51))
 
-	chkdigit := 0
-
-	if tall == 0 {
-		chkdigit = 5
-	} else if tall == 1 {
-		chkdigit = 0
-	} else {
-		chkdigit = 11 - int(tall)
+	THQR6 := "5303764"
+	lenAmount := strconv.Itoa(len(article.Amount))
+	if len(lenAmount) == 1 {
+		lenAmount = "0" + lenAmount
 	}
-	chkdigit2 := int(t9)
-	if int(chkdigit) != chkdigit2 {
-		respok := make(map[string]string)
-		//respok["err"] = "Existing Invoice Number"
 
-		respok["QRcodetxt"] = ""
-		respok["ExpDT"] = ""                        //QR
-		respok["ErrMsg"] = "Invalid TrackID Format" //QR
+	THQR7 := "54" + lenAmount + article.Amount //"54076000.00"
+	THQR8 := "5802TH"
+	THQR9 := "6304" //"63040808"
+
+	THALL := THQR1 + THQR2 + THQR3 + THQR4 + THQR5 + THQR6 + THQR7 + THQR8 + THQR9
+
+	data := []byte(THALL)
+
+	//target2 := uint16(0x0808)
+	//hex_value := strconv.FormatInt(int64(target2), 16)
+
+	actual2 := ChecksumCCITTFalse(data)
+	hex_value := strings.ToUpper(strconv.FormatInt(int64(actual2), 16))
+
+	THALL = THALL + hex_value
+	fmt.Println(THALL)
+
+	// if actual2 != target2 {
+	// 	fmt.Printf("%08x\n", actual2)
+	// }
+	// if hex_value != "" {
+	// 	//t.Fatalf("CCITT checksum did not return the correct value, expected %x, received %x", target, actual)
+	// }
+
+	matched, err := regexp.MatchString(`B([0-9])`, article.TrackingID)
+
+	if !matched {
+		matched, err = regexp.MatchString(`^\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d$`, article.TrackingID)
+	}
+
+	//fmt.Println(matched)
+
+	if !matched {
+
+		chars := []rune(TrackingID)
+		//strArray := strings.Fields(MsgText)
+		//var tx =
+		t1x, err := strconv.Atoi(string(chars[2]))
+		t2x, err := strconv.Atoi(string(chars[3]))
+		t3x, err := strconv.Atoi(string(chars[4]))
+		t4x, err := strconv.Atoi(string(chars[5]))
+		t5x, err := strconv.Atoi(string(chars[6]))
+		t6x, err := strconv.Atoi(string(chars[7]))
+		t7x, err := strconv.Atoi(string(chars[8]))
+		t8x, err := strconv.Atoi(string(chars[9]))
+		t9x, err := strconv.Atoi(string(chars[10]))
+
+		if err != nil {
+			panic(err)
+		}
+
+		t1 := t1x * 8
+		t2 := t2x * 6
+		t3 := t3x * 4
+
+		t4 := t4x * 2
+		t5 := t5x * 3
+		t6 := t6x * 5
+
+		t7 := t7x * 9
+		t8 := t8x * 7
+
+		t9 := t9x * 1
+
+		tall := (t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8) % 11
+
+		chkdigit := 0
+
+		if tall == 0 {
+			chkdigit = 5
+		} else if tall == 1 {
+			chkdigit = 0
+		} else {
+			chkdigit = 11 - int(tall)
+		}
+		chkdigit2 := int(t9)
+		if int(chkdigit) != chkdigit2 {
+			respok := make(map[string]string)
+			//respok["err"] = "Existing Invoice Number"
+
+			respok["QRcodetxt"] = ""
+			respok["ExpDT"] = ""                        //QR
+			respok["ErrMsg"] = "Invalid TrackID Format" //QR
+
+			jsonResp, err := json.Marshal(respok)
+
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(jsonResp)
+			return
+		}
+	}
+	if TypePayment == "" {
+		respok := make(map[string]string)
+		respok["err"] = "Please check TypePayment!"
 
 		jsonResp, err := json.Marshal(respok)
 
@@ -2856,8 +4844,92 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		w.Write(jsonResp)
+
 		return
 	}
+	if ComCode == "" {
+		respok := make(map[string]string)
+		respok["err"] = "Please check ComCode!"
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+
+		return
+	}
+	if TypePayment == "Check" {
+		ress2, err := db.Query("SELECT JobID,TrackingID  FROM THPDMPDB.tblpayment Where TrackingID = '" + TrackingID + "' OR JobID  = '" + TrackingID + "'")
+		if err == nil {
+
+			// boxes := []Merchant{}
+			// resp := make(map[string]string)
+			// resp["MerchantID"] = article.MerchantID
+
+			for ress2.Next() {
+				var event ChecksendPrice
+				//JobID := ress2.Scan(&event.JobID)
+				err = ress2.Scan(&event.Jobid, &event.TrackingID)
+
+				if err != nil {
+					panic(err)
+				}
+				//  Jobid := event.Jobid
+				//  TrackingID := event.TrackingID
+
+				respok := make(map[string]string)
+				//respok["err"] = "Existing Invoice Number"
+
+				respok["QRcodetxt"] = ""
+				respok["ExpDT"] = ""                         //QR
+				respok["ErrMsg"] = "Existing Invoice Number" //QR
+
+				jsonResp, err := json.Marshal(respok)
+
+				if err != nil {
+					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+					return
+				}
+				w.Write(jsonResp)
+
+				return
+				// THPDRatePrice = event.THPDRatePrice
+				// AmountCOD = event.AmountCOD
+				// FTLFinalPrice = event.FTLFinalPrice
+				// boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
+
+			}
+
+		}
+		defer ress2.Close()
+		err = ress2.Close()
+
+	}
+
+	if TypePayment != "Check" {
+
+		// insert payment request
+
+		ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblpaymentrequest ( TrackingID, FinalPrice, AppChannel,PaymentType,ComCode, TransportationPrice, ProductPrice, NumberOfPieces,PhoneNumber, CreateDT) Values  ( '" + TrackingID + "' , '" + strings.ReplaceAll(article.Amount, "'", `\'`) + "', '" + strings.ReplaceAll(string(reqHeaderChannel[0]), "'", `\'`) + "' , '" + article.PaymentType + "','" + ComCode + "','" + TransportationPrice + "','" + ProductPrice + "','" + NumberOfPieces + "','" + PhoneNumber + "'  , CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
+		defer ress3.Close()
+		if err2 != nil {
+			respok := make(map[string]string)
+			respok["err"] = err2.Error()
+
+			jsonResp, err := json.Marshal(respok)
+
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(jsonResp)
+
+			os.Exit(1)
+		}
+	} // end check
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
@@ -2883,7 +4955,7 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 	emp.CurrencyCode = "THB"
 	emp.Description = PhoneNumber
 	emp.InvoiceNo = TrackingID
-	emp.MerchantID = "JT04"
+	emp.MerchantID = "764764000011700"
 	emp.PaymentChannel = []string{"CC"}
 	emp.Tokenize = true
 
@@ -2900,7 +4972,8 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userData := map[string]interface{}{"merchantID": "JT04", "invoiceNo": TrackingID, "description": PhoneNumber, "amount": Amount, "currencyCode": "THB"}
+	//userData := map[string]interface{}{"merchantID": "JT04", "invoiceNo": TrackingID, "description": PhoneNumber, "amount": Amount, "currencyCode": "THB"}
+	userData := map[string]interface{}{"merchantID": "764764000011700", "invoiceNo": TrackingID, "description": PhoneNumber, "amount": Amount, "currencyCode": "THB"}
 
 	if TypePayment == "CreditCard" {
 		userData = jsonMap
@@ -2909,7 +4982,8 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 	//userData := map[string]interface{}{"merchantID": "JT04", "invoiceNo": TrackingID, "description": PhoneNumber, "amount": Amount, "currencyCode": "THB", "tokenize": true, "paymentChannel": ["CC"]}
 	//userData := b
 
-	accessToken, err := Sign(userData, "CD229682D3297390B9F66FF4020B758F4A5E625AF4992E5D75D311D6458B38E2", 1) // data -> secretkey env name -> expiredAt
+	//accessToken, err := Sign(userData, "254B522DBC55D17E49B4F4DEBE3D6623577DD88C3300733076A1EAE982FC65DD", 1) // data -> secretkey env name -> expiredAt // Sandbox
+	accessToken, err := Sign(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 1) // data -> secretkey env name -> expiredAt // Production
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
@@ -2944,13 +5018,15 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 
 	// create payment token
 
-	tokenString := CreatePaymentToken(accessToken, "CD229682D3297390B9F66FF4020B758F4A5E625AF4992E5D75D311D6458B38E2", "JT04", TypePayment)
+	//tokenString := CreatePaymentToken(accessToken, "254B522DBC55D17E49B4F4DEBE3D6623577DD88C3300733076A1EAE982FC65DD", "764764000011700", TypePayment) //sandbox
+	tokenString := CreatePaymentToken(accessToken, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", "764764000011700", TypePayment) // Production
 
 	if tokenString == "Existing Invoice Number" {
 
 		// update payment already
 		UpdateAPIPaymentToLoadboard(TrackingID, tokenString, "")
-		//
+		// ยิงเสริม
+		//UpdateAPIPaymentToLoadboard2(TrackingID, tokenString, "")
 
 		respok := make(map[string]string)
 		//respok["err"] = "Existing Invoice Number"
@@ -2975,7 +5051,8 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 		//tokenString := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3ZWJQYXltZW50VXJsIjoiaHR0cHM6Ly9zYW5kYm94LXBndy11aS4yYzJwLmNvbS9wYXltZW50LzQuMS8jL3Rva2VuL2tTQW9wczlad2hvczhoU1RTZUxUVWJMTEhodndCRzBlaENkUE4wSDN0QmJjVHhpeXpkdnl4VVM4WWx3bHRRUHZqSllDZzdTMXpkTEVMOXhLOXZDdHkyY2JBTEYyRUVxYXdZcVgwdmREQUZBJTNkIiwicGF5bWVudFRva2VuIjoia1NBb3BzOVp3aG9zOGhTVFNlTFRVYkxMSGh2d0JHMGVoQ2RQTjBIM3RCYmNUeGl5emR2eXhVUzhZbHdsdFFQdmpKWUNnN1MxemRMRUw5eEs5dkN0eTJjYkFMRjJFRXFhd1lxWDB2ZERBRkE9IiwicmVzcENvZGUiOiIwMDAwIiwicmVzcERlc2MiOiJTdWNjZXNzIn0.QeXmFdOTj7krJB22yU-q8sss4MQKT5t3ne12jMUZpOc"
 		claims := jwt.MapClaims{}
 		token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
-			return []byte("CD229682D3297390B9F66FF4020B758F4A5E625AF4992E5D75D311D6458B38E2"), nil
+			//return []byte("254B522DBC55D17E49B4F4DEBE3D6623577DD88C3300733076A1EAE982FC65DD"), nil
+			return []byte("9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8"), nil
 		})
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
@@ -2991,7 +5068,8 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 			}
 			w.Write(jsonResp)
 
-			os.Exit(1)
+			//os.Exit(1)
+			return
 		}
 
 		if TypePayment == "CreditCard" {
@@ -3020,6 +5098,39 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 			w.Write(jsonResp)
 
 		} else if TypePayment == "QRCode" {
+
+			var result User
+
+			// if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+			// 	result.paymentToken = claims["paymentToken"].(string)
+
+			// }
+			// fmt.Println("my paymentToken here", result.paymentToken)
+
+			//BarcodeQR := CreatePaymentQRCode(result.paymentToken) // 2C2P link
+			//fmt.Println("my Barcode here", BarcodeQR)
+
+			BarcodeQR := THALL // KTB Direct link
+
+			if BarcodeQR != "" {
+
+				respok := make(map[string]string)
+				respok["QRcodetxt"] = BarcodeQR
+				respok["ExpDT"] = result.ExpDT //QR
+				respok["ErrMsg"] = ""          //QR
+
+				jsonResp, err := json.Marshal(respok)
+
+				if err != nil {
+					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+					return
+				}
+				w.Write(jsonResp)
+				//counter = 0
+
+			}
+
+		} else if TypePayment == "Wallet" {
 
 			var result User
 			if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
@@ -3068,8 +5179,15 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 				result.amount = claims["amount"].(float64)
 				result.invoiceNo = claims["invoiceNo"].(string)
 				result.agentCode = claims["agentCode"].(string)
-				result.cardType = claims["cardType"].(string)
-				result.cardNo = claims["cardNo"].(string)
+
+				if claims["cardType"] != nil {
+					result.cardType = claims["cardType"].(string)
+					result.cardNo = claims["cardNo"].(string)
+				} else {
+					result.cardType = "QR"
+					result.cardNo = ""
+				}
+
 				result.transactionDatetime = claims["transactionDateTime"].(string)
 				result.refID = tUnix
 				result.phoneNo = PhoneNumber
@@ -3132,6 +5250,17 @@ func FntGetpaymentToken(w http.ResponseWriter, r *http.Request) {
 }
 func CreatePaymentToken(accessToken string, SECRETKEY string, MERCHANTID string, TypePayment string) string {
 
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//db, err := sql.Open("mysql", dns)
 
@@ -3145,10 +5274,42 @@ func CreatePaymentToken(accessToken string, SECRETKEY string, MERCHANTID string,
 	//data, _ = json.MarshalIndent(emp, "", "    ")
 	payload := strings.NewReader(`{"payload": "` + accessToken + `" }`)
 
-	url := "https://sandbox-pgw.2c2p.com/payment/4.1/paymentToken"
+	//url := "https://sandbox-pgw.2c2p.com/payment/4.1/paymentToken" // sandbox
+
+	url := "https://pgw.2c2p.com/payment/4.1/paymentToken" // production
 
 	if TypePayment == "Check" {
-		url = "https://sandbox-pgw.2c2p.com/payment/4.1/paymentInquiry"
+
+		// ress2, err := db.Query("SELECT JobID,TrackingID  FROM THPDMPDB.tblpayment Where TrackingID = '" + TrackingID + "'")
+		// if err == nil {
+
+		// 	// boxes := []Merchant{}
+		// 	// resp := make(map[string]string)
+		// 	// resp["MerchantID"] = article.MerchantID
+
+		// 	for ress2.Next() {
+		// 		var event ChecksendPrice
+		// 		//JobID := ress2.Scan(&event.JobID)
+		// 		err = ress2.Scan(&event.Jobid, &event.TrackingID)
+
+		// 		if err != nil {
+		// 			panic(err)
+		// 		}
+		// 		 Jobid := event.Jobid
+		// 		 TrackingID := event.TrackingID
+		// 		// THPDRatePrice = event.THPDRatePrice
+		// 		// AmountCOD = event.AmountCOD
+		// 		// FTLFinalPrice = event.FTLFinalPrice
+		// 		// boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
+
+		// 	}
+
+		// }
+		// defer ress2.Close()
+		// err = ress2.Close()
+
+		//url = "https://sandbox-pgw.2c2p.com/payment/4.1/paymentInquiry" // sandbox
+		url = "https://pgw.2c2p.com/payment/4.1/paymentInquiry" // production
 	}
 
 	//url := "https://sandbox-pgw.2c2p.com/payment/4.1/paymentToken"
@@ -3225,14 +5386,18 @@ func CreatePaymentQRCode(paymentToken string) string {
 	//var data []byte
 	// Convert struct to json
 	//data, _ = json.MarshalIndent(emp, "", "    ")
-	payload := strings.NewReader(`{"responseReturnUrl": "https://sandbox-pgw-ui.2c2p.com/payment/4.1/#/info/",
-    "payment": {
+
+	//payload := strings.NewReader(`{"responseReturnUrl": "https://sandbox-pgw-ui.2c2p.com/payment/4.1/#/info/",
+
+	payload := strings.NewReader(`{"responseReturnUrl": "https://pgw-ui.2c2p.com/payment/4.1/#/info/",
+
+	"payment": {
         "code": {
             "channelCode": "PPQR"
         },
         "data": {
-            "name": "Terrance Tay",
-            "email": "terrance.tay@2c2p.com"
+            "name": "THPD",
+            "email": "digital@thpd.co.th"
         }
     },
     "clientIP": "",
@@ -3240,7 +5405,8 @@ func CreatePaymentQRCode(paymentToken string) string {
     "locale": "th",
     "clientID": "30c7cf51-75c4-4265-a70a-effddfbbb0ff" }`)
 
-	url := "https://sandbox-pgw.2c2p.com/payment/4.1/Payment"
+	//url := "https://sandbox-pgw.2c2p.com/payment/4.1/Payment" //sandbox
+	url := "https://pgw.2c2p.com/payment/4.1/Payment"
 	//req, err := http.Post(url, "application/json", bytes.NewBuffer(jsonStr))
 
 	//req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
@@ -3332,8 +5498,7 @@ func Sign(Data map[string]interface{}, SecrePublicKeyEnvName string, ExpiredAt t
 func GetAPIDriverFromLoadboard(trackID string) string {
 
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3345,44 +5510,89 @@ func GetAPIDriverFromLoadboard(trackID string) string {
 	}
 	defer db.Close()
 
-	var app_id = "de_oms"
-	var app_key = "dx1234"
+	//var app_id = "de_oms"
+	//var app_key = "dx1234"
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	tUnix := t.Unix()
+	//stUnix := string(tUnix)
+
+	n := int64(tUnix)
+	stUnix := strconv.FormatInt(n, 10)
 
 	var emp Con_no
 	emp.con_no = trackID
 
-	//var data []byte
-	//// Convert struct to json
-	//data, _ = json.MarshalIndent(emp, "", "    ")
-
-	payload := strings.NewReader(`{"con_no": "` + trackID + `"}`)
-
+	url := "https://tms-api.promptsong.co/API/BrokerGateways/viewOrder"
+	//url := "https://api-chitman.dxplace.com/index.php/API/BrokerGateways/viewBooking"
 	method := "POST"
-	url := "https://broker.dxplace.com/API/Gateways/viewOrder"
+
+	//payload := strings.NewReader(`{` + "" + ` "con_no":"` + trackID + `"` + "" + `}`)
+	payload := strings.NewReader(`{` + ` "con_no":"` + trackID + `"` + "" + `}`)
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
-	if err != nil {
-		panic(err)
-	}
 
-	req.Header.Add("app_id", app_id)
-	req.Header.Add("app_key", app_key)
-	req.Header.Add("Content-Type", "application/json")
-
-	resp2, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-		return err.Error()
-	}
-	defer resp2.Body.Close()
-
-	body, err := ioutil.ReadAll(resp2.Body)
 	if err != nil {
 		fmt.Println(err)
 		return string(err.Error())
 	}
-	//fmt.Println(string(body))
+	req.Header.Add("app_id", "de_oms")
+	req.Header.Add("app_key", "dx1234")
+	req.Header.Add("Content-Type", "application/json")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return string(err.Error())
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+
+		ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
+		defer ress3.Close()
+		if err2 != nil {
+			panic(err)
+		}
+
+		return string(err.Error())
+	}
+	fmt.Println(string(body))
+
+	// payload := strings.NewReader(`{"con_no": "` + trackID + `"}`)
+	// //payload2 := strings.NewReader(`{` + "" + `"con_no":"B000003666"` + "" + `}`)
+
+	// method := "POST"
+	// //url := "https://broker.dxplace.com/API/Gateways/viewOrder"
+	// url := "https://api-chitman.dxplace.com/index.php/API/BrokerGateways/viewOrder"
+
+	// client := &http.Client{}
+	// req, err := http.NewRequest(method, url, payload)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// req.Header.Add("app_id", "de_oms")
+	// req.Header.Add("app_key", "dx1234")
+	// req.Header.Add("Content-Type", "application/json")
+
+	// resp2, err := client.Do(req)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return err.Error()
+	// }
+	// defer resp2.Body.Close()
+
+	// body, err := ioutil.ReadAll(resp2.Body)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return string(err.Error())
+	// }
+	// fmt.Println(string(body))
 
 	var Loadboard DriverLoadboard
 	jsonData := []byte(string(body))
@@ -3398,42 +5608,83 @@ func GetAPIDriverFromLoadboard(trackID string) string {
 	json.Unmarshal([]byte(body), &Loadboard)
 
 	//fmt.Println(string(logistic.Data.Booking[0].BookingID))
-	fmt.Println(Loadboard.Data.Shipment.BookingCount)
+	fmt.Println(Loadboard.Data.PostRes.Shipment.BookingCount)
+
+	// if !Loadboard.Data.Success {
+	// 	return string("false")
+	// }
 	//for i := 0; i < Loadboard.Data.Shipment.BookingCount; i++ {
-	for i := 0; i < len(Loadboard.Data.Booking); i++ {
-		fmt.Println(string(Loadboard.Data.Booking[i].BookingID))
+
+	Oid := ""
+	Drivername := ""
+	Plate := ""
+	FinalPrice := ""
+
+	for i := 0; i < len(Loadboard.Data.PostRes.Shipment.Booking); i++ {
+		fmt.Println(string(Loadboard.Data.PostRes.Shipment.Booking[i].BookingID))
 
 		eventBooking := EventBooking{
-			BookingID:         string(Loadboard.Data.Booking[i].BookingID),
-			BookingStatus:     string(Loadboard.Data.Booking[i].BookingStatus),
-			Price:             string(Loadboard.Data.Booking[i].Price),
-			PriceUnit:         string(Loadboard.Data.Booking[i].PriceUnit),
-			TruckPlate:        string(Loadboard.Data.Booking[i].TruckPlate),
-			DriverName:        string(Loadboard.Data.Booking[i].DriverName),
-			Oid:               string(Loadboard.Data.Booking[i].Oid),
-			Company:           string(Loadboard.Data.Booking[i].Company),
-			Address:           string(Loadboard.Data.Booking[i].Address),
-			Contact:           string(Loadboard.Data.Booking[i].Contact),
-			Phone:             string(Loadboard.Data.Booking[i].Phone),
-			Email:             string(Loadboard.Data.Booking[i].Email),
-			Rating:            string(Loadboard.Data.Booking[i].Rating),
-			BookingScore:      string(Loadboard.Data.Booking[i].BookingScore),
-			Time:              string(Loadboard.Data.Booking[i].Time),
-			PositionLatitude:  string(Loadboard.Data.Booking[i].PositionLatitude),
-			PositionLongitude: string(Loadboard.Data.Booking[i].PositionLongitude),
-			PositionTime:      string(Loadboard.Data.Booking[i].PositionTime),
+			BookingID:         string(Loadboard.Data.PostRes.Shipment.Booking[i].BookingID),
+			BookingStatus:     string(Loadboard.Data.PostRes.Shipment.Booking[i].BookingStatus),
+			Price:             string(Loadboard.Data.PostRes.Shipment.Booking[i].Price),
+			PriceUnit:         string(Loadboard.Data.PostRes.Shipment.Booking[i].PriceUnit),
+			TruckPlate:        string(Loadboard.Data.PostRes.Shipment.Booking[i].TruckPlate),
+			DriverName:        string(Loadboard.Data.PostRes.Shipment.Booking[i].DriverName),
+			Oid:               string(Loadboard.Data.PostRes.Shipment.Booking[i].Oid),
+			Company:           string(Loadboard.Data.PostRes.Shipment.Booking[i].Company),
+			Address:           string(Loadboard.Data.PostRes.Shipment.Booking[i].Address),
+			Contact:           string(Loadboard.Data.PostRes.Shipment.Booking[i].Contact),
+			Phone:             string(Loadboard.Data.PostRes.Shipment.Booking[i].Phone),
+			Email:             string(Loadboard.Data.PostRes.Shipment.Booking[i].Email),
+			Rating:            string(Loadboard.Data.PostRes.Shipment.Booking[i].Rating),
+			BookingScore:      string(Loadboard.Data.PostRes.Shipment.Booking[i].BookingScore),
+			Time:              string(Loadboard.Data.PostRes.Shipment.Booking[i].Time),
+			PositionLatitude:  string(Loadboard.Data.PostRes.Shipment.Booking[i].PositionLatitude),
+			PositionLongitude: string(Loadboard.Data.PostRes.Shipment.Booking[i].PositionLongitude),
+			PositionTime:      string(Loadboard.Data.PostRes.Shipment.Booking[i].PositionTime),
 		}
 
-		ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET BookingID = '" + eventBooking.BookingID + "',DriverPhoneNo = '" + eventBooking.Phone + "', Company = '" + eventBooking.Company + "' , DriverStar = '" + eventBooking.Rating + "' , Price = '" + eventBooking.Price + "', Oid = '" + eventBooking.Oid + "', Contact = '" + eventBooking.Contact + "', BookingScore = '" + eventBooking.BookingScore + "', Time = '" + eventBooking.Time + "', DriverEmail = '" + eventBooking.Email + "', PriceUnit = '" + eventBooking.PriceUnit + "'  WHERE TrackingID = '" + trackID + "' and  CarID = '" + eventBooking.TruckPlate + "' and DriverName = '" + eventBooking.DriverName + "' ")
+		//ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET BookingID = '" + eventBooking.BookingID + "',DriverPhoneNo = '" + eventBooking.Phone + "', Company = '" + eventBooking.Company + "' , DriverStar = '" + eventBooking.Rating + "' , Price = '" + eventBooking.Price + "', Oid = '" + eventBooking.Oid + "', Contact = '" + eventBooking.Contact + "', BookingScore = '" + eventBooking.BookingScore + "', Time = '" + eventBooking.Time + "', DriverEmail = '" + eventBooking.Email + "', PriceUnit = '" + eventBooking.PriceUnit + "'  WHERE TrackingID = '" + trackID + "' and  CarID = '" + eventBooking.TruckPlate + "' and DriverName = '" + eventBooking.DriverName + "' ")
+
+		ress, err := db.Query("INSERT INTO THPDMPDB.tblMobileOMSJobDriverBooking (RunID, JobID, TrackingID, CarID, DriverName, DriverPhoneNo, Company, Price, CreateDT, DriverStar, Oid, Contact, BookingScore, Time, DriverEmail, PriceUnit, BookingID) Values ('" + stUnix + "','0','" + trackID + "','" + eventBooking.TruckPlate + "','" + eventBooking.DriverName + "','" + eventBooking.Phone + "','" + eventBooking.Company + "','" + eventBooking.Price + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'" + eventBooking.Rating + "','" + eventBooking.Oid + "','" + eventBooking.Contact + "','" + eventBooking.BookingScore + "','" + eventBooking.Time + "','" + eventBooking.Email + "','" + eventBooking.PriceUnit + "','" + eventBooking.BookingID + "' ) ON DUPLICATE KEY UPDATE Time = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), Price = '" + eventBooking.Price + "'   ")
 		defer ress.Close()
 		if err != nil {
 			panic(err)
 		} else {
 
+			Oid = eventBooking.Oid
+			Drivername = eventBooking.DriverName
+			Plate = eventBooking.TruckPlate
+			FinalPrice = eventBooking.Price
 		}
 		//return "OK"
 
 	}
+
+	carrier := Loadboard.Data.PostRes.Shipment.Carrier.Phone
+
+	if carrier != "" {
+
+		ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET CustomerSelect = '1'  WHERE DriverPhoneNo = '" + carrier + "' ")
+		defer ress.Close()
+		if err != nil {
+			panic(err)
+		}
+
+		ress2, err := db.Query("UPDATE THPDMPDB.tblJobMaster SET JobDriverID = '" + Oid + "',JobDriverName = '" + Drivername + "', JobTruckPlate = '" + Plate + "' , FTLFinalPrice= '" + FinalPrice + "' , JobAssignDT = NOW() , jobupdatedt = NOW()  WHERE JobID  = '" + trackID + "'  ")
+		defer ress2.Close()
+		if err != nil {
+			panic(err)
+		}
+
+		// ress3, err3 := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder SET Status = 'Booking' WHERE JobID in ( SELECT Customer_Po FROM THPDMPDB.tblOrderMaster WHERE JobID = '" + trackID + "')")
+		// defer ress3.Close()
+		// if err3 != nil {
+		// 	panic(err)
+		// }
+	}
+
+	//return "OK"
 
 	if err == nil {
 	}
@@ -3448,7 +5699,7 @@ func SendOTPToCustomer(OTPCode string, CustomerPhone string) string {
 	var bearerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cudGhzbXMuY29tXC9hcGkta2V5IiwiaWF0IjoxNjQ4MDkwNjUyLCJuYmYiOjE2NDgxMDEzMjUsImp0aSI6Ik00RkdVQjN5OFd6NnZuYzciLCJzdWIiOjEwNDE2MCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.PwmdMYwIdXIWRftvcrnqTDiulwTfcFVsLDpBj4REyI4"
 
 	var emp THSMS
-	emp.Sender = "Now"
+	emp.Sender = "PromptSong" //SMSOTP
 	emp.Msisdn = []string{CustomerPhone}
 	emp.Message = "THPD DE : หมายเลข OTP: " + OTPCode + "\n   "
 
@@ -3557,8 +5808,7 @@ func SendMessageToDriver(trackingID string, CustomerPhone string, CarID string, 
 func SendMessage(trackingID string, CustomerPhone string, CarID string, DriverName string) string {
 
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 	if err != nil {
 		panic(err)
@@ -3572,9 +5822,10 @@ func SendMessage(trackingID string, CustomerPhone string, CarID string, DriverNa
 	var bearerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cudGhzbXMuY29tXC9hcGkta2V5IiwiaWF0IjoxNjQ4MDkwNjUyLCJuYmYiOjE2NDgxMDEzMjUsImp0aSI6Ik00RkdVQjN5OFd6NnZuYzciLCJzdWIiOjEwNDE2MCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.PwmdMYwIdXIWRftvcrnqTDiulwTfcFVsLDpBj4REyI4"
 
 	var emp THSMS
-	emp.Sender = "Privileged"
+	// emp.Sender = "Now"
+	emp.Sender = "PromptSong" //SMSOTP
 	emp.Msisdn = []string{CustomerPhone}
-	emp.Message = "OMS DE : หมายเลข Track: " + trackingID + "\n  ผู้ขนส่ง: " + DriverName + "\n  ทะเบียนรถ: " + CarID + "\n รับงานของท่านแล้ว!"
+	emp.Message = "OMS DE : หมายเลข BookingID: " + trackingID + "\n  ผู้ขนส่ง: " + DriverName + "\n  ทะเบียนรถ: " + CarID + "\n รับงานของท่านแล้ว!"
 
 	var data []byte
 	// Convert struct to json
@@ -3624,16 +5875,653 @@ func SendMessage(trackingID string, CustomerPhone string, CarID string, DriverNa
 
 var table = [...]byte{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
 
+func OMSRepSummaryReport(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article MerchantRep
+	json.Unmarshal(reqBody, &article)
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	//typefind := article.TrackingID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	MerchantID := article.MerchantID
+	RepType := article.RepType
+	SDT := article.SDT
+	EDT := article.EDT
+
+	if err == nil {
+
+		//s := trackingID[:len(trackingID)-1]
+
+		//chars := []rune(trackingID)
+		//strArray := strings.Fields(MsgText)
+		//var tx =
+		//s := string(chars[0])
+		//s2 := string(chars[1])
+		boxes := []RepSummary{}
+		if MerchantID != "" {
+			ress2, err := db.Query("call SP_ShopReportSummary ('" + MerchantID + "','" + RepType + "','" + SDT + "','" + EDT + "')")
+			if err == nil {
+
+				// boxes := []Merchant{}
+				// resp := make(map[string]string)
+				// resp["MerchantID"] = article.MerchantID
+
+				for ress2.Next() {
+					var event RepSummary
+					//JobID := ress2.Scan(&event.JobID)
+					err = ress2.Scan(&event.UserID, &event.Status_Name, &event.CStatus_Name)
+
+					if err != nil {
+						panic(err)
+					}
+					// PMerchantID := event.PMerchantID
+					// Ftypes := event.Ftypes
+					// SumAmount := event.SumAmount
+
+					boxes = append(boxes, RepSummary{UserID: event.UserID, Status_Name: event.Status_Name, CStatus_Name: event.CStatus_Name})
+
+				}
+
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//defer ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			return
+		} else {
+
+			respok := make(map[string]string)
+			respok["Success"] = "false"
+			jsonResp, err := json.Marshal(respok)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			}
+			w.Write(jsonResp)
+			return
+		}
+	}
+}
+func OMSRepSummaryReportWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article MerchantRep
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	//typefind := article.TrackingID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	MerchantID := article.MerchantID
+	RepType := article.RepType
+	SDT := article.SDT
+	EDT := article.EDT
+
+	if err == nil {
+
+		//s := trackingID[:len(trackingID)-1]
+
+		//chars := []rune(trackingID)
+		//strArray := strings.Fields(MsgText)
+		//var tx =
+		//s := string(chars[0])
+		//s2 := string(chars[1])
+		boxes := []RepSummary{}
+		if MerchantID != "" {
+			ress2, err := db.Query("call SP_ShopReportSummary ('" + MerchantID + "','" + RepType + "','" + SDT + "','" + EDT + "')")
+			if err == nil {
+
+				// boxes := []Merchant{}
+				// resp := make(map[string]string)
+				// resp["MerchantID"] = article.MerchantID
+
+				for ress2.Next() {
+					var event RepSummary
+					//JobID := ress2.Scan(&event.JobID)
+					err = ress2.Scan(&event.UserID, &event.Status_Name, &event.CStatus_Name)
+
+					if err != nil {
+						panic(err)
+					}
+					// PMerchantID := event.PMerchantID
+					// Ftypes := event.Ftypes
+					// SumAmount := event.SumAmount
+
+					boxes = append(boxes, RepSummary{UserID: event.UserID, Status_Name: event.Status_Name, CStatus_Name: event.CStatus_Name})
+
+				}
+
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//defer ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			return
+		} else {
+
+			respok := make(map[string]string)
+			respok["Success"] = "false"
+			jsonResp, err := json.Marshal(respok)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			}
+			w.Write(jsonResp)
+			return
+		}
+	}
+}
+func OMSRepPayment(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Merchant
+	json.Unmarshal(reqBody, &article)
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	//typefind := article.TrackingID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	MerchantID := article.MerchantID
+
+	if err == nil {
+
+		//s := trackingID[:len(trackingID)-1]
+
+		//chars := []rune(trackingID)
+		//strArray := strings.Fields(MsgText)
+		//var tx =
+		//s := string(chars[0])
+		//s2 := string(chars[1])
+		boxes := []RepPayment{}
+		if MerchantID != "" {
+			ress2, err := db.Query("call sp_mobilereportpayment ('" + MerchantID + "')")
+			if err == nil {
+
+				// boxes := []Merchant{}
+				// resp := make(map[string]string)
+				// resp["MerchantID"] = article.MerchantID
+
+				for ress2.Next() {
+					var event RepPayment
+					//JobID := ress2.Scan(&event.JobID)
+					err = ress2.Scan(&event.PMerchantID, &event.Ftypes, &event.SumAmount)
+
+					if err != nil {
+						panic(err)
+					}
+					// PMerchantID := event.PMerchantID
+					// Ftypes := event.Ftypes
+					// SumAmount := event.SumAmount
+
+					boxes = append(boxes, RepPayment{PMerchantID: event.PMerchantID, Ftypes: event.Ftypes, SumAmount: event.SumAmount})
+
+				}
+
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//defer ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			return
+		} else {
+
+			respok := make(map[string]string)
+			respok["Success"] = "false"
+			jsonResp, err := json.Marshal(respok)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			}
+			w.Write(jsonResp)
+			return
+		}
+	}
+}
+func OMSRepPaymentWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Merchant
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	//typefind := article.TrackingID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	MerchantID := article.MerchantID
+
+	if err == nil {
+
+		//s := trackingID[:len(trackingID)-1]
+
+		//chars := []rune(trackingID)
+		//strArray := strings.Fields(MsgText)
+		//var tx =
+		//s := string(chars[0])
+		//s2 := string(chars[1])
+		boxes := []RepPayment{}
+		if MerchantID != "" {
+			ress2, err := db.Query("call sp_mobilereportpayment ('" + MerchantID + "')")
+			if err == nil {
+
+				// boxes := []Merchant{}
+				// resp := make(map[string]string)
+				// resp["MerchantID"] = article.MerchantID
+
+				for ress2.Next() {
+					var event RepPayment
+					//JobID := ress2.Scan(&event.JobID)
+					err = ress2.Scan(&event.PMerchantID, &event.Ftypes, &event.SumAmount)
+
+					if err != nil {
+						panic(err)
+					}
+					// PMerchantID := event.PMerchantID
+					// Ftypes := event.Ftypes
+					// SumAmount := event.SumAmount
+
+					boxes = append(boxes, RepPayment{PMerchantID: event.PMerchantID, Ftypes: event.Ftypes, SumAmount: event.SumAmount})
+
+				}
+
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//defer ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			return
+		} else {
+
+			respok := make(map[string]string)
+			respok["Success"] = "false"
+			jsonResp, err := json.Marshal(respok)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			}
+			w.Write(jsonResp)
+			return
+		}
+	}
+}
+func OMSCheckPrice(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article DriverTracking
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	//typefind := article.TrackingID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	trackingID := article.TrackingID
+	Jobid := ""
+	TrackingID := ""
+	THPDRatePrice := ""
+	FTLFinalPrice := ""
+	AmountCOD := ""
+
+	if err == nil {
+
+		//s := trackingID[:len(trackingID)-1]
+
+		chars := []rune(trackingID)
+		//strArray := strings.Fields(MsgText)
+		//var tx =
+		s := string(chars[0])
+		s2 := string(chars[1])
+
+		if s == "B" {
+			ress2, err := db.Query("SELECT Jobid,'' as TrackingID , SUM(THPDRatePrice)THPDRatePrice, SUM(AmountCOD)AmountCOD, SUM(FTLFinalPrice)FTLFinalPrice  FROM THPDMPDB.vw_omschecksendprice Where jobid = '" + trackingID + "'")
+			if err == nil {
+
+				// boxes := []Merchant{}
+				// resp := make(map[string]string)
+				// resp["MerchantID"] = article.MerchantID
+
+				for ress2.Next() {
+					var event ChecksendPrice
+					//JobID := ress2.Scan(&event.JobID)
+					err = ress2.Scan(&event.Jobid, &event.TrackingID, &event.THPDRatePrice, &event.AmountCOD, &event.FTLFinalPrice)
+
+					if err != nil {
+						panic(err)
+					}
+					Jobid = event.Jobid
+					TrackingID = event.TrackingID
+					THPDRatePrice = event.THPDRatePrice
+					AmountCOD = event.AmountCOD
+					FTLFinalPrice = event.FTLFinalPrice
+
+					// boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
+
+				}
+
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+		} else if (s == "F" || s == "L") && s2 == "T" {
+			ress2, err := db.Query("SELECT Jobid, TrackingID, THPDRatePrice, AmountCOD, FTLFinalPrice FROM THPDMPDB.vw_omschecksendprice Where TrackingID = '" + trackingID + "'")
+			if err == nil {
+
+				// boxes := []Merchant{}
+				// resp := make(map[string]string)
+				// resp["MerchantID"] = article.MerchantID
+
+				for ress2.Next() {
+					var event ChecksendPrice
+					//JobID := ress2.Scan(&event.JobID)
+					err = ress2.Scan(&event.Jobid, &event.TrackingID, &event.THPDRatePrice, &event.AmountCOD, &event.FTLFinalPrice)
+
+					if err != nil {
+						panic(err)
+					}
+					Jobid = event.Jobid
+					TrackingID = event.TrackingID
+					THPDRatePrice = event.THPDRatePrice
+					AmountCOD = event.AmountCOD
+					FTLFinalPrice = event.FTLFinalPrice
+
+					// boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
+
+				}
+
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+		} else if (s == "G" || s == "L") && s2 != "T" {
+			/// Logispost
+			ress2, err := db.Query("SELECT Jobid, TrackingID, THPDRatePrice, AmountCOD, FTLFinalPrice FROM THPDMPDB.vw_omschecksendprice  ")
+			if err == nil {
+
+				// boxes := []Merchant{}
+				// resp := make(map[string]string)
+				// resp["MerchantID"] = article.MerchantID
+
+				for ress2.Next() {
+					var event ChecksendPrice
+					//JobID := ress2.Scan(&event.JobID)
+					err = ress2.Scan(&event.Jobid, &event.TrackingID, &event.THPDRatePrice, &event.AmountCOD, &event.FTLFinalPrice)
+
+					if err != nil {
+						panic(err)
+					}
+					Jobid = event.Jobid
+					TrackingID = event.TrackingID
+					THPDRatePrice = event.THPDRatePrice
+					AmountCOD = event.AmountCOD
+					FTLFinalPrice = event.FTLFinalPrice
+
+					// boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
+
+				}
+
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+		}
+
+		respok := make(map[string]string)
+		respok["Success"] = "true"
+		respok["Jobid"] = Jobid
+		respok["TrackingID"] = TrackingID
+		respok["THPDRatePrice"] = THPDRatePrice
+		respok["AmountCOD"] = AmountCOD
+		respok["FTLFinalPrice"] = FTLFinalPrice
+		jsonResp, err := json.Marshal(respok)
+
+		/// update driver get job
+		//GetAPIDriverFromLoadboard(article.TrackingID)
+		/// Update jobdetail
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+		}
+		w.Write(jsonResp)
+		return
+	} else {
+
+		respok := make(map[string]string)
+		respok["Success"] = "false"
+		jsonResp, err := json.Marshal(respok)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+}
+
 func OMSMobileGetAdvertise(w http.ResponseWriter, r *http.Request) {
 
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var article DriverTracking
 	json.Unmarshal(reqBody, &article)
 
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3749,8 +6637,7 @@ func OMSMobileGetDriver(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3778,22 +6665,26 @@ func OMSMobileGetDriver(w http.ResponseWriter, r *http.Request) {
 
 		if err == nil {
 
-			event5 := EventDriverTrack{
-				JobID:           "",
-				TrackingID:      string(article.TrackingID),
-				CarID:           string(article.Plate),
-				DriverName:      string(article.DriverName),
-				DriverPhoneNo:   "",
-				Company:         "",
-				Price:           "",
-				CustomerSelect:  "",
-				CustomConfirmDT: "",
-				GetBeforeDT:     "",
+			/// update driver get job
+			GetAPIDriverFromLoadboard(article.TrackingID)
+			/// Update jobdetail
 
-				//CreateDt:        string(article.CreateDt),
-			}
-			insertedId, err := insertGetDriverTrack(db, event5)
-			fmt.Println(insertedId)
+			// event5 := EventDriverTrack{
+			// 	JobID:           "",
+			// 	TrackingID:      string(article.TrackingID),
+			// 	CarID:           string(article.Plate),
+			// 	DriverName:      string(article.DriverName),
+			// 	DriverPhoneNo:   "",
+			// 	Company:         "",
+			// 	Price:           "",
+			// 	CustomerSelect:  "",
+			// 	CustomConfirmDT: "",
+			// 	GetBeforeDT:     "",
+
+			// 	//CreateDt:        string(article.CreateDt),
+			// }
+			//	insertedId, err := insertGetDriverTrack(db, event5)
+			//	fmt.Println(insertedId)
 
 			//boxes := []DriverTracking{}
 			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
@@ -3838,16 +6729,20 @@ func OMSMobileGetDriver(w http.ResponseWriter, r *http.Request) {
 					SendMessage(article.TrackingID, mobileid, article.Plate, article.DriverName)
 				}
 
+				ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblmobileomsotp (MemberPhone, CntOTPUse, LastUseDT) Values ('" + mobileid + "',1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00')) ON DUPLICATE KEY UPDATE LastUseDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CntOTPUse = CntOTPUse + 1   ")
+				defer ress3.Close()
+				if err2 != nil {
+					panic(err)
+				}
+				defer ress3.Close()
+				err = ress3.Close()
+
 				respok := make(map[string]string)
 				respok["Success"] = "true"
 				respok["TrackingID"] = article.TrackingID
 				respok["Plate"] = article.Plate
 				respok["DriverName"] = article.DriverName
 				jsonResp, err := json.Marshal(respok)
-
-				/// update driver get job
-				GetAPIDriverFromLoadboard(article.TrackingID)
-				/// Update jobdetail
 
 				if err != nil {
 					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -3878,6 +6773,161 @@ func OMSMobileGetDriver(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+func OMSMobileCancelOrder(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article GetCancel
+	json.Unmarshal(reqBody, &article)
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	shipment_no := article.Shipment_no
+	remark_desc := article.Remark
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	//counter := 0
+
+	if err == nil {
+
+		CancelJobToLoadboard(shipment_no, remark_desc)
+
+		// ยิงเสริม
+		CancelJobToLoadboard2(shipment_no, remark_desc)
+
+		//boxes := []MobileOTP{}
+
+		//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+		resp := make(map[string]string)
+		resp["shipment_no"] = shipment_no
+		resp["cancel"] = remark_desc
+
+		b, _ := json.Marshal(resp)
+
+		//jsonResp, err := json.Marshal(b)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+
+		//SendOTPToCustomer(strOTP, event.PhoneNumber)
+
+		w.Write(b)
+
+		//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
+		//}
+
+		//counter = 0
+
+		//}
+
+	}
+
+}
+func OMSMobileCancelOrderWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article GetCancel
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	shipment_no := article.Shipment_no
+	remark_desc := article.Remark
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	//counter := 0
+
+	if err == nil {
+
+		CancelJobToLoadboard(shipment_no, remark_desc)
+
+		// ยิงเสริม
+		CancelJobToLoadboard2(shipment_no, remark_desc)
+
+		//boxes := []MobileOTP{}
+
+		//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+		resp := make(map[string]string)
+		resp["shipment_no"] = shipment_no
+		resp["cancel"] = remark_desc
+
+		b, _ := json.Marshal(resp)
+
+		//jsonResp, err := json.Marshal(b)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+
+		//SendOTPToCustomer(strOTP, event.PhoneNumber)
+
+		w.Write(b)
+
+		//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
+		//}
+
+		//counter = 0
+
+		//}
+
+	}
+
+}
 func OMSMobileGetOTP(w http.ResponseWriter, r *http.Request) {
 
 	reqBody, _ := ioutil.ReadAll(r.Body)
@@ -3886,8 +6936,7 @@ func OMSMobileGetOTP(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -3922,7 +6971,7 @@ func OMSMobileGetOTP(w http.ResponseWriter, r *http.Request) {
 
 		//counter := 0
 
-		//ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber FROM THPDMPDB.tblMerchant WHERE PhoneNumber = '" + article.MobileID + "'  ")
+		ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMerchant WHERE PhoneNumber = '" + article.MobileID + "'  ")
 
 		if err == nil {
 
@@ -3930,31 +6979,554 @@ func OMSMobileGetOTP(w http.ResponseWriter, r *http.Request) {
 			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
 			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
 
-			boxes := []MobileOTP{}
+			for ress2.Next() {
+				var event EventMobile
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.MerchantID, &event.MerchantName, &event.Email, &event.ContactName, &event.PhoneNumber, &event.MemberDiscount)
 
-			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+				if err != nil {
+					panic(err)
+				}
 
-			resp := make(map[string]string)
-			resp["MobileID"] = article.MobileID
+				boxes := []MobileOTP{}
 
-			boxes = append(boxes, MobileOTP{MobileID: article.MobileID, OTPPassword: strOTP})
+				//boxes = append(boxes, BoxData{Width: 5, Height: 30})
 
-			b, _ := json.Marshal(boxes)
+				resp := make(map[string]string)
+				resp["MobileID"] = article.MobileID
 
-			//jsonResp, err := json.Marshal(b)
-			if err != nil {
-				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-				return
+				boxes = append(boxes, MobileOTP{MobileID: article.MobileID, OTPPassword: strOTP})
+
+				b, _ := json.Marshal(boxes)
+
+				//jsonResp, err := json.Marshal(b)
+				if err != nil {
+					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+					return
+				}
+
+				SendOTPToCustomer(strOTP, event.PhoneNumber)
+
+				ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblmobileomsotp (MemberPhone, CntOTPUse, LastUseDT) Values ('" + event.PhoneNumber + "',1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00')) ON DUPLICATE KEY UPDATE LastUseDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CntOTPUse = CntOTPUse + 1   ")
+				defer ress3.Close()
+				if err2 != nil {
+					panic(err)
+				}
+				defer ress3.Close()
+				err = ress3.Close()
+
+				w.Write(b)
+				break
+				//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
 			}
 
-			SendOTPToCustomer(article.Password, article.MobileID)
-
-			w.Write(b)
 			//counter = 0
 
 		}
 
 	}
+
+}
+func OMSMobileGetOTPWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Mobile
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MobileID
+
+	t := time.Now() //It will return time.Time object with current timestamp
+	fmt.Printf("time.Time %s\n", t)
+
+	// tUnix := t.Unix()
+	// fmt.Printf("timeUnix: %d\n", tUnix)
+	// strOTP := strconv.FormatInt(tUnix, 6)
+	strOTP := EncodeToString(6) // substr(strOTP, 5, 6)
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMerchant WHERE PhoneNumber = '" + article.MobileID + "'  ")
+
+		if err == nil {
+
+			// boxes := []BoxData{}
+			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			for ress2.Next() {
+				var event EventMobile
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.MerchantID, &event.MerchantName, &event.Email, &event.ContactName, &event.PhoneNumber, &event.MemberDiscount)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes := []MobileOTP{}
+
+				//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+				resp := make(map[string]string)
+				resp["MobileID"] = article.MobileID
+
+				boxes = append(boxes, MobileOTP{MobileID: article.MobileID, OTPPassword: strOTP})
+
+				b, _ := json.Marshal(boxes)
+
+				//jsonResp, err := json.Marshal(b)
+				if err != nil {
+					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+					return
+				}
+
+				SendOTPToCustomer(strOTP, event.PhoneNumber)
+
+				ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblmobileomsotp (MemberPhone, CntOTPUse, LastUseDT) Values ('" + event.PhoneNumber + "',1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00')) ON DUPLICATE KEY UPDATE LastUseDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CntOTPUse = CntOTPUse + 1   ")
+				defer ress3.Close()
+				if err2 != nil {
+					panic(err)
+				}
+				defer ress3.Close()
+				err = ress3.Close()
+
+				w.Write(b)
+				break
+				//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
+			}
+
+			//counter = 0
+
+		}
+
+	}
+
+}
+func ChkAppVersion(w http.ResponseWriter, r *http.Request) {
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article MobileVersion
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	MobileType := article.MobileType
+	VersionNow := article.VersionNow
+
+	ress3, err2 := db.Query("SELECT AppType, Version FROM THPDMPDB.tblmobileappversion WHERE AppType = '" + MobileType + "' ")
+	//defer ress3.Close()
+	if err2 == nil {
+
+		// boxes := []BoxData{}
+		// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+		// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+		boxes := []Appversion{}
+
+		for ress3.Next() {
+			var event Appversion
+			//JobID := ress2.Scan(&event.JobID)
+			err := ress3.Scan(&event.AppType, &event.Version)
+
+			if err != nil {
+				panic(err)
+			}
+
+			if event.Version == VersionNow {
+				respok := make(map[string]string)
+				respok["AppType"] = event.AppType
+				respok["Version"] = "lastest" //QR
+
+				jsonResp, err := json.Marshal(respok)
+
+				if err != nil {
+					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+					return
+				}
+				w.Write(jsonResp)
+				return
+
+			}
+
+			boxes = append(boxes, Appversion{AppType: event.AppType, Version: event.Version})
+		}
+
+		b, _ := json.Marshal(boxes)
+
+		defer ress3.Close()
+		err = ress3.Close()
+		//defer ress2.Close()
+		//jsonResp, err := json.Marshal(b)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(b)
+		//counter = 0
+
+	}
+}
+func OMSGetCOD(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article AccountBank
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	TrackingID := article.TrackingID
+
+	ress3, err2 := db.Query("SELECT TrackingID, AmountCOD FROM THPDMPDB.tblOrderMaster WHERE TrackingID = '" + TrackingID + "' ")
+	//defer ress3.Close()
+	if err2 == nil {
+
+		// boxes := []BoxData{}
+		// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+		// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+		boxes := []AmountCOD{}
+
+		for ress3.Next() {
+			var event AmountCOD
+			//JobID := ress2.Scan(&event.JobID)
+			err := ress3.Scan(&event.TrackingID, &event.AmountCOD)
+
+			if err != nil {
+				panic(err)
+			}
+
+			boxes = append(boxes, AmountCOD{TrackingID: event.TrackingID, AmountCOD: event.AmountCOD})
+		}
+
+		b, _ := json.Marshal(boxes)
+
+		defer ress3.Close()
+		err = ress3.Close()
+		//defer ress2.Close()
+		//jsonResp, err := json.Marshal(b)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(b)
+		//counter = 0
+
+	}
+}
+func OMSGetBankAccount(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article AccountBank
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	TrackingID := article.TrackingID
+	AccountID := article.AccountID
+	//AccountName := article.AccountName
+	//PhoneNo := article.PhoneNo
+	BankName := article.BankName
+	BankAccNo := article.BankAccNo
+	//BankType := article.BankType
+	PromptPayID := article.PromptPayID
+	//	UserType := article.UserType
+	PrimaryTransferAccount := article.PrimaryTransferAccount
+	AmountPrice := article.AmountPrice
+	Comcode := article.ComCode
+	//AccTransferPrimary := article.AccTransferPrimary
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+
+	//fmt.Println(article.Id)
+
+	// firstEvent := Event5{}
+	// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// 	AccName           string
+	// AccBankName        string
+	// AccNo              string
+	// AccPromptPay       string
+	// AccTransferPrimary string
+	// AccType            string
+
+	//counter := 0
+	// sqlstr := "INSERT INTO THPDMPDB.tblpaymentaccount (TrackingID, AccountID, AccountName, PhoneNo, Email, BankName, BankAccNo, BankType, PromptPayID, CreateDT, UserType, PrimaryTransferAccount,AmountPrice,ComCode ) Values ('" + article.TrackingID + "','" + article.AccountID + "','" + article.AccountName + "','" + article.PhoneNo + "','" + article.Email + "','" + article.BankName + "','" + article.BankAccNo + "','" + article.BankType + "','" + article.PromptPayID + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'" + article.UserType + "','" + article.PrimaryTransferAccount + "', '" + article.AmountPrice + "', '" + article.ComCode + "')"
+	// fmt.Println(sqlstr)
+	ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblpaymentaccount (TrackingID, AccountID, AccountName, PhoneNo, Email, BankName, BankAccNo, BankType, PromptPayID, CreateDT, UserType, PrimaryTransferAccount,AmountPrice,ComCode ) Values ('" + article.TrackingID + "','" + article.AccountID + "','" + article.AccountName + "','" + article.PhoneNo + "','" + article.Email + "','" + article.BankName + "','" + article.BankAccNo + "','" + article.BankType + "','" + article.PromptPayID + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'" + article.UserType + "','" + article.PrimaryTransferAccount + "', '" + article.AmountPrice + "', '" + article.ComCode + "')")
+	//defer ress3.Close()
+	if err2 != nil {
+
+		resperr := make(map[string]string)
+		resperr["errmsg"] = err2.Error()
+
+		jsonResp, err := json.Marshal(resperr)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+		}
+		w.Write(jsonResp)
+		return
+		//panic(err)
+	}
+	defer ress3.Close()
+	err = ress3.Close()
+
+	if err2 != nil {
+		//panic(err)
+		resperr := make(map[string]string)
+		resperr["errmsg"] = err.Error()
+
+		jsonResp, err := json.Marshal(resperr)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+		}
+		w.Write(jsonResp)
+		return
+	} else {
+		// respok := make(map[string]string)
+		// respok["Success"] = "Insert Success"
+		// respok["TrackingID"] = TrackingID
+		// respok["AmountPrice"] = AmountPrice
+		// respok["AccountID"] = AccountID
+		// respok["BankAccNo"] = BankAccNo
+		// respok["BankName"] = BankName
+		// respok["PromptPayID"] = PromptPayID
+
+		respok := map[string]interface{}{
+			"Success": true,
+			"Data": struct {
+				TrackingID             string
+				AmountPrice            string
+				AccountID              string
+				BankAccNo              string
+				BankName               string
+				PromptPayID            string
+				PrimaryTransferAccount string
+				ComCode                string
+			}{TrackingID, AmountPrice, AccountID, BankAccNo, BankName, PromptPayID, PrimaryTransferAccount, Comcode},
+		}
+
+		jsonResp, err := json.Marshal(respok)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+		}
+		w.Write(jsonResp)
+		return
+
+	}
+
+	//ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMobileOMSMemberConfig WHERE PhoneNumber = '" + article.MobileID + "'  ")
+	// ress2, err := db.Query("SELECT TrackingID, AccountID, AccountName, PhoneNo, Email, BankName, BankAccNo, BankType, PromptPayID, CreateDT, UserType, PrimaryTransferAccount,AmountPrice FROM THPDMPDB.tblpaymentaccount WHERE PhoneNo = '" + article.PhoneNo + "'  ")
+
+	// if err == nil {
+
+	// 	// boxes := []BoxData{}
+	// 	// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+	// 	// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+	// 	boxes := []Mobile{}
+
+	// 	for ress2.Next() {
+	// 		var event Mobile
+	// 		//JobID := ress2.Scan(&event.JobID)
+	// 		err := ress2.Scan(&event.MobileID, &event.Lang, &event.BG, &event.AccName, &event.AccBankName, &event.AccNo, &event.AccPromptPay, &event.AccTransferPrimary, &event.AccType)
+
+	// 		if err != nil {
+	// 			panic(err)
+	// 		}
+
+	// 		boxes = append(boxes, Mobile{MobileID: event.MobileID, Lang: event.Lang, BG: event.BG, AccName: event.AccName, AccBankName: event.AccBankName, AccNo: event.AccNo, AccPromptPay: event.AccPromptPay, AccTransferPrimary: event.AccTransferPrimary, AccType: event.AccType})
+	// 	}
+
+	// 	b, _ := json.Marshal(boxes)
+
+	// 	defer ress2.Close()
+	// 	err = ress2.Close()
+	// 	//defer ress2.Close()
+	// 	//jsonResp, err := json.Marshal(b)
+	// 	if err != nil {
+	// 		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	// 		return
+	// 	}
+	// 	w.Write(b)
+	//counter = 0
 
 }
 func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
@@ -3965,9 +7537,41 @@ func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
 
+	// rootCertPool := x509.NewCertPool()
+	// pem, err := ioutil.ReadFile("BaltimoreCyberTrustRoot.crt.pem")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// if ok := rootCertPool.AppendCertsFromPEM(pem); !ok {
+	// 	log.Fatal("Failed to append PEM.")
+	// }
+	// mysql.RegisterTLSConfig("custom", &tls.Config{
+	// 	ServerName: "prd-olivedb.mysql.database.azure.com",
+	// 	RootCAs:    rootCertPool,
+	// })
+	// db, err := sql.Open("mysql", "admin:!10<>Oms!@tcp(prd-olivedb.mysql.database.azure.com:3306)/THPDMPDB?tls=custom")
+
+	// rootCertPool := x509.NewCertPool()
+	// pem, _ := ioutil.ReadFile("BaltimoreCyberTrustRoot.crt.pem")
+	// if ok := rootCertPool.AppendCertsFromPEM(pem); !ok {
+	// 	log.Fatal("Failed to append PEM.")
+	// }
+	// mysql.RegisterTLSConfig("TLS_AES_256_GCM_SHA384", &tls.Config{RootCAs: rootCertPool})
+	// var connectionString string
+	// connectionString = fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?allowNativePasswords=true&tls=TLS_AES_256_GCM_SHA384", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com", "THPDMPDB")
+	// db, err := sql.Open("mysql", connectionString)
+
+	//db, err := sql.Open("mysql", "user=admin password=!10<>Oms! dbname=THPDMPDB sslmode=disable")
+	//db, err := sql.Open("mysql", "mysql://admin:!10<>Oms!@prd-olivedb.mysql.database.azure.com/THPDMPDB?sslmode=require")
+
+	dns := getDNSString("mysql", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+
+	//db, err := sql.Open("mysql", "user=admin; ServerName:prd-olivedb.mysql.database.azure.com:3306; password=!10<>Oms!; dbname=THPDMPDB; ssl-mode=require;")
 	db, err := sql.Open("mysql", dns)
+
+	//dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?ssl-mode=REQUIRED", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com", "3306", "THPDMPDB")
+	//db, err := sql.Open("mysql", dsn)
 
 	if err != nil {
 		panic(err)
@@ -3983,7 +7587,12 @@ func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
 	typelang := article.Lang
 	bg := article.BG
 	LoginType := article.LoginType
-
+	AccName := article.AccName
+	AccBankName := article.AccBankName
+	AccNo := article.AccNo
+	AccType := article.AccType
+	AccPromptPay := article.AccPromptPay
+	AccTransferPrimary := article.AccTransferPrimary
 	//t := time.Now() //It will return time.Time object with current timestamp
 	//fmt.Printf("time.Time %s\n", t)
 
@@ -4003,10 +7612,17 @@ func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
 		// 	panic(err)
 		// }
 
+		// 	AccName            string
+		// AccBankName        string
+		// AccNo              string
+		// AccPromptPay       string
+		// AccTransferPrimary string
+		// AccType            string
+
 		//counter := 0
 
 		if typeEvent == "Login" {
-			ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblMobileOMSMemberConfig (MemberPhone, CreateDT, LoginCount, LastLoginDT, Lang, BG, MerchantID,LoginType) Values ('" + article.MobileID + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'th','White','c','" + LoginType + "') ON DUPLICATE KEY UPDATE LastLoginDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') , LoginCount = LoginCount + 1 ,LoginType = '" + LoginType + "'")
+			ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblMobileOMSMemberConfig (MemberPhone, CreateDT, LoginCount, LastLoginDT, Lang, BG, MerchantID,LoginType,AccName,AccBankName,AccNo,AccType,AccPromptPay,AccTransferPrimary) Values ('" + article.MobileID + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'th','White','c','" + LoginType + "','','','','','','') ON DUPLICATE KEY UPDATE LastLoginDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') , LoginCount = LoginCount + 1 ,LoginType = '" + LoginType + "'")
 			defer ress3.Close()
 			if err2 != nil {
 				panic(err)
@@ -4016,8 +7632,17 @@ func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
 
 		} else if typeEvent == "GetLang" {
 
-		} else if typeEvent == "SetLang" {
-			ress2, err := db.Query("UPDATE THPDMPDB.tblMobileOMSMemberConfig SET Lang = '" + typelang + "' , BG = '" + bg + "' WHERE MemberPhone = '" + article.MobileID + "'  ")
+		} else if typeEvent == "SetLang" && AccName != "" {
+
+			ress2, err := db.Query("UPDATE THPDMPDB.tblMobileOMSMemberConfig SET Lang = '" + typelang + "' , BG = '" + bg + "', AccName = '" + AccName + "' ,AccBankName = '" + AccBankName + "',AccNo = '" + AccNo + "',AccPromptPay = '" + AccPromptPay + "' ,AccType = '" + AccType + "',AccTransferPrimary = '" + AccTransferPrimary + "'  WHERE MemberPhone = '" + article.MobileID + "'  ")
+			if err != nil {
+				panic(err)
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+		} else if typeEvent == "SetLang" && AccName == "" {
+
+			ress2, err := db.Query("UPDATE THPDMPDB.tblMobileOMSMemberConfig SET Lang = '" + typelang + "' , BG = '" + bg + "'  WHERE MemberPhone = '" + article.MobileID + "'  ")
 			if err != nil {
 				panic(err)
 			}
@@ -4029,7 +7654,7 @@ func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMobileOMSMemberConfig WHERE PhoneNumber = '" + article.MobileID + "'  ")
-	ress2, err := db.Query("SELECT MemberPhone, Lang, BG FROM THPDMPDB.tblMobileOMSMemberConfig WHERE MemberPhone = '" + article.MobileID + "'  ")
+	ress2, err := db.Query("SELECT MemberPhone, Lang, BG,IFNULL(AccName,'')AccName, IFNULL(AccBankName,'')AccBankName,IFNULL(AccNo,'')AccNo,IFNULL(AccPromptPay,'')AccPromptPay,IFNULL(AccTransferPrimary,'')AccTransferPrimary,IFNULL(AccType,'')AccType FROM THPDMPDB.tblMobileOMSMemberConfig WHERE MemberPhone = '" + article.MobileID + "'  ")
 
 	if err == nil {
 
@@ -4042,13 +7667,203 @@ func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
 		for ress2.Next() {
 			var event Mobile
 			//JobID := ress2.Scan(&event.JobID)
-			err := ress2.Scan(&event.MobileID, &event.Lang, &event.BG)
+			err := ress2.Scan(&event.MobileID, &event.Lang, &event.BG, &event.AccName, &event.AccBankName, &event.AccNo, &event.AccPromptPay, &event.AccTransferPrimary, &event.AccType)
 
 			if err != nil {
 				panic(err)
 			}
 
-			boxes = append(boxes, Mobile{MobileID: event.MobileID, Lang: event.Lang, BG: event.BG})
+			boxes = append(boxes, Mobile{MobileID: event.MobileID, Lang: event.Lang, BG: event.BG, AccName: event.AccName, AccBankName: event.AccBankName, AccNo: event.AccNo, AccPromptPay: event.AccPromptPay, AccTransferPrimary: event.AccTransferPrimary, AccType: event.AccType})
+		}
+
+		b, _ := json.Marshal(boxes)
+
+		defer ress2.Close()
+		err = ress2.Close()
+		//defer ress2.Close()
+		//jsonResp, err := json.Marshal(b)
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(b)
+		//counter = 0
+
+	}
+
+}
+func OMSMobileUpdateLoginMemberWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Mobile
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+
+	// rootCertPool := x509.NewCertPool()
+	// pem, err := ioutil.ReadFile("BaltimoreCyberTrustRoot.crt.pem")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// if ok := rootCertPool.AppendCertsFromPEM(pem); !ok {
+	// 	log.Fatal("Failed to append PEM.")
+	// }
+	// mysql.RegisterTLSConfig("custom", &tls.Config{
+	// 	ServerName: "prd-olivedb.mysql.database.azure.com",
+	// 	RootCAs:    rootCertPool,
+	// })
+	// db, err := sql.Open("mysql", "admin:!10<>Oms!@tcp(prd-olivedb.mysql.database.azure.com:3306)/THPDMPDB?tls=custom")
+
+	// rootCertPool := x509.NewCertPool()
+	// pem, _ := ioutil.ReadFile("BaltimoreCyberTrustRoot.crt.pem")
+	// if ok := rootCertPool.AppendCertsFromPEM(pem); !ok {
+	// 	log.Fatal("Failed to append PEM.")
+	// }
+	// mysql.RegisterTLSConfig("TLS_AES_256_GCM_SHA384", &tls.Config{RootCAs: rootCertPool})
+	// var connectionString string
+	// connectionString = fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?allowNativePasswords=true&tls=TLS_AES_256_GCM_SHA384", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com", "THPDMPDB")
+	// db, err := sql.Open("mysql", connectionString)
+
+	//db, err := sql.Open("mysql", "user=admin password=!10<>Oms! dbname=THPDMPDB sslmode=disable")
+	//db, err := sql.Open("mysql", "mysql://admin:!10<>Oms!@prd-olivedb.mysql.database.azure.com/THPDMPDB?sslmode=require")
+
+	dns := getDNSString("mysql", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+
+	//db, err := sql.Open("mysql", "user=admin; ServerName:prd-olivedb.mysql.database.azure.com:3306; password=!10<>Oms!; dbname=THPDMPDB; ssl-mode=require;")
+	db, err := sql.Open("mysql", dns)
+
+	//dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?ssl-mode=REQUIRED", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com", "3306", "THPDMPDB")
+	//db, err := sql.Open("mysql", dsn)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MobileID
+	typeEvent := article.TypeEvent
+	typelang := article.Lang
+	bg := article.BG
+	LoginType := article.LoginType
+	AccName := article.AccName
+	AccBankName := article.AccBankName
+	AccNo := article.AccNo
+	AccType := article.AccType
+	AccPromptPay := article.AccPromptPay
+	AccTransferPrimary := article.AccTransferPrimary
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		// 	AccName            string
+		// AccBankName        string
+		// AccNo              string
+		// AccPromptPay       string
+		// AccTransferPrimary string
+		// AccType            string
+
+		//counter := 0
+
+		if typeEvent == "Login" {
+			ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblMobileOMSMemberConfig (MemberPhone, CreateDT, LoginCount, LastLoginDT, Lang, BG, MerchantID,LoginType,AccName,AccBankName,AccNo,AccType,AccPromptPay,AccTransferPrimary) Values ('" + article.MobileID + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'th','White','c','" + LoginType + "','','','','','','') ON DUPLICATE KEY UPDATE LastLoginDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') , LoginCount = LoginCount + 1 ,LoginType = '" + LoginType + "'")
+			defer ress3.Close()
+			if err2 != nil {
+				panic(err)
+			}
+			defer ress3.Close()
+			err = ress3.Close()
+
+		} else if typeEvent == "GetLang" {
+
+		} else if typeEvent == "SetLang" && AccName != "" {
+
+			ress2, err := db.Query("UPDATE THPDMPDB.tblMobileOMSMemberConfig SET Lang = '" + typelang + "' , BG = '" + bg + "', AccName = '" + AccName + "' ,AccBankName = '" + AccBankName + "',AccNo = '" + AccNo + "',AccPromptPay = '" + AccPromptPay + "' ,AccType = '" + AccType + "',AccTransferPrimary = '" + AccTransferPrimary + "'  WHERE MemberPhone = '" + article.MobileID + "'  ")
+			if err != nil {
+				panic(err)
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+		} else if typeEvent == "SetLang" && AccName == "" {
+
+			ress2, err := db.Query("UPDATE THPDMPDB.tblMobileOMSMemberConfig SET Lang = '" + typelang + "' , BG = '" + bg + "'  WHERE MemberPhone = '" + article.MobileID + "'  ")
+			if err != nil {
+				panic(err)
+			}
+			defer ress2.Close()
+			err = ress2.Close()
+		} else {
+			return
+		}
+	}
+
+	//ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMobileOMSMemberConfig WHERE PhoneNumber = '" + article.MobileID + "'  ")
+	ress2, err := db.Query("SELECT MemberPhone, Lang, BG,IFNULL(AccName,'')AccName, IFNULL(AccBankName,'')AccBankName,IFNULL(AccNo,'')AccNo,IFNULL(AccPromptPay,'')AccPromptPay,IFNULL(AccTransferPrimary,'')AccTransferPrimary,IFNULL(AccType,'')AccType FROM THPDMPDB.tblMobileOMSMemberConfig WHERE MemberPhone = '" + article.MobileID + "'  ")
+
+	if err == nil {
+
+		// boxes := []BoxData{}
+		// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+		// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+		boxes := []Mobile{}
+
+		for ress2.Next() {
+			var event Mobile
+			//JobID := ress2.Scan(&event.JobID)
+			err := ress2.Scan(&event.MobileID, &event.Lang, &event.BG, &event.AccName, &event.AccBankName, &event.AccNo, &event.AccPromptPay, &event.AccTransferPrimary, &event.AccType)
+
+			if err != nil {
+				panic(err)
+			}
+
+			boxes = append(boxes, Mobile{MobileID: event.MobileID, Lang: event.Lang, BG: event.BG, AccName: event.AccName, AccBankName: event.AccBankName, AccNo: event.AccNo, AccPromptPay: event.AccPromptPay, AccTransferPrimary: event.AccTransferPrimary, AccType: event.AccType})
 		}
 
 		b, _ := json.Marshal(boxes)
@@ -4075,9 +7890,34 @@ func OMSMobileGetMember(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
+
+	// crc32q := crc32.MakeTable(0xFFFF)
+	// fmt.Printf("%08x\n", crc32.Checksum([]byte("00020101021230770016A00000067701011201150105557004580010220100900000370300000710310B000003703530376454076000.005802TH6304"), crc32q))
+
+	// CRC Checksum test
+	data2 := []byte("00020101021230770016A00000067701011201150105557004580010220100900000370300000710310B000003703530376454076000.005802TH6304")
+	target2 := uint16(0x0808)
+	hex_value := strconv.FormatInt(int64(target2), 16)
+
+	actual2 := ChecksumCCITTFalse(data2)
+	if actual2 != target2 {
+		fmt.Printf("%08x\n", actual2)
+	}
+	if hex_value != "" {
+		//t.Fatalf("CCITT checksum did not return the correct value, expected %x, received %x", target, actual)
+	}
+	// test crc
+	// tab := crc32.MakeTable(0x1021)
+
+	// var crc uint32 = 0xffffffff
+	// crc = crc32.Update(crc, tab, []byte("00020101021230770016A00000067701011201150105557004580010220100900000370300000710310B000003703530376454076000.005802TH6304"))
+	// fmt.Printf("%08x\n", crc)
+
+	// var crc2 uint32 = 0xffffffff
+	// crc2 = crc32c_le(crc2, tab, []byte("00020101021230770016A00000067701011201150105557004580010220100900000370300000710310B000003703530376454076000.005802TH6304"))
+	// fmt.Printf("%08x\n", crc2)
 
 	if err != nil {
 		panic(err)
@@ -4155,6 +7995,266 @@ func OMSMobileGetMember(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+func OMSMobileGetMemberWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Mobile
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	// crc32q := crc32.MakeTable(0xFFFF)
+	// fmt.Printf("%08x\n", crc32.Checksum([]byte("00020101021230770016A00000067701011201150105557004580010220100900000370300000710310B000003703530376454076000.005802TH6304"), crc32q))
+
+	// CRC Checksum test
+	data2 := []byte("00020101021230770016A00000067701011201150105557004580010220100900000370300000710310B000003703530376454076000.005802TH6304")
+	target2 := uint16(0x0808)
+	hex_value := strconv.FormatInt(int64(target2), 16)
+
+	actual2 := ChecksumCCITTFalse(data2)
+	if actual2 != target2 {
+		fmt.Printf("%08x\n", actual2)
+	}
+	if hex_value != "" {
+		//t.Fatalf("CCITT checksum did not return the correct value, expected %x, received %x", target, actual)
+	}
+	// test crc
+	// tab := crc32.MakeTable(0x1021)
+
+	// var crc uint32 = 0xffffffff
+	// crc = crc32.Update(crc, tab, []byte("00020101021230770016A00000067701011201150105557004580010220100900000370300000710310B000003703530376454076000.005802TH6304"))
+	// fmt.Printf("%08x\n", crc)
+
+	// var crc2 uint32 = 0xffffffff
+	// crc2 = crc32c_le(crc2, tab, []byte("00020101021230770016A00000067701011201150105557004580010220100900000370300000710310B000003703530376454076000.005802TH6304"))
+	// fmt.Printf("%08x\n", crc2)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MobileID
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMerchant WHERE PhoneNumber = '" + article.MobileID + "'  ")
+
+		if err == nil {
+
+			// boxes := []BoxData{}
+			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			boxes := []EventMobile{}
+
+			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			resp := make(map[string]string)
+			resp["MobileID"] = article.MobileID
+
+			for ress2.Next() {
+				var event EventMobile
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.MerchantID, &event.MerchantName, &event.Email, &event.ContactName, &event.PhoneNumber, &event.MemberDiscount)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			//counter = 0
+
+		}
+
+	}
+
+}
+func OMSMobileGetPostcodeWithAuth(w http.ResponseWriter, r *http.Request) {
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article Zipcode
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.PostId
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		strsql := "SELECT PostID,Tambon_TH as Tambon_Name,Tambon_EN,Amphoe_TH as Amphoe_Name,Amphoe_EN,Province_TH as Province_Name, GPS FROM THPDDB.VW_List_Location_SubDistrict WHERE Postid = '" + article.PostId + "'"
+
+		if article.PostId == "00000" {
+
+			strsql = "SELECT PostID,Tambon_TH as Tambon_Name,Tambon_EN,Amphoe_TH as Amphoe_Name,Amphoe_EN,Province_TH as Province_Name, GPS FROM THPDDB.VW_List_Location_SubDistrict "
+
+		}
+
+		ress2, err := db.Query(strsql)
+
+		if err == nil {
+
+			// boxes := []BoxData{}
+			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			boxes := []Zipcode{}
+			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			resp := make(map[string]string)
+			resp["PostId"] = article.PostId
+
+			for ress2.Next() {
+				var event Zipcode
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.PostId, &event.Tumbon, &event.TumbonEN, &event.District, &event.DistrictEN, &event.Province, &event.GPS)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, Zipcode{PostId: event.PostId, Tumbon: event.Tumbon, TumbonEN: event.TumbonEN, District: event.District, DistrictEN: event.DistrictEN, Province: event.Province, GPS: event.GPS})
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			//counter = 0
+
+		}
+
+	}
+
+}
 func OMSMobileGetPostcode(w http.ResponseWriter, r *http.Request) {
 
 	reqBody, _ := ioutil.ReadAll(r.Body)
@@ -4163,8 +8263,7 @@ func OMSMobileGetPostcode(w http.ResponseWriter, r *http.Request) {
 
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	db, err := sql.Open("mysql", dns)
 
 	if err != nil {
@@ -4258,8 +8357,7 @@ func OMSMobileSelectOrder(w http.ResponseWriter, r *http.Request) {
 	var article OMSOrderStruct
 	json.Unmarshal(reqBody, &article)
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
@@ -4354,8 +8452,7 @@ func OMSMobileDiscount(w http.ResponseWriter, r *http.Request) {
 	var article OMSOrderStruct
 	json.Unmarshal(reqBody, &article)
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
@@ -4449,9 +8546,119 @@ func OMSMobileGetJobDriverBookingMatchAlready(w http.ResponseWriter, r *http.Req
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var article DriverTracking
 	json.Unmarshal(reqBody, &article)
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	//", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	db, err := sql.Open("mysql", dns)
 
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.TrackingID
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT JobID, MobileID, Receivename, ReceiveAddress, ReceiveTumbon, ReceiveDistrict, ReceiveProvince, ReceiveZipcode, ReceivePhoneNo, Status, PickupStartDt, TrackingID, CarID, DriverName, DriverPhoneNo, Price,CustomerSelect,WarehouseName,WHAddressTH FROM THPDMPDB.VW_OMSMobileDriverSelectJobAlready WHERE TrackingID = '" + article.TrackingID + "'  ")
+
+		if err == nil {
+
+			boxes := []EventBookingMatchAlready{}
+
+			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			resp := make(map[string]string)
+			resp["TrackingID"] = article.TrackingID
+
+			for ress2.Next() {
+				var event EventBookingMatchAlready
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.JobID, &event.MobileID, &event.Receivename, &event.ReceiveAddress, &event.ReceiveTumbon, &event.ReceiveDistrict, &event.ReceiveProvince, &event.ReceiveZipcode, &event.ReceivePhoneNo, &event.Status, &event.PickupStartDt, &event.TrackingID, &event.CarID, &event.DriverName, &event.DriverPhoneNo, &event.Price, &event.CustomerSelect, &event.WarehouseName, &event.WHAddressTH)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, EventBookingMatchAlready{JobID: event.JobID, MobileID: event.MobileID, Receivename: event.Receivename, ReceiveAddress: event.ReceiveAddress, ReceiveTumbon: event.ReceiveTumbon, ReceiveDistrict: event.ReceiveDistrict, ReceiveProvince: event.ReceiveZipcode, ReceiveZipcode: event.ReceiveProvince, ReceivePhoneNo: event.ReceivePhoneNo, Status: event.Status, PickupStartDt: event.PickupStartDt, TrackingID: event.TrackingID, CarID: event.CarID, DriverName: event.DriverName, DriverPhoneNo: event.DriverPhoneNo, Price: event.Price, CustomerSelect: event.CustomerSelect, WarehouseName: event.WarehouseName, WHAddressTH: event.WHAddressTH})
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			//counter = 0
+
+		}
+
+	}
+	//return
+
+}
+func OMSMobileGetJobDriverBookingMatchAlreadyWithAuth(w http.ResponseWriter, r *http.Request) {
+	//vars := mux.Vars(r)
+	//key := vars["id"]
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article DriverTracking
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
@@ -4536,8 +8743,122 @@ func OMSMobileGetJobDriverBooking(w http.ResponseWriter, r *http.Request) {
 	var article DriverTracking
 	json.Unmarshal(reqBody, &article)
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	db, err := sql.Open("mysql", dns)
 
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.TrackingID
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+
+	//firstEvent2 := Event5{}
+
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT BookingID, Oid, DriverName ,Company,DriverStar as Rating,CarID,Price FROM THPDMPDB.tblMobileOMSJobDriverBooking WHERE TrackingID = '" + article.TrackingID + "' and BookingID is not null ")
+
+		if err == nil {
+
+			// boxes := []BoxData{}
+			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			boxes := []EventBooking{}
+
+			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			resp := make(map[string]string)
+			resp["TrackingID"] = article.TrackingID
+
+			for ress2.Next() {
+				var event EventBooking
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.BookingID, &event.Oid, &event.DriverName, &event.Company, &event.Rating, &event.TruckPlate, &event.Price)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, EventBooking{BookingID: event.BookingID, Oid: event.Oid, DriverName: event.DriverName, Company: event.Company, Rating: event.Rating, TruckPlate: event.TruckPlate, Price: event.Price})
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			//counter = 0
+
+		}
+
+	}
+	//return
+
+}
+func OMSMobileGetJobDriverBookingWithAuth(w http.ResponseWriter, r *http.Request) {
+	//vars := mux.Vars(r)
+	//key := vars["id"]
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article DriverTracking
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
@@ -4626,8 +8947,7 @@ func OMSMobileSelectOrderWithIMG(w http.ResponseWriter, r *http.Request) {
 	var article DriverTracking
 	json.Unmarshal(reqBody, &article)
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
@@ -4711,6 +9031,454 @@ func OMSMobileSelectOrderWithIMG(w http.ResponseWriter, r *http.Request) {
 	//return
 
 }
+func OMSMobileSelectOrderWithIMGWithAuth(w http.ResponseWriter, r *http.Request) {
+	//vars := mux.Vars(r)
+	//key := vars["id"]
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article DriverTracking
+	json.Unmarshal(reqBody, &article)
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.TrackingID
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+	//firstEvent2 := Event5{}
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT JobID, MobileID, ReceiveName, ReceiveAddress, ReceiveTumbon, ReceiveDistrict, ReceiveProvince, ReceiveZipcode, ReceivePhoneNo, SenderZipcode, SendPrice, PickupStartDt, DeliveryEndDt, PaymentFlag, PaymentDetail, CreateDt, JobDesc, WarehouseID, MerchantID,IMG1 FROM THPDMPDB.VW_OMSMobileOrder WHERE TrackingID = '" + article.TrackingID + "'  ")
+
+		if err == nil {
+
+			// boxes := []BoxData{}
+			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			boxes := []OMSOrderStruct{}
+
+			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			resp := make(map[string]string)
+			resp["TrackingID"] = article.TrackingID
+
+			for ress2.Next() {
+				var event OMSOrderStruct
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.JobID, &event.MobileID, &event.ReceiveName, &event.ReceiveAddress, &event.ReceiveTumbon, &event.ReceiveDistrict, &event.ReceiveProvince, &event.ReceiveZipcode, &event.ReceivePhoneNo, &event.SenderZipcode, &event.SendPrice, &event.PickupStartDt, &event.DeliveryEndDt, &event.PaymentFlag, &event.PaymentDetail, &event.CreateDt, &event.JobDesc, &event.WarehouseID, &event.MerchantID, &event.IMG1)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, OMSOrderStruct{JobID: event.JobID, MobileID: event.MobileID, ReceiveName: event.ReceiveName, ReceiveAddress: event.ReceiveAddress,
+					ReceiveTumbon: event.ReceiveTumbon, ReceiveProvince: event.ReceiveProvince, ReceiveDistrict: event.ReceiveDistrict,
+					ReceivePhoneNo: event.ReceivePhoneNo, ReceiveZipcode: event.ReceiveZipcode,
+					SenderZipcode: event.SenderZipcode, SendPrice: event.SendPrice, PickupStartDt: event.PickupStartDt, DeliveryEndDt: event.DeliveryEndDt,
+					PaymentFlag: event.PaymentFlag, PaymentDetail: event.PaymentDetail,
+					CreateDt: event.CreateDt, JobDesc: event.JobDesc, JobType: event.JobType, WarehouseID: event.WarehouseID, MerchantID: event.MerchantID, IMG1: event.IMG1})
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			//counter = 0
+
+		}
+
+	}
+	//return
+
+}
+func OMSMobileSelectOrderFromBookingWithAuth(w http.ResponseWriter, r *http.Request) {
+	//vars := mux.Vars(r)
+	//key := vars["id"]
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article DriverTracking
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.TrackingID
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+	//firstEvent2 := Event5{}
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT JobID, MobileID, ReceiveName, ReceiveAddress, ReceiveTumbon, ReceiveDistrict, ReceiveProvince, ReceiveZipcode, ReceivePhoneNo, SenderZipcode, SendPrice, PickupStartDt, DeliveryEndDt, PaymentFlag, PaymentDetail, CreateDt, JobDesc, JobType, WarehouseID, MerchantID, Status,TrackingID FROM THPDMPDB.VW_OMSMobileOrderNoIMG2 WHERE jobtype like '%" + article.TrackingID + "%' ORDER BY JobID DESC")
+
+		if err == nil {
+
+			// boxes := []BoxData{}
+			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			boxes := []Event5noIMG{}
+
+			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			resp := make(map[string]string)
+			resp["TrackingID"] = article.TrackingID
+
+			for ress2.Next() {
+				var event Event5noIMG
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.JobID, &event.MobileID, &event.ReceiveName, &event.ReceiveAddress, &event.ReceiveTumbon, &event.ReceiveDistrict, &event.ReceiveProvince, &event.ReceiveZipcode, &event.ReceivePhoneNo, &event.SenderZipcode, &event.SendPrice, &event.PickupStartDt, &event.DeliveryEndDt, &event.PaymentFlag, &event.PaymentDetail, &event.CreateDt, &event.JobDesc, &event.JobType, &event.WarehouseID, &event.MerchantID, &event.Status, &event.TrackingID)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, Event5noIMG{JobID: event.JobID, MobileID: event.MobileID, ReceiveName: event.ReceiveName, ReceiveAddress: event.ReceiveAddress,
+					ReceiveTumbon: event.ReceiveTumbon, ReceiveProvince: event.ReceiveProvince, ReceiveDistrict: event.ReceiveDistrict,
+					ReceivePhoneNo: event.ReceivePhoneNo, ReceiveZipcode: event.ReceiveZipcode,
+					SenderZipcode: event.SenderZipcode, SendPrice: event.SendPrice, PickupStartDt: event.PickupStartDt, DeliveryEndDt: event.DeliveryEndDt,
+					PaymentFlag: event.PaymentFlag, PaymentDetail: event.PaymentDetail,
+					CreateDt: event.CreateDt, JobDesc: event.JobDesc, JobType: event.JobType, WarehouseID: event.WarehouseID, MerchantID: event.MerchantID, Status: event.Status, TrackingID: event.TrackingID})
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			//counter = 0
+
+		}
+
+	}
+	//return
+
+}
+func OMSMobileSelectOrderFromBooking(w http.ResponseWriter, r *http.Request) {
+	//vars := mux.Vars(r)
+	//key := vars["id"]
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article DriverTracking
+	json.Unmarshal(reqBody, &article)
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.TrackingID
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+	//firstEvent2 := Event5{}
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT JobID, MobileID, ReceiveName, ReceiveAddress, ReceiveTumbon, ReceiveDistrict, ReceiveProvince, ReceiveZipcode, ReceivePhoneNo, SenderZipcode, SendPrice, PickupStartDt, DeliveryEndDt, PaymentFlag, PaymentDetail, CreateDt, JobDesc, JobType, WarehouseID, MerchantID, Status,TrackingID FROM THPDMPDB.VW_OMSMobileOrderNoIMG2 WHERE jobtype like '%" + article.TrackingID + "%' ORDER BY JobID DESC")
+
+		if err == nil {
+
+			// boxes := []BoxData{}
+			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			boxes := []Event5noIMG{}
+
+			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			resp := make(map[string]string)
+			resp["TrackingID"] = article.TrackingID
+
+			for ress2.Next() {
+				var event Event5noIMG
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.JobID, &event.MobileID, &event.ReceiveName, &event.ReceiveAddress, &event.ReceiveTumbon, &event.ReceiveDistrict, &event.ReceiveProvince, &event.ReceiveZipcode, &event.ReceivePhoneNo, &event.SenderZipcode, &event.SendPrice, &event.PickupStartDt, &event.DeliveryEndDt, &event.PaymentFlag, &event.PaymentDetail, &event.CreateDt, &event.JobDesc, &event.JobType, &event.WarehouseID, &event.MerchantID, &event.Status, &event.TrackingID)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, Event5noIMG{JobID: event.JobID, MobileID: event.MobileID, ReceiveName: event.ReceiveName, ReceiveAddress: event.ReceiveAddress,
+					ReceiveTumbon: event.ReceiveTumbon, ReceiveProvince: event.ReceiveProvince, ReceiveDistrict: event.ReceiveDistrict,
+					ReceivePhoneNo: event.ReceivePhoneNo, ReceiveZipcode: event.ReceiveZipcode,
+					SenderZipcode: event.SenderZipcode, SendPrice: event.SendPrice, PickupStartDt: event.PickupStartDt, DeliveryEndDt: event.DeliveryEndDt,
+					PaymentFlag: event.PaymentFlag, PaymentDetail: event.PaymentDetail,
+					CreateDt: event.CreateDt, JobDesc: event.JobDesc, JobType: event.JobType, WarehouseID: event.WarehouseID, MerchantID: event.MerchantID, Status: event.Status, TrackingID: event.TrackingID})
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			//counter = 0
+
+		}
+
+	}
+	//return
+
+}
+func OMSMobileSelectOrderNoIMGWithAuth(w http.ResponseWriter, r *http.Request) {
+	//vars := mux.Vars(r)
+	//key := vars["id"]
+
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var article OMSOrderStruct
+	json.Unmarshal(reqBody, &article)
+
+	reqHeader := r.Header["Authorization"]
+	//fmt.Println("Header", reqHeader)
+
+	reqHeaderChannel := r.Header["Channel"]
+	//fmt.Println("Header", reqHeaderChannel)
+
+	aa := ChkAuth(reqHeader, reqHeaderChannel)
+	fmt.Println("aa", aa)
+
+	if aa <= 0 {
+		respok := make(map[string]string)
+		//respok["err"] = "Existing Invoice Number"
+
+		respok["QRcodetxt"] = ""
+		respok["ExpDT"] = ""                                  //QR
+		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+
+		jsonResp, err := json.Marshal(respok)
+
+		if err != nil {
+			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+			return
+		}
+		w.Write(jsonResp)
+		return
+	}
+	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
+	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+	db, err := sql.Open("mysql", dns)
+
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	//var m MyStruct
+	typefind := article.MobileID
+
+	//t := time.Now() //It will return time.Time object with current timestamp
+	//fmt.Printf("time.Time %s\n", t)
+
+	//tUnix := t.Unix()
+	//fmt.Printf("timeUnix: %d\n", tUnix)
+	//str := strconv.FormatInt(tUnix, 10)
+	//firstEvent2 := Event5{}
+	//datett := article.Date
+	if typefind != "" {
+		//fmt.Println(article.Id)
+
+		// firstEvent := Event5{}
+		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
+		// if err != nil {
+		// 	panic(err)
+		// }
+
+		//counter := 0
+
+		ress2, err := db.Query("SELECT JobID, MobileID, ReceiveName, ReceiveAddress, ReceiveTumbon, ReceiveDistrict, ReceiveProvince, ReceiveZipcode, ReceivePhoneNo, SenderZipcode, SendPrice, PickupStartDt, DeliveryEndDt, PaymentFlag, PaymentDetail, CreateDt, JobDesc, JobType, WarehouseID, MerchantID, Status,TrackingID FROM THPDMPDB.VW_OMSMobileOrderNoIMG2 WHERE MobileID = '" + article.MobileID + "' ORDER BY JobID DESC")
+
+		if err == nil {
+
+			// boxes := []BoxData{}
+			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
+			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			boxes := []Event5noIMG{}
+
+			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
+
+			resp := make(map[string]string)
+			resp["MobileID"] = article.MobileID
+
+			for ress2.Next() {
+				var event Event5noIMG
+				//JobID := ress2.Scan(&event.JobID)
+				err := ress2.Scan(&event.JobID, &event.MobileID, &event.ReceiveName, &event.ReceiveAddress, &event.ReceiveTumbon, &event.ReceiveDistrict, &event.ReceiveProvince, &event.ReceiveZipcode, &event.ReceivePhoneNo, &event.SenderZipcode, &event.SendPrice, &event.PickupStartDt, &event.DeliveryEndDt, &event.PaymentFlag, &event.PaymentDetail, &event.CreateDt, &event.JobDesc, &event.JobType, &event.WarehouseID, &event.MerchantID, &event.Status, &event.TrackingID)
+
+				if err != nil {
+					panic(err)
+				}
+
+				boxes = append(boxes, Event5noIMG{JobID: event.JobID, MobileID: event.MobileID, ReceiveName: event.ReceiveName, ReceiveAddress: event.ReceiveAddress,
+					ReceiveTumbon: event.ReceiveTumbon, ReceiveProvince: event.ReceiveProvince, ReceiveDistrict: event.ReceiveDistrict,
+					ReceivePhoneNo: event.ReceivePhoneNo, ReceiveZipcode: event.ReceiveZipcode,
+					SenderZipcode: event.SenderZipcode, SendPrice: event.SendPrice, PickupStartDt: event.PickupStartDt, DeliveryEndDt: event.DeliveryEndDt,
+					PaymentFlag: event.PaymentFlag, PaymentDetail: event.PaymentDetail,
+					CreateDt: event.CreateDt, JobDesc: event.JobDesc, JobType: event.JobType, WarehouseID: event.WarehouseID, MerchantID: event.MerchantID, Status: event.Status, TrackingID: event.TrackingID})
+			}
+
+			b, _ := json.Marshal(boxes)
+
+			defer ress2.Close()
+			err = ress2.Close()
+			//jsonResp, err := json.Marshal(b)
+			if err != nil {
+				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+				return
+			}
+			w.Write(b)
+			//counter = 0
+
+		}
+
+	}
+	//return
+
+}
 func OMSMobileSelectOrderNoIMG(w http.ResponseWriter, r *http.Request) {
 	//vars := mux.Vars(r)
 	//key := vars["id"]
@@ -4719,8 +9487,7 @@ func OMSMobileSelectOrderNoIMG(w http.ResponseWriter, r *http.Request) {
 	var article OMSOrderStruct
 	json.Unmarshal(reqBody, &article)
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "uat-olivedb.mysql.database.azure.com")
-
+	dns := getDNSString("THPDMPDB", "admin", "!10<>Oms!", "prd-olivedb.mysql.database.azure.com")
 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	db, err := sql.Open("mysql", dns)
 
@@ -4836,29 +9603,59 @@ func handleRequests() {
 	myRouter.HandleFunc("/articles", returnAllArticles)
 	//myRouter.HandleFunc("/TOATGetByInvoiceID", returnSingleArticle2).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileCreateOrder", OMSMobileCreateOrder).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileCreateOrderWithAuth", OMSMobileCreateOrderWithAuth).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileSelectOrder", OMSMobileSelectOrder).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileSelectOrderNoIMG", OMSMobileSelectOrderNoIMG).Methods("POST")
-	myRouter.HandleFunc("/OMSMobileSelectOrderWithIMG", OMSMobileSelectOrderWithIMG).Methods("POST")
-	myRouter.HandleFunc("/OMSMobileGetPostcode", OMSMobileGetPostcode).Methods("POST")
-	myRouter.HandleFunc("/OMSMobileGetMember", OMSMobileGetMember).Methods("POST")
-	myRouter.HandleFunc("/OMSMobileGetJobDriverBooking", OMSMobileGetJobDriverBooking).Methods("POST")
-	myRouter.HandleFunc("/OMSMobileGetJobDriverBookingMatchAlready", OMSMobileGetJobDriverBookingMatchAlready).Methods("POST")
-	myRouter.HandleFunc("/OMSMobileGetOTP", OMSMobileGetOTP).Methods("POST")
-	myRouter.HandleFunc("/OMSMobileGetDriver", OMSMobileGetDriver).Methods("POST")
-	myRouter.HandleFunc("/OMSMobileUpdateLoginMember", OMSMobileUpdateLoginMember).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileSelectOrderNoIMGWithAuth", OMSMobileSelectOrderNoIMGWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileSelectOrderFromBooking", OMSMobileSelectOrderFromBooking).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileSelectOrderFromBookingWithAuth", OMSMobileSelectOrderFromBookingWithAuth).Methods("POST")
 
+	myRouter.HandleFunc("/OMSMobileSelectOrderWithIMG", OMSMobileSelectOrderWithIMG).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileSelectOrderWithIMGWithAuth", OMSMobileSelectOrderWithIMGWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetPostcode", OMSMobileGetPostcode).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetPostcodeWithAuth", OMSMobileGetPostcodeWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetMember", OMSMobileGetMember).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetMemberWithAuth", OMSMobileGetMemberWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetJobDriverBooking", OMSMobileGetJobDriverBooking).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetJobDriverBookingWithAuth", OMSMobileGetJobDriverBookingWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetJobDriverBookingMatchAlready", OMSMobileGetJobDriverBookingMatchAlready).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetJobDriverBookingMatchAlreadyWithAuth", OMSMobileGetJobDriverBookingMatchAlreadyWithAuth).Methods("POST")
+
+	myRouter.HandleFunc("/OMSMobileGetOTP", OMSMobileGetOTP).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetOTPWithAuth", OMSMobileGetOTPWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetDriver", OMSMobileGetDriver).Methods("POST") //DX ยิงคนเลือกรถ
+	myRouter.HandleFunc("/OMSMobileUpdateLoginMember", OMSMobileUpdateLoginMember).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileUpdateLoginMemberWithAuth", OMSMobileUpdateLoginMemberWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSGetBankAccount", OMSGetBankAccount).Methods("POST")
+	myRouter.HandleFunc("/OMSGetCOD", OMSGetCOD).Methods("POST")
+	myRouter.HandleFunc("/ChkAppVersion", ChkAppVersion).Methods("POST")
+
+	myRouter.HandleFunc("/OMSRepPayment", OMSRepPayment).Methods("POST")
+	myRouter.HandleFunc("/OMSRepPaymentWithAuth", OMSRepPaymentWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSRepSummaryReport", OMSRepSummaryReport).Methods("POST")
+	myRouter.HandleFunc("/OMSRepSummaryReportWithAuth", OMSRepSummaryReportWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSCheckPrice", OMSCheckPrice).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileGetAdvertise", OMSMobileGetAdvertise).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileGetCoupon", OMSMobileGetCoupon).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetCouponWithAuth", OMSMobileGetCouponWithAuth).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileGetRateAddOn", OMSMobileGetRateAddOn).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileGetWareHouse", OMSMobileGetWareHouse).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetWareHouseWithAuth", OMSMobileGetWareHouseWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileDelWareHouse", OMSMobileDelWareHouse).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileDelWareHouseWithAuth", OMSMobileDelWareHouseWithAuth).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileGetTrcukSize", OMSMobileGetTrcukSize).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileGetTrcukSizeWithAuth", OMSMobileGetTrcukSizeWithAuth).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileUpdateDriverJobMaster", OMSMobileUpdateDriverJobMaster).Methods("POST")
-
+	myRouter.HandleFunc("/OMSMobileUpdateDriverJobMasterWithAuth", OMSMobileUpdateDriverJobMasterWithAuth).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileCancelOrder", OMSMobileCancelOrder).Methods("POST")
+	myRouter.HandleFunc("/OMSMobileCancelOrderWithAuth", OMSMobileCancelOrderWithAuth).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileConnect", OMSMobileConnect).Methods("POST")
 	myRouter.HandleFunc("/GenToken", tokenGenerator).Methods("POST")
 	myRouter.HandleFunc("/GenlblPrint", GenlblPrint).Methods("POST")
 	myRouter.HandleFunc("/Callback", Callback).Methods("POST")
 	myRouter.HandleFunc("/FntGetpaymentToken", FntGetpaymentToken).Methods("POST")
+	myRouter.HandleFunc("/GetKTBApprove", GetKTBApprove).Methods("POST")
+	myRouter.HandleFunc("/GetKTBCharge", GetKTBCharge).Methods("POST")
 	myRouter.HandleFunc("/OMSMobileDiscount", OMSMobileDiscount).Methods("POST")
 	//myRouter.HandleFunc("/TOATGetByCustomerID", returnSingleArticle2).Methods("POST")
 	myRouter.HandleFunc("/article", createNewArticle).Methods("POST")
@@ -4866,9 +9663,15 @@ func handleRequests() {
 	myRouter.HandleFunc("/article/{id}", returnSingleArticle)
 
 	myRouter.HandleFunc("/webhook", handleWebhook)
-	//log.Fatal(http.ListenAndServe(":80", myRouter)) // production
-	log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
+	//<<<<<<< HEAD
+	log.Fatal(http.ListenAndServe(":80", myRouter)) // production
+	//log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
 	//log.Fatal(http.ListenAndServe(":3306", myRouter)) // test
+	//=======
+	//log.Fatal(http.ListenAndServe(":80", myRouter)) // production
+	//log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
+	//log.Fatal(http.ListenAndServe(":5678", myRouter)) // test
+	//>>>>>>> c475cd4d25c7033671cff6ae7260c045e921dcef
 }
 
 func main() {
@@ -4897,17 +9700,38 @@ func main() {
 		// Article{Id: "2", Title: "Hello 2", Desc: "Article Description", Content: "Articcle Content", Token: "xxx"},
 		Merchant{MerchantID: "1"},
 	}
+	MerchantReps = []MerchantRep{
+		// Article{Id: "1", Title: "Hello", Desc: "Article Description", Content: "Article Content", Token: "xxx"},
+		// Article{Id: "2", Title: "Hello 2", Desc: "Article Description", Content: "Articcle Content", Token: "xxx"},
+		MerchantRep{MerchantID: "1", RepType: "Daily", SDT: "2022-09-01", EDT: "2022-09-22"},
+	}
 	DriverTrackings = []DriverTracking{
 		DriverTracking{TrackingID: "1", DriverID: "xxx", DriverName: "xx", Plate: "xx", FinalPrice: "xx"},
 	}
 	DriverJobMasterBookings = []DriverJobMasterBooking{
 		DriverJobMasterBooking{TrackingID: "1", JobDriverID: "xxx", JobDriverName: "xx", JobTruckID: "xx", JobTruckPlate: "xx"},
 	}
+
 	Get2c2ppaymentTokens = []Get2c2ppaymentToken{
-		Get2c2ppaymentToken{TrackingID: "1", Amount: "100", PhoneNumber: "0809999999", PaymentType: "QR"},
+		Get2c2ppaymentToken{TrackingID: "1", Amount: "100", PhoneNumber: "0809999999", PaymentType: "QR", ComCode: "1001", TransportationPrice: "0", ProductPrice: "0", NumberOfPieces: "0"},
 	}
-	GetPostPrintOnlines = []GetPostPrintOnline{
-		GetPostPrintOnline{PostCode: "10010", CountItems: 1},
+	// GetPostPrintOnlines = []GetPostPrintOnline{
+	// GetPostPrintOnline{PostCode: "10010", CountItems: 1},
+	// }
+	GetCancels = []GetCancel{
+		GetCancel{Shipment_no: "B000003xxx", Remark: "xxx"},
+	}
+
+	GetAccounts = []AccountBank{
+		AccountBank{TrackingID: "B000003xxx", AccountID: "xxx", AccountName: "xxx", PhoneNo: "xxx", Email: "xxx", BankName: "xxx", BankAccNo: "xxx", BankType: "xxx", PromptPayID: "xxx", UserType: "xxx", PrimaryTransferAccount: "xxx", AmountPrice: "xxx", ComCode: "1001"},
+	}
+
+	GetKTBApproveJson = []KTBApproveJson{
+		KTBApproveJson{User: "B000003xxx", Password: "xxx", ComCode: "", ProdCode: "", Command: "", BankRef: "", DateTime: "", EffDate: "", Amount: 0.00, Channel: "", CusName: "", Ref1: "", Ref2: "", Ref3: "", Ref4: ""},
+	}
+
+	GetMobileVersion = []MobileVersion{
+		MobileVersion{MobileType: "B000003xxx", VersionNow: "xxx"},
 	}
 
 	log.Println("server started")
