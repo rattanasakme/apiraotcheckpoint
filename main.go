@@ -22627,8 +22627,8 @@ func handleRequests() {
 
 	//http.Handle("/", v3.NewHandler("My API", "/swagger.json", "/"))
 	//<<<<<<< HEAD
-	log.Fatal(http.ListenAndServe(":8080", myRouter)) // production
-	//log.Fatal(http.ListenAndServe(":80", myRouter)) // production
+	//log.Fatal(http.ListenAndServe(":8080", myRouter)) // production
+	log.Fatal(http.ListenAndServe(":80", myRouter)) // production
 	//log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
 	//log.Fatal(http.ListenAndServe(":9080", myRouter)) // test
 	//=======
