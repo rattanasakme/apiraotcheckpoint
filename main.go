@@ -52,15 +52,15 @@ var tmsapiuat = "https://uattms-api.promptsong.co/"
 //var tmsapi = tmsapiuat
 //var tmsapi = tmsapiprd
 
-// var conn = connraot           //connuat //conntest
-// var userlogin = "nta"         //connuat //admin
-// var passlogin = "N@xtech!234" //"!10<>Oms!"
-// var dblogin = "raotdb"        //"THPDMPDB"
+var conn = connraot           //connuat //conntest
+var userlogin = "nta"         //connuat //admin
+var passlogin = "N@xtech!234" //"!10<>Oms!"
+var dblogin = "raotdb"        //"THPDMPDB"
 
-var conn = connuat          //connuat //conntest
-var userlogin = "admin"     //connuat //admin
-var passlogin = "!10<>Oms!" //"!10<>Oms!"
-var dblogin = "THPDMPDB"    //"THPDMPDB"
+// var conn = connuat          //connuat //conntest
+// var userlogin = "admin"     //connuat //admin
+// var passlogin = "!10<>Oms!" //"!10<>Oms!"
+// var dblogin = "THPDMPDB"    //"THPDMPDB"
 
 var tmsapi = tmsapiuat
 
@@ -3415,7 +3415,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	//fmt.Println(t.String())
 	fmt.Println(t.Format("2006-01-02 15:04:05"))
-	fmt.Fprintf(w, "WELCOME TO RAOTCheckpoint API version 1.0.1 ")
+	fmt.Fprintf(w, "WELCOME TO RAOTCheckpoint API version 1.0.2 "+userlogin)
 	//fmt.Println("Endpoint Hit: homePage")
 
 	// version V 1.0.2
