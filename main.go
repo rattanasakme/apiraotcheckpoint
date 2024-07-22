@@ -2014,9 +2014,10 @@ type AppReturnUserPositionRAOT struct {
 	Ismanagelocationresponse string
 	Ismanagegroup            string
 	Iscondition              string
-	Isreporttrader           string
 	Ismanagecalculate        string
-	Iditbyuser               string
+	Isreporttrader           string
+
+	Iditbyuser string
 }
 type AppReturnResponseLocationRAOT struct {
 	DBID                 string
@@ -2895,17 +2896,17 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 	matched, err := regexp.MatchString(`FT([0-9]+)DB`, MsgText)
 	bookingmatch := 0
-	//fmt.Println(matched)
+	////fmt.Println(matched)
 
 	if !matched {
 		matched, err = regexp.MatchString(`LT([0-9]+)DB`, MsgText)
-		fmt.Println(matched)
-		fmt.Println(err)
+		//fmt.Println(matched)
+		//fmt.Println(err)
 	}
 	if !matched {
 		matched, err = regexp.MatchString(`GD([0-9]+)TH`, MsgText)
-		fmt.Println(matched)
-		fmt.Println(err)
+		//fmt.Println(matched)
+		//fmt.Println(err)
 	}
 	if !matched {
 		matched, err = regexp.MatchString(`2TO([0-9]+)`, MsgText)
@@ -2914,8 +2915,8 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 			bookingmatch = 1
 
 		}
-		fmt.Println(matched)
-		fmt.Println(err)
+		//fmt.Println(matched)
+		//fmt.Println(err)
 	}
 	if !matched {
 		matched, err = regexp.MatchString(`B([0-9]+)`, MsgText)
@@ -2924,9 +2925,9 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 			bookingmatch = 1
 
 		}
-		//fmt.Println(bookingmatch)
-		//fmt.Println(matched)
-		//fmt.Println(err)
+		////fmt.Println(bookingmatch)
+		////fmt.Println(matched)
+		////fmt.Println(err)
 	}
 
 	//var bearerToken = "YBAnQHA776xhZVp5IiPGWG556tuo5hU3h0Ke0afe2LBi2pCAymiz0fgLcjLAEeWQZ+9+oJkjH1RFYyA676vOmk78/CCb7Bgns1eSm7GRrGf7GKlwGhp944byiEQZbhV5X1QXpAQMXSM0nN/zusI6yAdB04t89/1O/w1cDnyilFU=" line oongang
@@ -3012,7 +3013,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 				connectDb()
 			}
 			if DB.Stats().OpenConnections != 0 {
-				fmt.Println(DB.Stats().OpenConnections)
+				//fmt.Println(DB.Stats().OpenConnections)
 			} else {
 				connectDb()
 			}
@@ -3188,7 +3189,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 			req.Header.Add("Authorization", "Bearer "+bearerToken)
 			req.Header.Add("Content-Type", "application/json")
-			fmt.Println(req.Header)
+			//fmt.Println(req.Header)
 
 			//req.Body.Read(json_data)
 			//Send req using http Client
@@ -3196,7 +3197,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 			resp2, err := client.Do(req)
 
 			if resp2 != nil {
-				//fmt.Println(resp2)
+				////fmt.Println(resp2)
 				//panic(err)
 				myJsonString = []byte(`{"replyToken":"` + ReplyToken + `"}`)
 			}
@@ -3389,7 +3390,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 		req.Header.Add("Authorization", "Bearer "+bearerToken)
 		req.Header.Add("Content-Type", "application/json")
-		fmt.Println(req.Header)
+		//fmt.Println(req.Header)
 
 		//req.Body.Read(json_data)
 		//Send req using http Client
@@ -3397,7 +3398,7 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 		resp2, err := client.Do(req)
 
 		if resp2 != nil {
-			//fmt.Println(resp2)
+			////fmt.Println(resp2)
 			//panic(err)
 			myJsonString = []byte(`{"replyToken":"` + ReplyToken + `"}`)
 		}
@@ -3412,10 +3413,10 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 func homePage(w http.ResponseWriter, r *http.Request) {
 
 	t := time.Now()
-	fmt.Println(t.String())
+	//fmt.Println(t.String())
 	fmt.Println(t.Format("2006-01-02 15:04:05"))
-	fmt.Fprintf(w, "WELCOME TO PROMPTSONG API version 1.0.8l ")
-	fmt.Println("Endpoint Hit: homePage")
+	fmt.Fprintf(w, "WELCOME TO RAOTCheckpoint API version 1.0.1 ")
+	//fmt.Println("Endpoint Hit: homePage")
 
 	// version V 1.0.2
 	// j  ecit for sent update driver to DX and stamp update mobileorder
@@ -3468,7 +3469,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Endpoint Hit: returnAllArticles")
+	//fmt.Println("Endpoint Hit: returnAllArticles")
 	json.NewEncoder(w).Encode(Articles)
 }
 func returnSingleArticle(w http.ResponseWriter, r *http.Request) {
@@ -3794,7 +3795,7 @@ func insertGetDriverTrack(db *sql.DB, event EventDriverTrack) (int64, error) {
 
 // 	//datett := article.Date
 // 	if typefind == "InvoiceNo" {
-// 		//fmt.Println(article.Id)
+// 		////fmt.Println(article.Id)
 
 // 		firstEvent := Event0{}
 // 		err = selectEventById(db, article.Id, &firstEvent)
@@ -3822,7 +3823,7 @@ func insertGetDriverTrack(db *sql.DB, event EventDriverTrack) (int64, error) {
 // 		w.Write(jsonResp)
 // 	}
 // 	if typefind == "CustomerNo" {
-// 		//fmt.Println(article.Id)
+// 		////fmt.Println(article.Id)
 // 		firstEvent := Event0{}
 // 		err = selectEventByCusId(db, article.Id, article.Date, &firstEvent)
 // 		if err != nil {
@@ -3851,10 +3852,10 @@ func insertGetDriverTrack(db *sql.DB, event EventDriverTrack) (int64, error) {
 
 // 	}
 // 	// if datett == "" {
-// 	// 	fmt.Println(article.Id)
+// 	// 	//fmt.Println(article.Id)
 // 	// }
 
-// 	//fmt.Println(article.Id)
+// 	////fmt.Println(article.Id)
 // 	//fmt.Fprintf(w, jsonResp)
 // 	// for _, article := range Articles {
 // 	// 	if article.Id == key {
@@ -3868,252 +3869,252 @@ type MyStruct struct {
 	Date Epoch
 }
 
-func OMSMobileCreateOrder(w http.ResponseWriter, r *http.Request) {
-	//vars := mux.Vars(r)
-	//key := vars["id"]
+// func OMSMobileCreateOrder(w http.ResponseWriter, r *http.Request) {
+// 	//vars := mux.Vars(r)
+// 	//key := vars["id"]
 
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article OMSOrderStruct
-	json.Unmarshal(reqBody, &article)
+// 	reqBody, _ := ioutil.ReadAll(r.Body)
+// 	var article OMSOrderStruct
+// 	json.Unmarshal(reqBody, &article)
 
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+// 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+// 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
+// 	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
+// 	// db, err := sql.Open("mysql", dns)
 
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
+// 	// if err != nil {
+// 	// 	panic(err)
+// 	// }
+// 	// err = db.Ping()
+// 	// if err != nil {
+// 	// 	panic(err)
+// 	// }
+// 	// defer db.Close()
 
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
+// 	if DB.Ping() != nil {
+// 		connectDb()
+// 	}
+// 	if DB.Stats().OpenConnections != 0 {
+// 		//fmt.Println(DB.Stats().OpenConnections)
+// 	} else {
+// 		connectDb()
+// 	}
+// 	db := DB
+// 	defer db.Close()
+// 	// err := db.Ping()
+// 	// if err != nil {
+// 	// 	connectDb()
 
-	// }
-	//var m MyStruct
-	typefind := article.MobileID
+// 	// }
+// 	//var m MyStruct
+// 	typefind := article.MobileID
 
-	//t := time.Now() //It will return time.Time object with current timestamp
-	//fmt.Printf("time.Time %s\n", t)
+// 	//t := time.Now() //It will return time.Time object with current timestamp
+// 	//fmt.Printf("time.Time %s\n", t)
 
-	//tUnix := t.Unix()
-	//fmt.Printf("timeUnix: %d\n", tUnix)
-	//str := strconv.FormatInt(tUnix, 10)
+// 	//tUnix := t.Unix()
+// 	//fmt.Printf("timeUnix: %d\n", tUnix)
+// 	//str := strconv.FormatInt(tUnix, 10)
 
-	if typefind != "" {
-		//var unixTime int64 = int64(m.Date)
+// 	if typefind != "" {
+// 		//var unixTime int64 = int64(m.Date)
 
-		event5 := Event5{
-			JobID:           string(article.JobID),
-			MobileID:        string(article.MobileID),
-			ReceiveName:     string(article.ReceiveName),
-			ReceiveAddress:  string(article.ReceiveAddress),
-			ReceiveTumbon:   string(article.ReceiveTumbon),
-			ReceiveDistrict: string(article.ReceiveDistrict),
-			ReceiveProvince: string(article.ReceiveProvince),
-			ReceivePhoneNo:  string(article.ReceivePhoneNo),
-			ReceiveZipcode:  string(article.ReceiveZipcode),
-			SenderZipcode:   string(article.SenderZipcode),
-			SendPrice:       string(article.SendPrice),
-			PickupStartDt:   string(article.PickupStartDt),
-			DeliveryEndDt:   string(article.DeliveryEndDt),
-			PaymentFlag:     string(article.PaymentFlag),
-			PaymentDetail:   string(article.PaymentDetail),
-			IMG1:            string(article.IMG1),
-			IMG2:            string(article.IMG2),
-			IMG3:            string(article.IMG3),
-			IMG4:            string(article.IMG4),
-			JobDesc:         string(article.JobDesc),
-			JobType:         string(article.JobType),
-			MerchantID:      string(article.MerchantID),
-			WarehouseID:     string(article.WarehouseID),
-			Status:          "รอดำเนินการ",
-			//CreateDt:        string(article.CreateDt),
-		}
-		insertedId, err := insertOrderItems(db, event5)
-		fmt.Println(insertedId)
-		if err != nil {
-			//panic(err)
-			resperr := make(map[string]string)
-			resperr["errmsg"] = err.Error()
+// 		event5 := Event5{
+// 			JobID:           string(article.JobID),
+// 			MobileID:        string(article.MobileID),
+// 			ReceiveName:     string(article.ReceiveName),
+// 			ReceiveAddress:  string(article.ReceiveAddress),
+// 			ReceiveTumbon:   string(article.ReceiveTumbon),
+// 			ReceiveDistrict: string(article.ReceiveDistrict),
+// 			ReceiveProvince: string(article.ReceiveProvince),
+// 			ReceivePhoneNo:  string(article.ReceivePhoneNo),
+// 			ReceiveZipcode:  string(article.ReceiveZipcode),
+// 			SenderZipcode:   string(article.SenderZipcode),
+// 			SendPrice:       string(article.SendPrice),
+// 			PickupStartDt:   string(article.PickupStartDt),
+// 			DeliveryEndDt:   string(article.DeliveryEndDt),
+// 			PaymentFlag:     string(article.PaymentFlag),
+// 			PaymentDetail:   string(article.PaymentDetail),
+// 			IMG1:            string(article.IMG1),
+// 			IMG2:            string(article.IMG2),
+// 			IMG3:            string(article.IMG3),
+// 			IMG4:            string(article.IMG4),
+// 			JobDesc:         string(article.JobDesc),
+// 			JobType:         string(article.JobType),
+// 			MerchantID:      string(article.MerchantID),
+// 			WarehouseID:     string(article.WarehouseID),
+// 			Status:          "รอดำเนินการ",
+// 			//CreateDt:        string(article.CreateDt),
+// 		}
+// 		insertedId, err := insertOrderItems(db, event5)
+// 		fmt.Println(insertedId)
+// 		if err != nil {
+// 			//panic(err)
+// 			resperr := make(map[string]string)
+// 			resperr["errmsg"] = err.Error()
 
-			jsonResp, err := json.Marshal(resperr)
-			if err != nil {
-				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			}
-			w.Write(jsonResp)
-			return
-		} else {
-			respok := make(map[string]string)
-			respok["Success"] = "Insert Success"
-			jsonResp, err := json.Marshal(respok)
-			if err != nil {
-				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			}
-			w.Write(jsonResp)
-			return
-		}
-		//fmt.Println(insertedId)
-	}
+// 			jsonResp, err := json.Marshal(resperr)
+// 			if err != nil {
+// 				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+// 			}
+// 			w.Write(jsonResp)
+// 			return
+// 		} else {
+// 			respok := make(map[string]string)
+// 			respok["Success"] = "Insert Success"
+// 			jsonResp, err := json.Marshal(respok)
+// 			if err != nil {
+// 				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+// 			}
+// 			w.Write(jsonResp)
+// 			return
+// 		}
+// 		////fmt.Println(insertedId)
+// 	}
 
-	//return
+// 	//return
 
-}
-func OMSMobileCreateOrderWithAuth(w http.ResponseWriter, r *http.Request) {
-	//vars := mux.Vars(r)
-	//key := vars["id"]
+// }
+// func OMSMobileCreateOrderWithAuth(w http.ResponseWriter, r *http.Request) {
+// 	//vars := mux.Vars(r)
+// 	//key := vars["id"]
 
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article OMSOrderStruct
-	json.Unmarshal(reqBody, &article)
+// 	reqBody, _ := ioutil.ReadAll(r.Body)
+// 	var article OMSOrderStruct
+// 	json.Unmarshal(reqBody, &article)
 
-	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+// 	reqHeader := r.Header["Authorization"]
+// 	////fmt.Println("Header", reqHeader)
 
-	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+// 	reqHeaderChannel := r.Header["Channel"]
+// 	////fmt.Println("Header", reqHeaderChannel)
 
-	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+// 	aa := ChkAuth(reqHeader, reqHeaderChannel)
+// 	//fmt.Println("aa", aa)
 
-	if aa <= 0 {
-		respok := make(map[string]string)
-		//respok["err"] = "Existing Invoice Number"
+// 	if aa <= 0 {
+// 		respok := make(map[string]string)
+// 		//respok["err"] = "Existing Invoice Number"
 
-		respok["QRcodetxt"] = ""
-		respok["ExpDT"] = ""                                  //QR
-		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
+// 		respok["QRcodetxt"] = ""
+// 		respok["ExpDT"] = ""                                  //QR
+// 		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
 
-		jsonResp, err := json.Marshal(respok)
+// 		jsonResp, err := json.Marshal(respok)
 
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			return
-		}
-		w.Write(jsonResp)
-		return
-	}
+// 		if err != nil {
+// 			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+// 			return
+// 		}
+// 		w.Write(jsonResp)
+// 		return
+// 	}
 
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+// 	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
+// 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
+// 	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
+// 	// db, err := sql.Open("mysql", dns)
 
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
+// 	// if err != nil {
+// 	// 	panic(err)
+// 	// }
+// 	// err = db.Ping()
+// 	// if err != nil {
+// 	// 	panic(err)
+// 	// }
+// 	// defer db.Close()
 
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
+// 	if DB.Ping() != nil {
+// 		connectDb()
+// 	}
+// 	if DB.Stats().OpenConnections != 0 {
+// 		//fmt.Println(DB.Stats().OpenConnections)
+// 	} else {
+// 		connectDb()
+// 	}
+// 	db := DB
+// 	defer db.Close()
+// 	// err := db.Ping()
+// 	// if err != nil {
+// 	// 	connectDb()
 
-	// }
-	ress99, err := db.Query("INSERT INTO THPDMPDB.tblmobileapiloghit (ApiName, HitCount, LastHitDT) Values ('OMSMobileCreateOrderWithAuth','1',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') ) ON DUPLICATE KEY UPDATE LastHitDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), HitCount = HitCount + 1   ")
-	defer ress99.Close()
-	if err != nil {
-		panic(err)
-	}
-	//var m MyStruct
-	typefind := article.MobileID
+// 	// }
+// 	ress99, err := db.Query("INSERT INTO THPDMPDB.tblmobileapiloghit (ApiName, HitCount, LastHitDT) Values ('OMSMobileCreateOrderWithAuth','1',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') ) ON DUPLICATE KEY UPDATE LastHitDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), HitCount = HitCount + 1   ")
+// 	defer ress99.Close()
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	//var m MyStruct
+// 	typefind := article.MobileID
 
-	//t := time.Now() //It will return time.Time object with current timestamp
-	//fmt.Printf("time.Time %s\n", t)
+// 	//t := time.Now() //It will return time.Time object with current timestamp
+// 	//fmt.Printf("time.Time %s\n", t)
 
-	//tUnix := t.Unix()
-	//fmt.Printf("timeUnix: %d\n", tUnix)
-	//str := strconv.FormatInt(tUnix, 10)
+// 	//tUnix := t.Unix()
+// 	//fmt.Printf("timeUnix: %d\n", tUnix)
+// 	//str := strconv.FormatInt(tUnix, 10)
 
-	if typefind != "" {
-		//var unixTime int64 = int64(m.Date)
+// 	if typefind != "" {
+// 		//var unixTime int64 = int64(m.Date)
 
-		event5 := Event5{
-			JobID:           string(article.JobID),
-			MobileID:        string(article.MobileID),
-			ReceiveName:     string(article.ReceiveName),
-			ReceiveAddress:  string(article.ReceiveAddress),
-			ReceiveTumbon:   string(article.ReceiveTumbon),
-			ReceiveDistrict: string(article.ReceiveDistrict),
-			ReceiveProvince: string(article.ReceiveProvince),
-			ReceivePhoneNo:  string(article.ReceivePhoneNo),
-			ReceiveZipcode:  string(article.ReceiveZipcode),
-			SenderZipcode:   string(article.SenderZipcode),
-			SendPrice:       string(article.SendPrice),
-			PickupStartDt:   string(article.PickupStartDt),
-			DeliveryEndDt:   string(article.DeliveryEndDt),
-			PaymentFlag:     string(article.PaymentFlag),
-			PaymentDetail:   string(article.PaymentDetail),
-			IMG1:            string(article.IMG1),
-			IMG2:            string(article.IMG2),
-			IMG3:            string(article.IMG3),
-			IMG4:            string(article.IMG4),
-			JobDesc:         string(article.JobDesc),
-			JobType:         string(article.JobType),
-			MerchantID:      string(article.MerchantID),
-			WarehouseID:     string(article.WarehouseID),
-			Status:          "รอดำเนินการ",
-			//CreateDt:        string(article.CreateDt),
-		}
-		insertedId, err := insertOrderItems(db, event5)
-		fmt.Println(insertedId)
-		if err != nil {
-			//panic(err)
-			resperr := make(map[string]string)
-			resperr["errmsg"] = err.Error()
+// 		event5 := Event5{
+// 			JobID:           string(article.JobID),
+// 			MobileID:        string(article.MobileID),
+// 			ReceiveName:     string(article.ReceiveName),
+// 			ReceiveAddress:  string(article.ReceiveAddress),
+// 			ReceiveTumbon:   string(article.ReceiveTumbon),
+// 			ReceiveDistrict: string(article.ReceiveDistrict),
+// 			ReceiveProvince: string(article.ReceiveProvince),
+// 			ReceivePhoneNo:  string(article.ReceivePhoneNo),
+// 			ReceiveZipcode:  string(article.ReceiveZipcode),
+// 			SenderZipcode:   string(article.SenderZipcode),
+// 			SendPrice:       string(article.SendPrice),
+// 			PickupStartDt:   string(article.PickupStartDt),
+// 			DeliveryEndDt:   string(article.DeliveryEndDt),
+// 			PaymentFlag:     string(article.PaymentFlag),
+// 			PaymentDetail:   string(article.PaymentDetail),
+// 			IMG1:            string(article.IMG1),
+// 			IMG2:            string(article.IMG2),
+// 			IMG3:            string(article.IMG3),
+// 			IMG4:            string(article.IMG4),
+// 			JobDesc:         string(article.JobDesc),
+// 			JobType:         string(article.JobType),
+// 			MerchantID:      string(article.MerchantID),
+// 			WarehouseID:     string(article.WarehouseID),
+// 			Status:          "รอดำเนินการ",
+// 			//CreateDt:        string(article.CreateDt),
+// 		}
+// 		insertedId, err := insertOrderItems(db, event5)
+// 		//fmt.Println(insertedId)
+// 		if err != nil {
+// 			//panic(err)
+// 			resperr := make(map[string]string)
+// 			resperr["errmsg"] = err.Error()
 
-			jsonResp, err := json.Marshal(resperr)
-			if err != nil {
-				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			}
-			w.Write(jsonResp)
-			return
-		} else {
-			respok := make(map[string]string)
-			respok["Success"] = "Insert Success"
-			jsonResp, err := json.Marshal(respok)
-			if err != nil {
-				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			}
-			w.Write(jsonResp)
-			return
-		}
-		//fmt.Println(insertedId)
-	}
+// 			jsonResp, err := json.Marshal(resperr)
+// 			if err != nil {
+// 				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+// 			}
+// 			w.Write(jsonResp)
+// 			return
+// 		} else {
+// 			respok := make(map[string]string)
+// 			respok["Success"] = "Insert Success"
+// 			jsonResp, err := json.Marshal(respok)
+// 			if err != nil {
+// 				log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+// 			}
+// 			w.Write(jsonResp)
+// 			return
+// 		}
+// 		////fmt.Println(insertedId)
+// 	}
 
-	//return
+// 	//return
 
-}
+// }
 
 // type Bird struct {
 // 	Species     string
@@ -4163,7 +4164,7 @@ func OMSMobileConnect(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -4260,7 +4261,7 @@ func OMSMobileUpdateDriverJobMaster(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -4334,13 +4335,13 @@ func OMSMobileUpdateDriverJobMasterWithAuth(w http.ResponseWriter, r *http.Reque
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -4378,7 +4379,7 @@ func OMSMobileUpdateDriverJobMasterWithAuth(w http.ResponseWriter, r *http.Reque
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -4474,7 +4475,7 @@ func OMSMobileGetTrcukSize(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -4547,13 +4548,13 @@ func OMSMobileGetTrcukSizeWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -4592,7 +4593,7 @@ func OMSMobileGetTrcukSizeWithAuth(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -4694,7 +4695,7 @@ func OMSMobileGetCoupon(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -4767,13 +4768,13 @@ func OMSMobileGetCouponWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -4811,7 +4812,7 @@ func OMSMobileGetCouponWithAuth(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -4892,13 +4893,13 @@ func OMSMobileGetPickupTime(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -4939,7 +4940,7 @@ func OMSMobileGetPickupTime(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -5013,13 +5014,13 @@ func OMSMobileGetRateAddOn(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -5057,7 +5058,7 @@ func OMSMobileGetRateAddOn(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -5148,7 +5149,7 @@ func OMSMobileDelWareHouse(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -5238,13 +5239,13 @@ func OMSMobileDelWareHouseWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -5282,7 +5283,7 @@ func OMSMobileDelWareHouseWithAuth(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -5394,7 +5395,7 @@ func OMSMobileGetWareHouse(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -5467,13 +5468,13 @@ func OMSMobileGetWareHouseWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -5509,7 +5510,7 @@ func OMSMobileGetWareHouseWithAuth(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -5615,7 +5616,7 @@ func CancelJobToLoadboard(trackID string, remark string) string {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -5659,20 +5660,20 @@ func CancelJobToLoadboard(trackID string, remark string) string {
 
 	resp2, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return err.Error()
 	}
 	defer resp2.Body.Close()
 
 	body, err := ioutil.ReadAll(resp2.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return string(err.Error())
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
-	// fmt.Println(string(sqlstr))
+	// //fmt.Println(string(sqlstr))
 
 	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
 	defer ress3.Close()
@@ -5712,7 +5713,7 @@ func CancelJobToLoadboard2(trackID string, remark string) string {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -5756,20 +5757,20 @@ func CancelJobToLoadboard2(trackID string, remark string) string {
 
 	resp2, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return err.Error()
 	}
 	defer resp2.Body.Close()
 
 	body, err := ioutil.ReadAll(resp2.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return string(err.Error())
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
-	// fmt.Println(string(sqlstr))
+	// //fmt.Println(string(sqlstr))
 
 	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
 	defer ress3.Close()
@@ -5809,7 +5810,7 @@ func UpdateAPIDriverToLoadboard(db *sql.DB, trackID string, carrier_id string, d
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -5848,20 +5849,20 @@ func UpdateAPIDriverToLoadboard(db *sql.DB, trackID string, carrier_id string, d
 
 	resp2, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return err.Error()
 	}
 	defer resp2.Body.Close()
 
 	body, err := ioutil.ReadAll(resp2.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return string(err.Error())
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
-	// fmt.Println(string(sqlstr))
+	// //fmt.Println(string(sqlstr))
 
 	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
 	defer ress3.Close()
@@ -5900,7 +5901,7 @@ func UpdateAPIDriverToLoadboard2(db *sql.DB, trackID string, carrier_id string, 
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -5939,20 +5940,20 @@ func UpdateAPIDriverToLoadboard2(db *sql.DB, trackID string, carrier_id string, 
 
 	resp2, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return err.Error()
 	}
 	defer resp2.Body.Close()
 
 	body, err := ioutil.ReadAll(resp2.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return string(err.Error())
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
-	// fmt.Println(string(sqlstr))
+	// //fmt.Println(string(sqlstr))
 
 	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
 	defer ress3.Close()
@@ -5975,627 +5976,8 @@ func UpdateAPIDriverToLoadboard2(db *sql.DB, trackID string, carrier_id string, 
 	return string("ok")
 }
 
-func UpdateAPIPaymentToLoadboardFromMarketPlace(db *sql.DB, trackID string, paymentDetail string, drivername string) string {
+//
 
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-
-	var app_id = "de_oms"
-	var app_key = "dx1234"
-	t := time.Now() //It will return time.Time object with current timestamp
-	//t = t.Add(time.Hour * 7) เอาออกเนื่องจาก dx บวก 7 แล้ว
-
-	tUnix := t.Unix()
-	fmt.Printf("timeUnix: %d\n", tUnix)
-
-	var n int64 = tUnix
-
-	s := strconv.FormatInt(n, 10)
-
-	var emp Con_no
-	emp.con_no = trackID
-	ress22, err := db.Query("SELECT TrackingID as jobid FROM thpdmpdb.vw_jobordermaster WHERE JobCreateDT > NOW() - INTERVAL 3 DAY and TrackingID like 'LT%' and JobID = '" + trackID + "' UNION  SELECT TrackingID as jobid FROM thpdmpdb.vw_jobordermaster WHERE JobCreateDT > NOW() - INTERVAL 3 DAY and TrackingID like 'LT%' and Customer_Po like  '%" + trackID + "%'")
-	if err != nil {
-		panic(err)
-	}
-	//returnval := 0
-	//JobIDs := ""
-	for ress22.Next() {
-		var event Event5
-		JobIDs := ress22.Scan(&event.JobID)
-		fmt.Println(JobIDs)
-
-		payload := strings.NewReader(`{
-	
-				"status": 51,
-				"actual_time": ` + s + `,
-				"action_time": ` + s + `,
-				"jobs": [{ "con_no": "` + event.JobID + `" }],
-				"doc_link": ""
-			  }`)
-
-		spayload := `{
-				
-				"status": 51,
-				"actual_time": ` + s + `,
-				"action_time": ` + s + `,
-				"jobs": [{ "con_no": "` + event.JobID + `" }],
-				"doc_link": ""
-			  }`
-
-		fmt.Println(spayload)
-
-		//"shipment_no": "` + event.JobID + `",
-		//  "jobs": [{ "con_no": "` + trackID + `" }],
-		method := "POST"
-		url := tmsapi + "API/BrokerGateways/updateStatus"
-
-		client := &http.Client{}
-		req, err := http.NewRequest(method, url, payload)
-		if err != nil {
-			panic(err)
-		}
-
-		req.Header.Add("app_id", app_id)
-		req.Header.Add("app_key", app_key)
-		req.Header.Add("Content-Type", "application/json")
-
-		resp2, err := client.Do(req)
-		if err != nil {
-			fmt.Println(err)
-			return err.Error()
-		}
-		defer resp2.Body.Close()
-
-		body, err := ioutil.ReadAll(resp2.Body)
-		if err != nil {
-			fmt.Println(err)
-			return string(err.Error())
-		}
-		fmt.Println(string(body))
-
-		ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + ", " + spayload + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-		defer ress3.Close()
-		if err2 != nil {
-			panic(err)
-		}
-
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	return string("Success")
-}
-
-func UpdateAPICODTHPDPlus(db *sql.DB, tranID string, trackID string, phoneNumber string, paytoMerchant string, amount string, payMessage string) string {
-
-	var emp Con_no
-	emp.con_no = trackID
-
-	//var data []byte
-	//// Convert struct to json
-	//data, _ = json.MarshalIndent(emp, "", "    ")
-
-	t := time.Now()          //It will return time.Time object with current timestamp
-	t = t.Add(time.Hour * 7) //เอาออกเนื่องจาก dx บวก 7 แล้ว
-
-	tUnix := t.Unix()
-	fmt.Printf("timeUnix: %d\n", tUnix)
-
-	tt := t.Format("2006-01-02T15:04:05")
-
-	ress22, err := db.Query("SELECT PhoneNumber as MobileID  FROM thpdmpdb.tblpaymentrequest WHERE TrackingID = '" + trackID + "' ")
-	if err != nil {
-		panic(err)
-	}
-
-	//returnval := 0
-	//JobIDs := ""
-
-	for ress22.Next() {
-		var event Event5
-		MobileID := ress22.Scan(&event.MobileID)
-		fmt.Println(MobileID)
-
-		payload := strings.NewReader(`{
-			"transactionID": "` + tranID + `",
-			"transactionDT": "` + tt + `",
-			"phoneNumber":  "` + event.MobileID + `",
-			"trackingID": "` + trackID + `",
-			"paymentType": "QRCode",
-			"comCode": "1002",
-			"paytoMerchant": "` + paytoMerchant + `",
-			"amount": "` + amount + `",
-			"payStatus": true,
-			"payMessage": "` + payMessage + `"
-		  }`)
-
-		//  check LTL ให้ส่ง trackid เป็น LT...DB
-		//  "jobs": [{ "con_no": "` + trackID + `" }],
-		method := "POST"
-		//url := tmsapi + "API/BrokerGateways/updateStatus" // UAT
-		url := "https://api-plus-thpd.olive.co.th/api/notify-pay-cod" //prodution
-
-		client := &http.Client{}
-		req, err := http.NewRequest(method, url, payload)
-		if err != nil {
-			panic(err)
-		}
-
-		req.Header.Add("Authorization", "Bearer YXBpOjEyMzQ1")
-		//req.Header.Add("app_key", app_key)
-		req.Header.Add("Content-Type", "application/json")
-
-		resp2, err := client.Do(req)
-		if err != nil {
-			fmt.Println(err)
-			return err.Error()
-		}
-		defer resp2.Body.Close()
-
-		body, err := ioutil.ReadAll(resp2.Body)
-		if err != nil {
-			fmt.Println(err)
-			return string(err.Error())
-		}
-		fmt.Println(string(body))
-
-		ress34, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , 'KTBCharge https://api-plus-thpd.olive.co.th/api/notify-pay-cod', '" + string(body) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-		defer ress34.Close()
-		if err2 != nil {
-			panic(err2)
-		}
-	}
-
-	//fmt.Printf("%d\n", tUnix)
-	//strOTP := strconv.FormatInt(tUnix, 6)
-	//payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
-
-	return string("Success")
-}
-
-func UpdateAPIPaymentToLoadboard(db *sql.DB, trackID string, paymentDetail string, drivername string) string {
-
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-
-	// if DB.Ping() != nil {
-	// 	connectDb()
-	// }
-	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
-	// } else {
-	// 	connectDb()
-	// }
-	// //db := DB
-	// defer db.Close()
-
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-	JobIDs := trackID
-	trackID2 := trackID
-	TrackingID := ""
-	Customer_Po := ""
-	JobID := ""
-
-	ress22, err := db.Query("SELECT JobID,TrackingID,Customer_Po FROM thpdmpdb.vw_jobordermaster where trackingID not in (Select trackingID from thpdmpdb.tblsenderpaymentflagtotms) and JobID = '" + trackID + "'")
-	if err != nil {
-		panic(err)
-	}
-	//returnval := 0
-	//JobIDs := ""
-	for ress22.Next() {
-		var event Event55
-		JobIDss := ress22.Scan(&event.JobID, &event.TrackingID, &event.Customer_Po)
-		fmt.Println(JobIDss)
-
-		JobID = event.JobID
-		TrackingID = event.TrackingID
-		Customer_Po = event.Customer_Po
-		//err = ress2.Scan(&event.JobID, )
-		JobIDs = event.TrackingID
-
-		trackID2 = JobIDs
-	}
-	USEAPI := 0
-	if string(JobIDs[0]) == "L" {
-		USEAPI = 1
-	}
-
-	var app_id = "de_oms"
-	var app_key = "dx1234"
-
-	var emp Con_no
-	emp.con_no = trackID
-
-	//var data []byte
-	//// Convert struct to json
-	//data, _ = json.MarshalIndent(emp, "", "    ")
-
-	t := time.Now() //It will return time.Time object with current timestamp
-	//t = t.Add(time.Hour * 7) เอาออกเนื่องจาก dx บวก 7 แล้ว
-
-	tUnix := t.Unix()
-	fmt.Printf("timeUnix: %d\n", tUnix)
-
-	var n int64 = tUnix
-
-	s := strconv.FormatInt(n, 10)
-
-	fmt.Printf("%d\n", tUnix)
-	//strOTP := strconv.FormatInt(tUnix, 6)
-	payload := strings.NewReader(`{
-	
-
-		"shipment_no": "` + trackID + `",
-		"status": 51,
-		"actual_time": ` + s + `,
-		"action_time": ` + s + `,
-
-		"doc_link": ""
-	}`)
-	spayload := `{
-		"shipment_no": "` + trackID + `",
-		"status": 51,
-		"actual_time": ` + s + `,
-		"action_time": ` + s + `,
-	
-		"doc_link": ""
-	  }`
-
-	//payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
-	// "shipment_no": "` + trackID + `",
-	// "status": 51,
-	// "actual_time": ` + s + `,
-	// "action_time": ` + s + `,
-
-	//"doc_link": ""
-	if USEAPI == 1 {
-		payload = strings.NewReader(`{
-	
-
-		"status": 51,
-		"actual_time": ` + s + `,
-		"action_time": ` + s + `,
-		"jobs": [{ "con_no": "` + trackID2 + `" }],
-		"doc_link": ""
-	}`)
-
-		spayload = `{
-		"status": 51,
-		"actual_time": ` + s + `,
-		"action_time": ` + s + `,
-		"jobs": [{ "con_no": "` + trackID2 + `" }],
-		"doc_link": ""
-	  }`
-	}
-
-	//  check LTL ให้ส่ง trackid เป็น LT...DB
-	// "shipment_no": "` + trackID + `",
-	// "status": 51,
-	// "actual_time": ` + s + `,
-	// "action_time": ` + s + `,
-
-	// "doc_link": ""
-
-	//  "jobs": [{ "con_no": "` + trackID + `" }],
-	method := "POST"
-	url := tmsapi + "API/BrokerGateways/updateStatus" // UAT
-	//url := "https://tms-api.promptsong.co/API/BrokerGateways/updateStatus" //prodution
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, payload)
-	if err != nil {
-		panic(err)
-	}
-
-	req.Header.Add("app_id", app_id)
-	req.Header.Add("app_key", app_key)
-	req.Header.Add("Content-Type", "application/json")
-
-	resp2, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-		return err.Error()
-	}
-	defer resp2.Body.Close()
-
-	body, err := ioutil.ReadAll(resp2.Body)
-	if err != nil {
-		fmt.Println(err)
-		return string(err.Error())
-	}
-	fmt.Println(string(body))
-
-	ress33, err2 := db.Query("INSERT INTO  THPDMPDB.tblsenderpaymentflagtotms ( refid,TrackingID,CustomerPO, DateCreate) Values  ( '" + JobID + "' , '" + TrackingID + "', '" + Customer_Po + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-	defer ress33.Close()
-	if err2 != nil {
-		panic(err)
-	}
-
-	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + ", " + spayload + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-	defer ress3.Close()
-	if err2 != nil {
-		panic(err)
-	}
-
-	msgbody := paymentDetail + " , DXResponse: " + strings.ReplaceAll(string(body), "'", `\'`)
-	// price unit = ลูกค้าชำระเงินแล้ว
-	sqlUpdateDx := "UPDATE THPDMPDB.tblMobileOMSOrder a  INNER JOIN THPDMPDB.VW_OMSMobileOrderNoIMG2 b INNER JOIN THPDMPDB.vw_payment c ON a.JobID = b.JobID and SUBSTRING_INDEX(b.JobType,'|', -1) = c.TrackingID SET a.PaymentFlag =  'Y' , a.PaymentDetail = 'Payment Gateway Msg: " + paymentDetail + " Dx Msg : " + msgbody + "'   WHERE c.TrackingID = '" + trackID + "' "
-	// if substr(trackID, 0, 1) == "B" {
-	// 	sqlUpdateDx = "UPDATE THPDMPDB.tblMobileOMSOrder a  INNER JOIN THPDMPDB.VW_OMSMobileOrderNoIMG2 b INNER JOIN THPDMPDB.vw_payment c ON a.JobID = b.JobID and SUBSTRING_INDEX(b.JobType,'|', -1) = c.TrackingID SET a.PaymentFlag =  'Y' , a.PaymentDetail = 'Payment Gateway Msg: " + paymentDetail + " Dx Msg : " + msgbody + "'   WHERE c.TrackingID = '" + trackID + "' "
-	// 	fmt.Println(string(sqlUpdateDx))
-	// }
-
-	ress2, err := db.Query("SELECT  jobid FROM thpdmpdb.vw_forupdatepay  WHERE BookingID = '" + trackID + "'  ")
-
-	//returnval := 0
-	//JobIDs := ""
-	for ress2.Next() {
-
-		var event Event5
-		JobIDs := ress2.Scan(&event.JobID)
-		fmt.Println(JobIDs)
-
-		BankRefCharge := event.JobID
-		//err = ress2.Scan(&event.JobID, )
-		//JobID :=  JobIDs
-		if err != nil {
-			panic(err)
-		}
-
-		sqlUpdateDx = "UPDATE THPDMPDB.tblMobileOMSOrder  SET PaymentFlag =  'Y' , PaymentDetail = 'Payment Gateway Dx Msg : " + msgbody + "' WHERE JobID = '" + BankRefCharge + "'"
-
-		//"UPDATE THPDMPDB.tblMobileOMSOrder  SET PaymentFlag =  'Y' , PaymentDetail = 'Payment Gateway Dx Msg : " + msgbody + "   WHERE JobID = '" + JobID + "'"
-		// if substr(trackID, 0, 1) == "B" {
-		// 	sqlUpdateDx = "UPDATE THPDMPDB.tblMobileOMSOrder   SET PaymentFlag =  'Y' , PaymentDetail = 'Payment Gateway Msg: " + paymentDetail + " Dx Msg : " + msgbody + "'   WHERE JobID = '" + JobID + "' "
-		// 	fmt.Println(string(sqlUpdateDx))
-		// }
-
-		// Send Case LTL
-
-		//ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder a  INNER JOIN THPDMPDB.VW_OMSMobileOrderNoIMG2 b INNER JOIN THPDMPDB.tblPayment c ON a.JobID = b.JobID and SUBSTRING_INDEX(b.JobType,'|', -1) = c.TrackingID SET a.PaymentFlag =  'Y' , a.PaymentDetail = 'Payment Gateway Msg: " + paymentDetail + " Dx Msg : " + msgbody + "'   WHERE c.TrackingID = '" + trackID + "'  ")
-		ress, err := db.Query(sqlUpdateDx)
-		if err != nil {
-			panic(err)
-		}
-		defer ress.Close()
-
-		//return event.Cid
-		// boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
-
-	}
-
-	defer ress2.Close()
-	err = ress2.Close()
-
-	//
-
-	if err != nil {
-
-		ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(err.Error(), "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-		defer ress3.Close()
-		if err2 != nil {
-			panic(err)
-		}
-		panic(err)
-	} else {
-		/// SMS ให้คนขับ ///
-
-		//SendMessageToDriver(trackID, "0850270971", carrier_id, drivername)
-
-	}
-	// if err == nil {
-
-	// 	ress22, err := db.Query("SELECT TrackingID as jobid FROM thpdmpdb.vw_jobordermaster WHERE JobCreateDT > NOW() - INTERVAL 3 DAY and TrackingID like 'LT%' and JobID = '" + trackID + "' UNION  SELECT TrackingID as jobid FROM thpdmpdb.vw_jobordermaster WHERE JobCreateDT > NOW() - INTERVAL 3 DAY and TrackingID like 'LT%' and Customer_Po like  '%" + trackID + "%'")
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-	// 	//returnval := 0
-	// 	//JobIDs := ""
-	// 	for ress22.Next() {
-	// 		var event Event5
-	// 		JobIDs := ress22.Scan(&event.JobID)
-	// 		fmt.Println(JobIDs)
-
-	// 		payload = strings.NewReader(`{
-
-	// 			"status": 51,
-	// 			"actual_time": ` + s + `,
-	// 			"action_time": ` + s + `,
-	// 			"jobs": [{ "con_no": "` + event.JobID + `" }],
-	// 			"doc_link": ""
-	// 		  }`)
-
-	// 		spayload := `{
-
-	// 			"status": 51,
-	// 			"actual_time": ` + s + `,
-	// 			"action_time": ` + s + `,
-	// 			"jobs": [{ "con_no": "` + event.JobID + `" }],
-	// 			"doc_link": ""
-	// 		  }`
-
-	// 		fmt.Println(spayload)
-
-	// 		//"shipment_no": "` + event.JobID + `",
-	// 		//  "jobs": [{ "con_no": "` + trackID + `" }],
-	// 		method := "POST"
-	// 		url := tmsapi + "API/BrokerGateways/updateStatus"
-
-	// 		client := &http.Client{}
-	// 		req, err := http.NewRequest(method, url, payload)
-	// 		if err != nil {
-	// 			panic(err)
-	// 		}
-
-	// 		req.Header.Add("app_id", app_id)
-	// 		req.Header.Add("app_key", app_key)
-	// 		req.Header.Add("Content-Type", "application/json")
-
-	// 		resp2, err := client.Do(req)
-	// 		if err != nil {
-	// 			fmt.Println(err)
-	// 			return err.Error()
-	// 		}
-	// 		defer resp2.Body.Close()
-
-	// 		body, err := ioutil.ReadAll(resp2.Body)
-	// 		if err != nil {
-	// 			fmt.Println(err)
-	// 			return string(err.Error())
-	// 		}
-	// 		fmt.Println(string(body))
-
-	// 		ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + ", " + spayload + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-	// 		defer ress3.Close()
-	// 		if err2 != nil {
-	// 			panic(err)
-	// 		}
-
-	// 		if err != nil {
-	// 			panic(err)
-	// 		}
-	// 	}
-
-	// }
-
-	return string("Success")
-}
-func UpdateAPIPaymentToLoadboard2(trackID string, paymentDetail string, drivername string) string {
-
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-	var app_id = "de_oms"
-	var app_key = "dx1234"
-
-	var emp Con_no
-	emp.con_no = trackID
-
-	//var data []byte
-	//// Convert struct to json
-	//data, _ = json.MarshalIndent(emp, "", "    ")
-
-	t := time.Now() //It will return time.Time object with current timestamp
-	tUnix := t.Unix()
-	fmt.Printf("timeUnix: %d\n", tUnix)
-
-	var n int64 = tUnix
-
-	s := strconv.FormatInt(n, 10)
-
-	fmt.Printf("%d\n", tUnix)
-	//strOTP := strconv.FormatInt(tUnix, 6)
-
-	//payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
-	payload := strings.NewReader(`{
-		"shipment_no": "` + trackID + `",
-		"status": 51,
-		"actual_time": ` + s + `,
-		"action_time": ` + s + `,
-	
-		"doc_link": ""
-	  }`)
-	//  "jobs": [{ "con_no": "` + trackID + `" }],
-	method := "POST"
-	url := "https://demo-api.dxplace.com/API/BrokerGateways/updateStatus"
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, payload)
-	if err != nil {
-		panic(err)
-	}
-
-	req.Header.Add("app_id", app_id)
-	req.Header.Add("app_key", app_key)
-	req.Header.Add("Content-Type", "application/json")
-
-	resp2, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-		return err.Error()
-	}
-	defer resp2.Body.Close()
-
-	body, err := ioutil.ReadAll(resp2.Body)
-	if err != nil {
-		fmt.Println(err)
-		return string(err.Error())
-	}
-	fmt.Println(string(body))
-
-	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-	defer ress3.Close()
-	if err2 != nil {
-		panic(err)
-	}
-
-	//msgbody := paymentDetail + " , DXResponse: " + strings.ReplaceAll(string(body), "'", `\'`)
-	//// price unit = ลูกค้าชำระเงินแล้ว
-	// ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder a  INNER JOIN THPDMPDB.VW_OMSMobileOrderNoIMG2 b INNER JOIN THPDMPDB.tblPayment c ON a.JobID = b.JobID and SUBSTRING_INDEX(b.JobType,'|', -1) = c.TrackingID SET a.PaymentFlag =  'Y' , a.PaymentDetail = 'Payment Gateway Msg: " + paymentDetail + " Dx Msg : " + msgbody + "'   WHERE c.TrackingID = '" + trackID + "'  ")
-	// defer ress.Close()
-	// if err != nil {
-	// 	panic(err)
-	// } else {
-	// 	/// SMS ให้คนขับ ///
-
-	// 	//SendMessageToDriver(trackID, "0850270971", carrier_id, drivername)
-
-	// }
-	// if err == nil {
-	// }
-
-	return string("Success")
-}
 func PreparePayload(trackID string) string {
 
 	// userData := map[string]interface{}{"merchantID": "JT04", "invoiceNo": "AX000002956TX", "description": "AX000002956TX", "amount": 10000.00, "currencyCode": "THB"}
@@ -6658,7 +6040,7 @@ func ChkAuth(Authorization []string, Channel []string) int {
 
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
 	//st := db.Stats
-	//fmt.Println(st)
+	////fmt.Println(st)
 
 	result1 := strings.Index(Channel[0], "OMSDEWeb")
 	result2 := strings.Index(Channel[0], "OMSDEMobile")
@@ -6692,7 +6074,7 @@ func ChkAuth(Authorization []string, Channel []string) int {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -6701,7 +6083,7 @@ func ChkAuth(Authorization []string, Channel []string) int {
 	db, err := sql.Open("mysql", dns)
 
 	//st := db.Stats
-	//fmt.Println(st)
+	////fmt.Println(st)
 
 	if err != nil {
 
@@ -6834,7 +6216,7 @@ func delegate(article KTBApproveJson, jsonstr string, w http.ResponseWriter, ch 
 	// client := &http.Client{Transport: tr}
 	// _, err := client.Get("https://golang.org/")
 	// if err != nil {
-	// 	fmt.Println(err)
+	// 	//fmt.Println(err)
 	// }
 
 	//Amount := fmt.Sprintf("%v", article.Amount)
@@ -7017,7 +6399,7 @@ func delegate(article KTBApproveJson, jsonstr string, w http.ResponseWriter, ch 
 	// if err != nil {
 	// 	// tUnix := now.Unix()
 	// 	// strtUnix := strconv.FormatInt(tUnix, 10)
-	// 	// fmt.Println(strtUnix)
+	// 	// //fmt.Println(strtUnix)
 
 	// 	resp := make(map[string]string)
 	// 	resp["bankRef"] = article.BankRef
@@ -7037,11 +6419,11 @@ func delegate(article KTBApproveJson, jsonstr string, w http.ResponseWriter, ch 
 	// time.Sleep(100 * time.Millisecond)
 
 	// //now := time.Now()
-	// //fmt.Println("Today : ", now.Format(time.ANSIC))
+	// ////fmt.Println("Today : ", now.Format(time.ANSIC))
 
 	// // wrong way to convert nano to millisecond
 
-	// //fmt.Println(strtUnix + strconv.Itoa(aa))
+	// ////fmt.Println(strtUnix + strconv.Itoa(aa))
 
 	// if haveitem == 1 {
 
@@ -7100,7 +6482,7 @@ func delegate(article KTBApproveJson, jsonstr string, w http.ResponseWriter, ch 
 
 	// 	// tUnix := t.Unix()
 	// 	// strtUnix := strconv.FormatInt(tUnix, 10)
-	// 	// fmt.Println(strtUnix)
+	// 	// //fmt.Println(strtUnix)
 
 	// 	ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblpaymentktbapprove ( tranxId, ComCode, ProdCode, Command, BankCode, BankRef, DateTime, EffDate, Amount, Channel, CusName, Ref1, Ref2, Ref3, Ref4,CreateDT) Values (" + strtUnix + ",'" + article.ComCode + "','" + article.ProdCode + "','Not Approve','" + BankCode + "','" + article.BankRef + "','" + article.DateTime + "','" + article.EffDate + "','" + Amount + "','" + article.Channel + "','" + article.CusName + "','" + article.Ref1 + "','" + article.Ref2 + "','" + article.Ref3 + "','" + article.Ref4 + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))")
 	// 	defer ress3.Close()
@@ -7156,7 +6538,7 @@ func delegatetrue(article KTBApproveJson, jsonstr string, w http.ResponseWriter,
 	// client := &http.Client{Transport: tr}
 	// _, err := client.Get("https://golang.org/")
 	// if err != nil {
-	// 	//fmt.Println(err)
+	// 	////fmt.Println(err)
 	// }
 
 	s := getToken(9)
@@ -7309,7 +6691,7 @@ func delegatetrue(article KTBApproveJson, jsonstr string, w http.ResponseWriter,
 	// }
 
 	//jsonstr := string(reqBody)
-	//fmt.Println(jsonstr)
+	////fmt.Println(jsonstr)
 	//time.Sleep(100 * time.Millisecond)
 
 	// ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + article.Ref2 + "' , '" + strings.ReplaceAll("BankKTBApprove", "'", `\'`) + "', '" + strings.ReplaceAll(string(jsonstr), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
@@ -7426,7 +6808,7 @@ func delegatetrue(article KTBApproveJson, jsonstr string, w http.ResponseWriter,
 	if err != nil {
 		tUnix := t.Unix()
 		strtUnix := strconv.FormatInt(tUnix, 10)
-		fmt.Println(strtUnix)
+		//fmt.Println(strtUnix)
 
 		resp := make(map[string]string)
 		resp["bankRef"] = article.BankRef
@@ -7445,7 +6827,7 @@ func delegatetrue(article KTBApproveJson, jsonstr string, w http.ResponseWriter,
 
 	//now := time.Now()
 
-	fmt.Println("Today : ", t.Format(time.ANSIC))
+	//fmt.Println("Today : ", t.Format(time.ANSIC))
 
 	// wrong way to convert nano to millisecond
 
@@ -7568,7 +6950,7 @@ func delegatetrue(article KTBApproveJson, jsonstr string, w http.ResponseWriter,
 
 		// tUnix := t.Unix()
 		// strtUnix := strconv.FormatInt(tUnix, 10)
-		// fmt.Println(strtUnix)
+		// //fmt.Println(strtUnix)
 
 		ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblpaymentktbapprove ( tranxId, ComCode, ProdCode, Command, BankCode, BankRef, DateTime, EffDate, Amount, Channel, CusName, Ref1, Ref2, Ref3, Ref4,CreateDT) Values (" + strtUnix + ",'" + article.ComCode + "','" + article.ProdCode + "','Not Approve','" + BankCode + "','" + article.BankRef + "','" + article.DateTime + "','" + article.EffDate + "','" + Amount + "','" + article.Channel + "','" + article.CusName + "','" + article.Ref1 + "','" + article.Ref2 + "','" + article.Ref3 + "','" + article.Ref4 + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))")
 		defer ress3.Close()
@@ -7678,7 +7060,7 @@ func checkErr(err error) {
 // 	json.Unmarshal(reqBody, &article)
 
 // 	jsonstr := string(reqBody)
-// 	//fmt.Println(jsonstr)
+// 	////fmt.Println(jsonstr)
 
 // 	// tr := &http.Transport{
 // 	// 	TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
@@ -7686,7 +7068,7 @@ func checkErr(err error) {
 // 	// client := &http.Client{Transport: tr}
 // 	// _, err := client.Get("https://golang.org/")
 // 	// if err != nil {
-// 	// 	fmt.Println(err)
+// 	// 	//fmt.Println(err)
 // 	// }
 
 // 	//go f(article, jsonstr, w, r)
@@ -7699,21 +7081,21 @@ func checkErr(err error) {
 
 func DoneAsync() chan int {
 	r := make(chan int)
-	fmt.Println("Warming up ...")
+	//fmt.Println("Warming up ...")
 	go func() {
 		time.Sleep(3 * time.Second)
 		r <- 1
-		fmt.Println("Done ...")
+		//fmt.Println("Done ...")
 	}()
 	return r
 }
 func DoneAsync2() chan int {
 	r := make(chan int)
-	fmt.Println("Warming up ...")
+	//fmt.Println("Warming up ...")
 	go func() {
 		time.Sleep(3 * time.Second)
 		r <- 1
-		fmt.Println("Done ...")
+		//fmt.Println("Done ...")
 	}()
 	return r
 }
@@ -7814,219 +7196,7 @@ func SignRAOT(Data map[string]interface{}, SecrePublicKeyEnvName string, Expired
 
 	return accessToken, nil
 }
-func GetAPIDriverFromLoadboard(db *sql.DB, trackID string) string {
 
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-
-	// if DB.Ping() != nil {
-	// 	connectDb()
-	// }
-	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
-	// } else {
-	// 	connectDb()
-	// }
-	// db := DB
-	// defer db.Close()
-
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-
-	//var app_id = "de_oms"
-	//var app_key = "dx1234"
-
-	t := time.Now() //It will return time.Time object with current timestamp
-	fmt.Printf("time.Time %s\n", t)
-
-	tUnix := t.Unix()
-	//stUnix := string(tUnix)
-
-	n := int64(tUnix)
-	stUnix := strconv.FormatInt(n, 10)
-
-	var emp Con_no
-	emp.con_no = trackID
-
-	url := tmsapi + "API/BrokerGateways/viewOrder"
-	//url := "https://api-chitman.dxplace.com/index.php/API/BrokerGateways/viewBooking"
-	method := "POST"
-
-	//payload := strings.NewReader(`{` + "" + ` "con_no":"` + trackID + `"` + "" + `}`)
-	payload := strings.NewReader(`{` + ` "con_no":"` + trackID + `"` + "" + `}`)
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, payload)
-
-	if err != nil {
-		fmt.Println(err)
-		return string(err.Error())
-	}
-	req.Header.Add("app_id", "de_oms")
-	req.Header.Add("app_key", "dx1234")
-	req.Header.Add("Content-Type", "application/json")
-
-	res, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-		return string(err.Error())
-	}
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-
-		ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-		defer ress3.Close()
-		if err2 != nil {
-			panic(err)
-		}
-
-		return string(err.Error())
-	}
-	fmt.Println(string(body))
-
-	// payload := strings.NewReader(`{"con_no": "` + trackID + `"}`)
-	// //payload2 := strings.NewReader(`{` + "" + `"con_no":"B000003666"` + "" + `}`)
-
-	// method := "POST"
-	// //url := "https://broker.dxplace.com/API/Gateways/viewOrder"
-	// url := "https://api-chitman.dxplace.com/index.php/API/BrokerGateways/viewOrder"
-
-	// client := &http.Client{}
-	// req, err := http.NewRequest(method, url, payload)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// req.Header.Add("app_id", "de_oms")
-	// req.Header.Add("app_key", "dx1234")
-	// req.Header.Add("Content-Type", "application/json")
-
-	// resp2, err := client.Do(req)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return err.Error()
-	// }
-	// defer resp2.Body.Close()
-
-	// body, err := ioutil.ReadAll(resp2.Body)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return string(err.Error())
-	// }
-	// fmt.Println(string(body))
-
-	var Loadboard DriverLoadboard
-	jsonData := []byte(string(body))
-
-	js := DriverLoadboard{}
-
-	json.Unmarshal(jsonData, &js)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(js)
-
-	json.Unmarshal([]byte(body), &Loadboard)
-
-	//fmt.Println(string(logistic.Data.Booking[0].BookingID))
-	fmt.Println(Loadboard.Data.PostRes.Shipment.BookingCount)
-
-	// if !Loadboard.Data.Success {
-	// 	return string("false")
-	// }
-	//for i := 0; i < Loadboard.Data.Shipment.BookingCount; i++ {
-
-	Oid := ""
-	Drivername := ""
-	Plate := ""
-	FinalPrice := ""
-
-	for i := 0; i < len(Loadboard.Data.PostRes.Shipment.Booking); i++ {
-		fmt.Println(string(Loadboard.Data.PostRes.Shipment.Booking[i].BookingID))
-
-		eventBooking := EventBooking{
-			BookingID:         string(Loadboard.Data.PostRes.Shipment.Booking[i].BookingID),
-			BookingStatus:     string(Loadboard.Data.PostRes.Shipment.Booking[i].BookingStatus),
-			Price:             string(Loadboard.Data.PostRes.Shipment.Booking[i].Price),
-			PriceUnit:         string(Loadboard.Data.PostRes.Shipment.Booking[i].PriceUnit),
-			TruckPlate:        string(Loadboard.Data.PostRes.Shipment.Booking[i].TruckPlate),
-			DriverName:        string(Loadboard.Data.PostRes.Shipment.Booking[i].DriverName),
-			Oid:               string(Loadboard.Data.PostRes.Shipment.Booking[i].Oid),
-			Company:           string(Loadboard.Data.PostRes.Shipment.Booking[i].Company),
-			Address:           string(Loadboard.Data.PostRes.Shipment.Booking[i].Address),
-			Contact:           string(Loadboard.Data.PostRes.Shipment.Booking[i].Contact),
-			Phone:             string(Loadboard.Data.PostRes.Shipment.Booking[i].Phone),
-			Email:             string(Loadboard.Data.PostRes.Shipment.Booking[i].Email),
-			Rating:            string(Loadboard.Data.PostRes.Shipment.Booking[i].Rating),
-			BookingScore:      string(Loadboard.Data.PostRes.Shipment.Booking[i].BookingScore),
-			Time:              string(Loadboard.Data.PostRes.Shipment.Booking[i].Time),
-			PositionLatitude:  string(Loadboard.Data.PostRes.Shipment.Booking[i].PositionLatitude),
-			PositionLongitude: string(Loadboard.Data.PostRes.Shipment.Booking[i].PositionLongitude),
-			PositionTime:      string(Loadboard.Data.PostRes.Shipment.Booking[i].PositionTime),
-		}
-
-		//ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET BookingID = '" + eventBooking.BookingID + "',DriverPhoneNo = '" + eventBooking.Phone + "', Company = '" + eventBooking.Company + "' , DriverStar = '" + eventBooking.Rating + "' , Price = '" + eventBooking.Price + "', Oid = '" + eventBooking.Oid + "', Contact = '" + eventBooking.Contact + "', BookingScore = '" + eventBooking.BookingScore + "', Time = '" + eventBooking.Time + "', DriverEmail = '" + eventBooking.Email + "', PriceUnit = '" + eventBooking.PriceUnit + "'  WHERE TrackingID = '" + trackID + "' and  CarID = '" + eventBooking.TruckPlate + "' and DriverName = '" + eventBooking.DriverName + "' ")
-
-		ress, err := db.Query("INSERT INTO THPDMPDB.tblMobileOMSJobDriverBooking (RunID, JobID, TrackingID, CarID, DriverName, DriverPhoneNo, Company, Price, CreateDT, DriverStar, Oid, Contact, BookingScore, Time, DriverEmail, PriceUnit, BookingID) Values ('" + stUnix + "','0','" + trackID + "','" + eventBooking.TruckPlate + "','" + eventBooking.DriverName + "','" + eventBooking.Phone + "','" + eventBooking.Company + "','" + eventBooking.Price + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'" + eventBooking.Rating + "','" + eventBooking.Oid + "','" + eventBooking.Contact + "','" + eventBooking.BookingScore + "','" + eventBooking.Time + "','" + eventBooking.Email + "','" + eventBooking.PriceUnit + "','" + eventBooking.BookingID + "' ) ON DUPLICATE KEY UPDATE Time = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), Price = '" + eventBooking.Price + "'   ")
-		defer ress.Close()
-		if err != nil {
-			panic(err)
-		} else {
-
-			Oid = eventBooking.Oid
-			Drivername = eventBooking.DriverName
-			Plate = eventBooking.TruckPlate
-			FinalPrice = eventBooking.Price
-		}
-		//return "OK"
-
-	}
-
-	carrier := Loadboard.Data.PostRes.Shipment.Carrier.Phone
-	fmt.Println(carrier)
-	fmt.Println(Oid)
-	fmt.Println(Drivername)
-	fmt.Println(Plate)
-	fmt.Println(FinalPrice)
-
-	// if carrier != "" {
-
-	// 	ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET CustomerSelect = '1'  WHERE DriverPhoneNo = '" + carrier + "' and TrackingID  = '" + trackID + "' ")
-	// 	defer ress.Close()
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-
-	// 	ress2, err := db.Query("UPDATE THPDMPDB.tblJobMaster SET JobDriverID = '" + Oid + "',JobDriverName = '" + Drivername + "', JobTruckPlate = '" + Plate + "' , FTLFinalPrice= '" + FinalPrice + "' , JobAssignDT = NOW() , jobupdatedt = NOW()  WHERE JobID  = '" + trackID + "'  ")
-	// 	defer ress2.Close()
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-
-	// }
-
-	//return "OK"
-
-	if err == nil {
-	}
-
-	return string("ok")
-}
 func SendOTPToCustomer(OTPCode string, CustomerPhone string) string {
 
 	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
@@ -8053,7 +7223,7 @@ func SendOTPToCustomer(OTPCode string, CustomerPhone string) string {
 
 	req.Header.Add("Authorization", "Bearer "+bearerToken)
 	req.Header.Add("Content-Type", "application/json")
-	fmt.Println(req.Header)
+	//fmt.Println(req.Header)
 
 	//req.Body.Read(json_data)
 	//Send req using http Client
@@ -8110,7 +7280,7 @@ func SendMessageToDriver(trackingID string, CustomerPhone string, CarID string, 
 
 	req.Header.Add("Authorization", "Bearer "+bearerToken)
 	req.Header.Add("Content-Type", "application/json")
-	fmt.Println(req.Header)
+	//fmt.Println(req.Header)
 
 	//req.Body.Read(json_data)
 	//Send req using http Client
@@ -8137,193 +7307,6 @@ func SendMessageToDriver(trackingID string, CustomerPhone string, CarID string, 
 		// 	}
 
 		// }
-		//panic(err)
-	}
-	return string("OK")
-}
-func SendMessagePaymentSuccess(trackingID string, CustomerPhone string, Amount string) string {
-
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-
-	var bearerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cudGhzbXMuY29tXC9hcGkta2V5IiwiaWF0IjoxNjQ4MDkwNjUyLCJuYmYiOjE2NDgxMDEzMjUsImp0aSI6Ik00RkdVQjN5OFd6NnZuYzciLCJzdWIiOjEwNDE2MCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.PwmdMYwIdXIWRftvcrnqTDiulwTfcFVsLDpBj4REyI4"
-
-	ress2, err := db.Query("SELECT  JobID, MobileID, ReceiveName, ReceiveAddress, ReceiveTumbon, ReceiveDistrict, ReceiveProvince, ReceiveZipcode, ReceivePhoneNo, SenderZipcode, SendPrice, PickupStartDt, DeliveryEndDt, PaymentFlag, PaymentDetail, CreateDt, JobDesc, JobType, WarehouseID, MerchantID,TrackingID FROM thpdmpdb.vw_omsmobileordernoimg2  WHERE JobType like '%" + trackingID + "%' ")
-	mobileid := ""
-	if err == nil {
-
-		for ress2.Next() {
-			var event Event5noIMG
-			//JobID := ress2.Scan(&event.JobID)
-			//err = ress2.Scan(&event.JobID, &event.MobileID)
-			err := ress2.Scan(&event.JobID, &event.MobileID, &event.ReceiveName, &event.ReceiveAddress, &event.ReceiveTumbon, &event.ReceiveDistrict, &event.ReceiveProvince, &event.ReceiveZipcode, &event.ReceivePhoneNo, &event.SenderZipcode, &event.SendPrice, &event.PickupStartDt, &event.DeliveryEndDt, &event.PaymentFlag, &event.PaymentDetail, &event.CreateDt, &event.JobDesc, &event.JobType, &event.WarehouseID, &event.MerchantID, &event.TrackingID)
-
-			mobileid = event.MobileID
-			if err != nil {
-				panic(err)
-			}
-
-		}
-
-	}
-	defer ress2.Close()
-	err = ress2.Close()
-
-	var emp THSMS
-	// emp.Sender = "Now"
-	emp.Sender = "PromptSong" //SMSOTP
-	emp.Msisdn = []string{mobileid}
-	emp.Message = "THPD PromptSong ขอขอบพระคุณที่ท่านได้ชำระค่าขนส่ง หมายเลข BookingID : " + trackingID + "\n  จำนวนเงิน : " + Amount + "\n บาท "
-
-	var data []byte
-	// Convert struct to json
-	data, _ = json.MarshalIndent(emp, "", "    ")
-
-	url := "https://thsms.com/api/send-sms"
-	//req, err := http.Post(url, "application/json", bytes.NewBuffer(jsonStr))
-
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
-	if err != nil {
-		panic(err)
-	}
-
-	req.Header.Add("Authorization", "Bearer "+bearerToken)
-	req.Header.Add("Content-Type", "application/json")
-	fmt.Println(req.Header)
-
-	//req.Body.Read(json_data)
-	//Send req using http Client
-	client := &http.Client{}
-	resp2, err := client.Do(req)
-
-	if resp2 != nil {
-		//panic(err)
-	}
-	if err == nil {
-		/// update tracking send message already
-		ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET SendSMSFirstJob = 1 WHERE TrackingID = '" + trackingID + "'")
-		defer ress.Close()
-		if err != nil {
-
-			panic(err)
-		} else {
-			ress2, err := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder SET Status = 'ผู้ขนส่งรับงานแล้ว' WHERE JobID in ( SELECT Customer_Po FROM THPDMPDB.tblOrderMaster WHERE TrackingID = '" + trackingID + "')")
-			defer ress2.Close()
-			if err != nil {
-				panic(err)
-			} else {
-
-			}
-
-		}
-		//panic(err)
-	}
-	return string("OK")
-}
-func SendMessage(trackingID string, CustomerPhone string, CarID string, DriverName string) string {
-
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-
-	var bearerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cudGhzbXMuY29tXC9hcGkta2V5IiwiaWF0IjoxNjQ4MDkwNjUyLCJuYmYiOjE2NDgxMDEzMjUsImp0aSI6Ik00RkdVQjN5OFd6NnZuYzciLCJzdWIiOjEwNDE2MCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.PwmdMYwIdXIWRftvcrnqTDiulwTfcFVsLDpBj4REyI4"
-
-	var emp THSMS
-	// emp.Sender = "Now"
-	emp.Sender = "PromptSong" //SMSOTP
-	emp.Msisdn = []string{CustomerPhone}
-	emp.Message = "THPD Alert : หมายเลข BookingID: " + trackingID + "\n  ผู้ขนส่ง: " + DriverName + "\n  ทะเบียนรถ: " + CarID + "\n รับงานของท่านแล้ว!"
-
-	var data []byte
-	// Convert struct to json
-	data, _ = json.MarshalIndent(emp, "", "    ")
-
-	url := "https://thsms.com/api/send-sms"
-	//req, err := http.Post(url, "application/json", bytes.NewBuffer(jsonStr))
-
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
-	if err != nil {
-		panic(err)
-	}
-
-	req.Header.Add("Authorization", "Bearer "+bearerToken)
-	req.Header.Add("Content-Type", "application/json")
-	fmt.Println(req.Header)
-
-	//req.Body.Read(json_data)
-	//Send req using http Client
-	client := &http.Client{}
-	resp2, err := client.Do(req)
-
-	if resp2 != nil {
-		//panic(err)
-	}
-	if err == nil {
-		/// update tracking send message already
-		ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET SendSMSFirstJob = 1 WHERE TrackingID = '" + trackingID + "'")
-		defer ress.Close()
-		if err != nil {
-
-			panic(err)
-		} else {
-			ress2, err := db.Query("UPDATE THPDMPDB.tblMobileOMSOrder SET Status = 'ผู้ขนส่งรับงานแล้ว' WHERE JobID in ( SELECT Customer_Po FROM THPDMPDB.tblOrderMaster WHERE TrackingID = '" + trackingID + "')")
-			defer ress2.Close()
-			if err != nil {
-				panic(err)
-			} else {
-
-			}
-
-		}
 		//panic(err)
 	}
 	return string("OK")
@@ -8356,7 +7339,7 @@ func OMSRepSummaryReport(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -8449,13 +7432,13 @@ func OMSRepSummaryReportWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -8492,7 +7475,7 @@ func OMSRepSummaryReportWithAuth(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -8544,7 +7527,7 @@ func OMSRepSummaryReportWithAuth(w http.ResponseWriter, r *http.Request) {
 			if RepType == "Yearly" {
 				sp = "SP_ShopReportSummaryYear"
 			}
-			fmt.Println(sp)
+			//fmt.Println(sp)
 
 			ress2, err := db.Query("call " + sp + " ('" + MerchantID + "','" + RepType + "','" + SDT + "','" + EDT + "')")
 			if err == nil {
@@ -8622,7 +7605,7 @@ func OMSRepPayment(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -8711,13 +7694,13 @@ func OMSRepPaymentWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -8754,7 +7737,7 @@ func OMSRepPaymentWithAuth(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -8849,13 +7832,13 @@ func OMSCheckPrice(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -8892,7 +7875,7 @@ func OMSCheckPrice(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -9054,980 +8037,22 @@ func OMSCheckPrice(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func OMSMobileGetAdvertise(w http.ResponseWriter, r *http.Request) {
-
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article DriverTracking
-	json.Unmarshal(reqBody, &article)
-
-	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
-
-	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
-
-	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
-
-	if aa <= 0 {
-		respok := make(map[string]string)
-
-		respok["QRcodetxt"] = ""
-		respok["ExpDT"] = ""                                  //QR
-		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
-
-		jsonResp, err := json.Marshal(respok)
-
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			return
-		}
-		w.Write(jsonResp)
-		return
-	}
-
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-
-	dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	db, err := sql.Open("mysql", dns)
-
-	if err != nil {
-		panic(err)
-	}
-	err = db.Ping()
-	if err != nil {
-		panic(err)
-	}
-	// defer db.Close()
-	// if DB.Ping() != nil {
-	// 	connectDb()
-	// }
-	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
-	// } else {
-	// 	connectDb()
-	// }
-	// db := DB
-	// defer db.Close()
-
-	//err = db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-	//var m MyStruct
-	//typefind := article.TrackingID
-
-	t := time.Now() //It will return time.Time object with current timestamp
-	fmt.Printf("time.Time %s\n", t)
-
-	//tUnix := t.Unix()
-	//fmt.Printf("timeUnix: %d\n", tUnix)
-	//strOTP := strconv.FormatInt(tUnix, 6)
-	//strOTP := EncodeToString(6) // substr(strOTP, 5, 6)
-	//firstEvent2 := Event5{}
-	//datett := article.Date
-
-	// event5 := EventDriverTrack{
-	// 	JobID:           "",
-	// 	TrackingID:      string(article.TrackingID),
-	// 	CarID:           string(article.Plate),
-	// 	DriverName:      string(article.DriverName),
-	// 	DriverPhoneNo:   "",
-	// 	Company:         "",
-	// 	Price:           "",
-	// 	CustomerSelect:  "",
-	// 	CustomConfirmDT: "",
-	// 	GetBeforeDT:     "",
-
-	// 	//CreateDt:        string(article.CreateDt),
-	// }
-	// insertedId, err := insertGetDriverTrack(db, event5)
-	// fmt.Println(insertedId)
-
-	//boxes := []DriverTracking{}
-	//boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-	// resp := make(map[string]string)
-	// resp["TrackingID"] = article.TrackingID
-
-	//boxes = append(boxes, DriverTracking{TrackingID: article.TrackingID, DriverID: article.DriverID, DriverName: article.DriverName, Plate: article.Plate})
-
-	//b, err := json.Marshal(boxes)
-	//UrlText := ""
-
-	if err == nil {
-
-		ress99, err := db.Query("INSERT INTO THPDMPDB.tblmobileapiloghit (ApiName, HitCount, LastHitDT) Values ('OMSMobileGetAdvertise','1',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') ) ON DUPLICATE KEY UPDATE LastHitDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), HitCount = HitCount + 1   ")
-		defer ress99.Close()
-		if err != nil {
-			panic(err)
-		}
-
-		ress2, err := db.Query("SELECT MsgAlert,StartDT,EndDT FROM THPDMPDB.tblmobileannouncement  ")
-
-		if err == nil {
-
-			boxes := []UrlAdvise{}
-			// resp := make(map[string]string)
-			// resp["MerchantID"] = article.MerchantID
-
-			for ress2.Next() {
-				var event UrlAdvise
-				//JobID := ress2.Scan(&event.JobID)
-				err = ress2.Scan(&event.MsgAlert, &event.StartDT, &event.EndDT)
-
-				if err != nil {
-					panic(err)
-				}
-				//UrlText = event.MsgAlert
-
-				boxes = append(boxes, UrlAdvise{MsgAlert: event.MsgAlert, StartDT: event.StartDT, EndDT: event.EndDT})
-
-			}
-
-			b, _ := json.Marshal(boxes)
-			w.Write(b)
-		}
-		defer ress2.Close()
-		err = ress2.Close()
-
-		// respok := make(map[string]string)
-		// respok["Success"] = "true"
-		// respok["UrlText"] = UrlText
-		// jsonResp, err := json.Marshal(respok)
-
-		// /// update driver get job
-		// //GetAPIDriverFromLoadboard(article.TrackingID)
-		// /// Update jobdetail
-
-		// if err != nil {
-		// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-		// }
-		// w.Write(jsonResp)
-		return
-	} else {
-
-		respok := make(map[string]string)
-		respok["Success"] = "false"
-		jsonResp, err := json.Marshal(respok)
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-		}
-		w.Write(jsonResp)
-		return
-	}
-
-}
-
-func OMSMobileGetDriver(w http.ResponseWriter, r *http.Request) {
-
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article DriverTracking
-	json.Unmarshal(reqBody, &article)
-
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-
-	err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-	//var m MyStruct
-	typefind := article.TrackingID
-
-	t := time.Now() //It will return time.Time object with current timestamp
-	fmt.Printf("time.Time %s\n", t)
-
-	//tUnix := t.Unix()
-	//fmt.Printf("timeUnix: %d\n", tUnix)
-	//strOTP := strconv.FormatInt(tUnix, 6)
-	//strOTP := EncodeToString(6) // substr(strOTP, 5, 6)
-	//firstEvent2 := Event5{}
-	//datett := article.Date
-
-	if typefind != "" {
-
-		if err == nil {
-
-			t := time.Now()
-			theTime := time.Date(t.Year(), t.Month(), t.Day(), t.Hour(), t.Minute(), t.Second(), 100, time.Local)
-			//showchannel := "OMSMobileGetDriver"
-			d := theTime.Format("2006-1-2")
-			apiname := "OMSMobileGetDriver_" + d
-
-			ress99, err := db.Query("INSERT INTO THPDMPDB.tblmobileapiloghit (ApiName, HitCount, LastHitDT) Values ('" + apiname + "','1',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') ) ON DUPLICATE KEY UPDATE LastHitDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), HitCount = HitCount + 1   ")
-			defer ress99.Close()
-			if err != nil {
-				panic(err)
-			}
-
-			/// update driver get job
-			GetAPIDriverFromLoadboard(db, article.TrackingID)
-			/// Update jobdetail
-
-			// event5 := EventDriverTrack{
-			// 	JobID:           "",
-			// 	TrackingID:      string(article.TrackingID),
-			// 	CarID:           string(article.Plate),
-			// 	DriverName:      string(article.DriverName),
-			// 	DriverPhoneNo:   "",
-			// 	Company:         "",
-			// 	Price:           "",
-			// 	CustomerSelect:  "",
-			// 	CustomConfirmDT: "",
-			// 	GetBeforeDT:     "",
-
-			// 	//CreateDt:        string(article.CreateDt),
-			// }
-			//	insertedId, err := insertGetDriverTrack(db, event5)
-			//	fmt.Println(insertedId)
-
-			//boxes := []DriverTracking{}
-			//boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-			resp := make(map[string]string)
-			resp["TrackingID"] = article.TrackingID
-
-			//boxes = append(boxes, DriverTracking{TrackingID: article.TrackingID, DriverID: article.DriverID, DriverName: article.DriverName, Plate: article.Plate})
-
-			//b, err := json.Marshal(boxes)
-			mobileid := ""
-			SendSMSFirstJob := 0
-			if err == nil {
-
-				ress2, err := db.Query("SELECT * FROM THPDMPDB.VW_NewDriverSendMassage  WHERE TrackingID = '" + article.TrackingID + "'  ")
-
-				if err == nil {
-
-					// boxes := []Merchant{}
-					// resp := make(map[string]string)
-					// resp["MerchantID"] = article.MerchantID
-
-					for ress2.Next() {
-						var event MobileID
-						//JobID := ress2.Scan(&event.JobID)
-						err = ress2.Scan(&event.MobileID, &event.SendSMSFirstJob, &event.TrackingID)
-
-						if err != nil {
-							panic(err)
-						}
-						mobileid = event.MobileID
-						SendSMSFirstJob = event.SendSMSFirstJob
-						// boxes = append(boxes, Merchant{MerchantID: event.MerchantID, Address1: event.Address1, Address2: event.Address2, LocationGPS: event.LocationGPS, WarehouseID: event.WarehouseID, SubDistrict: event.SubDistrict, District: event.District, ProvinceName: event.ProvinceName, PostCode: event.PostCode})
-
-					}
-
-				}
-				defer ress2.Close()
-				err = ress2.Close()
-
-				if SendSMSFirstJob == 0 && mobileid != "" {
-					SendMessage(article.TrackingID, mobileid, article.Plate, article.DriverName)
-				}
-
-				ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblmobileomsotp (MemberPhone, CntOTPUse, LastUseDT) Values ('" + mobileid + "',1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00')) ON DUPLICATE KEY UPDATE LastUseDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CntOTPUse = CntOTPUse + 1   ")
-				defer ress3.Close()
-				if err2 != nil {
-					panic(err)
-				}
-				defer ress3.Close()
-				err = ress3.Close()
-
-				respok := make(map[string]string)
-				respok["Success"] = "true"
-				respok["TrackingID"] = article.TrackingID
-				respok["Plate"] = article.Plate
-				respok["DriverName"] = article.DriverName
-				jsonResp, err := json.Marshal(respok)
-
-				if err != nil {
-					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-				}
-				w.Write(jsonResp)
-				return
-			} else {
-
-				respok := make(map[string]string)
-				respok["Success"] = "false"
-				jsonResp, err := json.Marshal(respok)
-				if err != nil {
-					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-				}
-				w.Write(jsonResp)
-				return
-			}
-
-			// if err != nil {
-			// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			// 	return
-			// }
-			//w.Write(b)
-			//counter = 0
-
-		}
-
-	}
-
-}
-func OMSMobileCancelOrder(w http.ResponseWriter, r *http.Request) {
-
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article GetCancel
-	json.Unmarshal(reqBody, &article)
-
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-
-	err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-	//var m MyStruct
-	shipment_no := article.Shipment_no
-	remark_desc := article.Remark
-	t := time.Now() //It will return time.Time object with current timestamp
-	fmt.Printf("time.Time %s\n", t)
-
-	//counter := 0
-
-	if err == nil {
-
-		CancelJobToLoadboard(shipment_no, remark_desc)
-
-		// ยิงเสริม
-		CancelJobToLoadboard2(shipment_no, remark_desc)
-
-		//boxes := []MobileOTP{}
-
-		//boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-		resp := make(map[string]string)
-		resp["shipment_no"] = shipment_no
-		resp["cancel"] = remark_desc
-
-		b, _ := json.Marshal(resp)
-
-		//jsonResp, err := json.Marshal(b)
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			return
-		}
-
-		//SendOTPToCustomer(strOTP, event.PhoneNumber)
-
-		w.Write(b)
-
-		//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
-		//}
-
-		//counter = 0
-
-		//}
-
-	}
-
-}
-func OMSMobileCancelOrderWithAuth(w http.ResponseWriter, r *http.Request) {
-
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article GetCancel
-	json.Unmarshal(reqBody, &article)
-
-	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
-
-	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
-
-	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
-
-	if aa <= 0 {
-		respok := make(map[string]string)
-
-		respok["QRcodetxt"] = ""
-		respok["ExpDT"] = ""                                  //QR
-		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
-
-		jsonResp, err := json.Marshal(respok)
-
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			return
-		}
-		w.Write(jsonResp)
-		return
-	}
-
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-
-	ress99, err := db.Query("INSERT INTO THPDMPDB.tblmobileapiloghit (ApiName, HitCount, LastHitDT) Values ('OMSMobileCancelOrderWithAuth','1',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') ) ON DUPLICATE KEY UPDATE LastHitDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), HitCount = HitCount + 1   ")
-	defer ress99.Close()
-	if err != nil {
-		panic(err)
-	}
-	//var m MyStruct
-	shipment_no := article.Shipment_no
-	remark_desc := article.Remark
-	t := time.Now() //It will return time.Time object with current timestamp
-	fmt.Printf("time.Time %s\n", t)
-
-	//counter := 0
-
-	if err == nil {
-
-		CancelJobToLoadboard(shipment_no, remark_desc)
-
-		// ยิงเสริม
-		CancelJobToLoadboard2(shipment_no, remark_desc)
-
-		//boxes := []MobileOTP{}
-
-		//boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-		resp := make(map[string]string)
-		resp["shipment_no"] = shipment_no
-		resp["cancel"] = remark_desc
-
-		b, _ := json.Marshal(resp)
-
-		//jsonResp, err := json.Marshal(b)
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			return
-		}
-
-		//SendOTPToCustomer(strOTP, event.PhoneNumber)
-
-		w.Write(b)
-
-		//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
-		//}
-
-		//counter = 0
-
-		//}
-
-	}
-
-}
-func OMSMobileGetOTP(w http.ResponseWriter, r *http.Request) {
-
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article Mobile
-	json.Unmarshal(reqBody, &article)
-
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-	//var m MyStruct
-	typefind := article.MobileID
-
-	t := time.Now() //It will return time.Time object with current timestamp
-	fmt.Printf("time.Time %s\n", t)
-
-	// tUnix := t.Unix()
-	// fmt.Printf("timeUnix: %d\n", tUnix)
-	// strOTP := strconv.FormatInt(tUnix, 6)
-	strOTP := EncodeToString(6) // substr(strOTP, 5, 6)
-	//firstEvent2 := Event5{}
-
-	//datett := article.Date
-	if typefind != "" {
-		//fmt.Println(article.Id)
-
-		// firstEvent := Event5{}
-		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
-		// if err != nil {
-		// 	panic(err)
-		// }
-
-		//counter := 0
-
-		ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMerchant WHERE PhoneNumber = '" + article.MobileID + "'  ")
-
-		if err == nil {
-
-			// boxes := []BoxData{}
-			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
-			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-			for ress2.Next() {
-				var event EventMobile
-				//JobID := ress2.Scan(&event.JobID)
-				err := ress2.Scan(&event.MerchantID, &event.MerchantName, &event.Email, &event.ContactName, &event.PhoneNumber, &event.MemberDiscount)
-
-				if err != nil {
-					panic(err)
-				}
-
-				boxes := []MobileOTP{}
-
-				//boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-				resp := make(map[string]string)
-				resp["MobileID"] = article.MobileID
-
-				boxes = append(boxes, MobileOTP{MobileID: article.MobileID, OTPPassword: strOTP})
-
-				b, _ := json.Marshal(boxes)
-
-				//jsonResp, err := json.Marshal(b)
-				if err != nil {
-					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-					return
-				}
-
-				SendOTPToCustomer(strOTP, event.PhoneNumber)
-
-				ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblmobileomsotp (MemberPhone, CntOTPUse, LastUseDT) Values ('" + event.PhoneNumber + "',1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00')) ON DUPLICATE KEY UPDATE LastUseDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CntOTPUse = CntOTPUse + 1   ")
-				defer ress3.Close()
-				if err2 != nil {
-					panic(err)
-				}
-				defer ress3.Close()
-				err = ress3.Close()
-
-				w.Write(b)
-				break
-				//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
-			}
-
-			//counter = 0
-
-		}
-
-	}
-
-}
-func OMSMobileGetOTPWithAuth(w http.ResponseWriter, r *http.Request) {
-
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article Mobile
-	json.Unmarshal(reqBody, &article)
-
-	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
-
-	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
-
-	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
-
-	if aa <= 0 {
-		respok := make(map[string]string)
-
-		respok["QRcodetxt"] = ""
-		respok["ExpDT"] = ""                                  //QR
-		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
-
-		jsonResp, err := json.Marshal(respok)
-
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			return
-		}
-		w.Write(jsonResp)
-		return
-	}
-
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	db, err := sql.Open("mysql", dns)
-
-	if err != nil {
-		panic(err)
-	}
-	err = db.Ping()
-	if err != nil {
-		panic(err)
-	}
-	// defer db.Close()
-	// if DB.Ping() != nil {
-	// 	connectDb()
-	// }
-	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
-	// } else {
-	// 	connectDb()
-	// }
-	// db := DB
-	// defer db.Close()
-
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-	//var m MyStruct
-	typefind := article.MobileID
-
-	t := time.Now() //It will return time.Time object with current timestamp
-	fmt.Printf("time.Time %s\n", t)
-
-	// tUnix := t.Unix()
-	// fmt.Printf("timeUnix: %d\n", tUnix)
-	// strOTP := strconv.FormatInt(tUnix, 6)
-	strOTP := EncodeToString(6) // substr(strOTP, 5, 6)
-
-	//firstEvent2 := Event5{}
-
-	//datett := article.Date
-	if typefind != "" {
-		//fmt.Println(article.Id)
-
-		// firstEvent := Event5{}
-		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
-		// if err != nil {
-		// 	panic(err)
-		// }
-
-		//counter := 0
-
-		ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMerchant WHERE PhoneNumber = '" + article.MobileID + "' UNION SELECT MobileID as MerchantID,''as MerchantName,''as Email,AuthorizerName as ContactName,MobileID as PhoneNumber,''as MemberDiscount FROM thpdmpdb.tblpaymentadmin  WHERE MobileID = '" + article.MobileID + "'")
-
-		if err == nil {
-
-			// boxes := []BoxData{}
-			// boxes = append(boxes, BoxData{Width: 10, Height: 20})
-			// boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-			for ress2.Next() {
-				var event EventMobile
-				//JobID := ress2.Scan(&event.JobID)
-				err := ress2.Scan(&event.MerchantID, &event.MerchantName, &event.Email, &event.ContactName, &event.PhoneNumber, &event.MemberDiscount)
-
-				if err != nil {
-					panic(err)
-				}
-
-				boxes := []MobileOTP{}
-
-				//boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-				resp := make(map[string]string)
-				resp["MobileID"] = article.MobileID
-
-				boxes = append(boxes, MobileOTP{MobileID: article.MobileID, OTPPassword: strOTP})
-
-				b, _ := json.Marshal(boxes)
-
-				//jsonResp, err := json.Marshal(b)
-				if err != nil {
-					log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-					return
-				}
-
-				SendOTPToCustomer(strOTP, event.PhoneNumber)
-
-				// typeoutput := ""
-				// output2 := strings.Index(reqHeaderChannel[0], "Android")
-				// if output2 > -1 {
-				// 	typeoutput = "|Android"
-				// } else {
-				// 	typeoutput = "|IOS"
-				// }
-
-				ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblmobileomsotp (MemberPhone, CntOTPUse, LastUseDT) Values ('" + event.PhoneNumber + "',1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00')) ON DUPLICATE KEY UPDATE LastUseDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CntOTPUse = CntOTPUse + 1   ")
-				defer ress3.Close()
-				if err2 != nil {
-					panic(err)
-				}
-				defer ress3.Close()
-				err = ress3.Close()
-
-				w.Write(b)
-				break
-				//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
-			}
-
-			//counter = 0
-
-		}
-
-	}
-
-}
-func OMSMobileGetOTPAdminWithAuth(w http.ResponseWriter, r *http.Request) {
-
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var article Mobile
-	json.Unmarshal(reqBody, &article)
-
-	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
-
-	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
-
-	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
-
-	if aa <= 0 {
-		respok := make(map[string]string)
-
-		respok["QRcodetxt"] = ""
-		respok["ExpDT"] = ""                                  //QR
-		respok["ErrMsg"] = "Invalid Authorization Or Channel" //QR
-
-		jsonResp, err := json.Marshal(respok)
-
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-			return
-		}
-		w.Write(jsonResp)
-		return
-	}
-
-	//dns := getDNSString("THPDMPDB", "admin", "vX0r7qBIEGk9eTBWBu7S", "thpddb.cluster-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-	if DB.Ping() != nil {
-		connectDb()
-	}
-	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
-	} else {
-		connectDb()
-	}
-	db := DB
-	defer db.Close()
-	err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-	//var m MyStruct
-	typefind := article.MobileID
-
-	t := time.Now() //It will return time.Time object with current timestamp
-	fmt.Printf("time.Time %s\n", t)
-
-	// tUnix := t.Unix()
-	// fmt.Printf("timeUnix: %d\n", tUnix)
-	// strOTP := strconv.FormatInt(tUnix, 6)
-	strOTP := EncodeToString(6) // substr(strOTP, 5, 6)
-
-	//firstEvent2 := Event5{}
-
-	//datett := article.Date
-	if typefind != "" {
-		//fmt.Println(article.Id)
-
-		// firstEvent := Event5{}
-		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
-		// if err != nil {
-		// 	panic(err)
-		// }
-
-		//counter := 0
-
-		boxes := []MobileOTP{}
-
-		//boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-		resp := make(map[string]string)
-		resp["MobileID"] = article.MobileID
-
-		boxes = append(boxes, MobileOTP{MobileID: article.MobileID, OTPPassword: strOTP})
-
-		b, _ := json.Marshal(boxes)
-
-		SendOTPToCustomer(strOTP, article.MobileID)
-
-		ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblmobileomsotp (MemberPhone, CntOTPUse, LastUseDT) Values ('" + article.MobileID + "',1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00')) ON DUPLICATE KEY UPDATE LastUseDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CntOTPUse = CntOTPUse + 1   ")
-		defer ress3.Close()
-		if err2 != nil {
-			panic(err)
-		}
-		defer ress3.Close()
-		err = ress3.Close()
-
-		w.Write(b)
-
-		// ress2, err := db.Query("SELECT MerchantID,MerchantName,Email,ContactName,PhoneNumber,MemberDiscount FROM THPDMPDB.tblMerchant WHERE PhoneNumber = '" + article.MobileID + "' UNION SELECT MobileID as MerchantID,''as MerchantName,''as Email,AuthorizerName as ContactName,MobileID as PhoneNumber,''as MemberDiscount FROM thpdmpdb.tblpaymentadmin  WHERE MobileID = '" + article.MobileID + "'")
-
-		// if err == nil {
-
-		// 	// boxes := []BoxData{}
-		// 	// boxes = append(boxes, BoxData{Width: 10, Height: 20})
-		// 	// boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-		// 	for ress2.Next() {
-		// 		var event EventMobile
-		// 		//JobID := ress2.Scan(&event.JobID)
-		// 		err := ress2.Scan(&event.MerchantID, &event.MerchantName, &event.Email, &event.ContactName, &event.PhoneNumber, &event.MemberDiscount)
-
-		// 		if err != nil {
-		// 			panic(err)
-		// 		}
-
-		// 		boxes := []MobileOTP{}
-
-		// 		//boxes = append(boxes, BoxData{Width: 5, Height: 30})
-
-		// 		resp := make(map[string]string)
-		// 		resp["MobileID"] = article.MobileID
-
-		// 		boxes = append(boxes, MobileOTP{MobileID: article.MobileID, OTPPassword: strOTP})
-
-		// 		b, _ := json.Marshal(boxes)
-
-		// 		//jsonResp, err := json.Marshal(b)
-		// 		if err != nil {
-		// 			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-		// 			return
-		// 		}
-
-		// 		SendOTPToCustomer(strOTP, event.PhoneNumber)
-
-		// 		ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblmobileomsotp (MemberPhone, CntOTPUse, LastUseDT) Values ('" + event.PhoneNumber + "',1,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00')) ON DUPLICATE KEY UPDATE LastUseDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), CntOTPUse = CntOTPUse + 1   ")
-		// 		defer ress3.Close()
-		// 		if err2 != nil {
-		// 			panic(err)
-		// 		}
-		// 		defer ress3.Close()
-		// 		err = ress3.Close()
-
-		// 		w.Write(b)
-		// 		break
-		// 		//boxes = append(boxes, EventMobile{MerchantID: event.MerchantID, ContactName: event.ContactName, Email: event.Email, MerchantName: event.MerchantName, PhoneNumber: event.PhoneNumber, MemberDiscount: event.MemberDiscount})
-		// 	}
-
-		// 	//counter = 0
-
-		// }
-
-	}
-
-}
 func ChkAppVersion(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 
 	var article MobileVersion
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("Body", article.VersionNow)
+	//fmt.Println("Body", article.VersionNow)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -10063,7 +8088,7 @@ func ChkAppVersion(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -10137,17 +8162,17 @@ func GetWeight(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -10155,7 +8180,7 @@ func GetWeight(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -10191,7 +8216,7 @@ func GetWeight(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -10236,7 +8261,7 @@ func GetWeight(w http.ResponseWriter, r *http.Request) {
 	key = []byte("PWASMART0805401073")
 	t = jwt.New(jwt.SigningMethodHS256)
 	s, err = t.SignedString(key)
-	fmt.Println(s)
+	//fmt.Println(s)
 
 	ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblcurrentweight WHERE Wid in (SELECT max(Wid) as Appid FROM raotdb.tblcurrentweight WHERE WHName = '" + WHName + "' and CShaftNum = '00') ")
 	//defer ress3.Close()
@@ -10316,17 +8341,17 @@ func UpdateTransDetail(w http.ResponseWriter, r *http.Request) {
 	var article PWASaveWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("TranSubID", article.TranSubID)
+	//fmt.Println("TranSubID", article.TranSubID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -10334,7 +8359,7 @@ func UpdateTransDetail(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -10444,12 +8469,12 @@ func UpdateTransDetail(w http.ResponseWriter, r *http.Request) {
 		w.Write(b)
 	}
 
-	//fmt.Println("UserID", articleimg.ParsedText)
+	////fmt.Println("UserID", articleimg.ParsedText)
 
-	//fmt.Println("UserID", article.WHName)
+	////fmt.Println("UserID", article.WHName)
 
 	// jsonResp, err := json.Marshal(string(body))
-	// fmt.Println(jsonResp)
+	// //fmt.Println(jsonResp)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 
@@ -10461,17 +8486,17 @@ func GetCalculate(w http.ResponseWriter, r *http.Request) {
 	var article PWASaveWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.TranSubID)
+	//fmt.Println("UserID", article.TranSubID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -10479,7 +8504,7 @@ func GetCalculate(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -10513,7 +8538,7 @@ func GetCalculate(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -10614,17 +8639,17 @@ func GetUpdateOverLicense(w http.ResponseWriter, r *http.Request) {
 	var article PWASaveLicense
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.TranSubID)
+	//fmt.Println("UserID", article.TranSubID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -10632,7 +8657,7 @@ func GetUpdateOverLicense(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -10666,7 +8691,7 @@ func GetUpdateOverLicense(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -10713,7 +8738,7 @@ func GetUpdateOverLicense(w http.ResponseWriter, r *http.Request) {
 	// key = []byte("RAOTSMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 	// s, err = t.SignedString(key)
-	// fmt.Println(s)
+	// //fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	ress, err := db.Query("UPDATE raotdb.tbltransportsubdetail SET truckLPRlicenseOverwrite = '" + article.TruckLicenseID + "', truckLPRlicenseCountryOverwrite = '" + article.TruckDistinct + "', truckLPRTypeOverwrite = '" + article.TruckType + "', truckLPRTypeTruckOverwrite = '" + article.TruckTypeDetail + "', modifyDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') WHERE transportSPID = '" + article.TranSubID + "'  ")
@@ -10773,17 +8798,17 @@ func GetIMGBase64(w http.ResponseWriter, r *http.Request) {
 	var article PWASaveWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.TranSubID)
+	//fmt.Println("UserID", article.TranSubID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -10791,7 +8816,7 @@ func GetIMGBase64(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -10825,7 +8850,7 @@ func GetIMGBase64(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -10875,7 +8900,7 @@ func GetIMGBase64(w http.ResponseWriter, r *http.Request) {
 	// key = []byte("RAOTSMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 	// s, err = t.SignedString(key)
-	// fmt.Println(s)
+	// //fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	ress3, err2 := db.Query("SELECT TransportSPID, imgBase64, uploadDT  FROM raotdb.tblimageupload WHERE  transportSPID = '" + CTime + "'  ")
@@ -10929,17 +8954,17 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -10947,7 +8972,7 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -10990,8 +9015,8 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 	}
 	/////
 
-	// fmt.Println(CTime)
-	fmt.Println(img64)
+	// //fmt.Println(CTime)
+	//fmt.Println(img64)
 
 	if CTime == "" {
 		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -11016,7 +9041,7 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 	// err = writer.Close()
 
 	// if err != nil {
-	// 	fmt.Println(err)
+	// 	//fmt.Println(err)
 	// 	return
 	// }
 
@@ -11024,7 +9049,7 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	// req.Header.Add("apikey", "helloworld")
@@ -11035,17 +9060,17 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	var articleimg IMGGeneratedLPR
 	json.Unmarshal(body, &articleimg)
@@ -11053,7 +9078,7 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 	boxes := []AppLicense{}
 
 	if articleimg.RecognizedData.LicenseNumber != "" {
-		//fmt.Println(articleimg.ParsedResults[0].ParsedText)
+		////fmt.Println(articleimg.ParsedResults[0].ParsedText)
 		//var lines []string = regexp.MustCompile("\r?\n").Split(articleimg.ParsedResults[0].ParsedText, -1)
 
 		boxes = append(boxes, AppLicense{Id: 1, License: articleimg.RecognizedData.LicenseNumber})
@@ -11089,14 +9114,14 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 func resizeAnImage(imageFile multipart.File, width uint, imageType string, fileName string) {
 	out, err := os.Create("resources/images/" + fileName)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 	}
 	switch imageType {
 	case "image/jpeg":
 
 		img, err := jpeg.Decode(imageFile)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 		}
 
 		jpegImg := resize.Resize(width, 0, img, resize.Lanczos2)
@@ -11107,7 +9132,7 @@ func resizeAnImage(imageFile multipart.File, width uint, imageType string, fileN
 	case "image/png":
 		img, err := png.Decode(imageFile)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 		}
 
 		pngImg := resize.Resize(width, 0, img, resize.Lanczos2)
@@ -11119,7 +9144,7 @@ func resizeAnImage(imageFile multipart.File, width uint, imageType string, fileN
 		newGifImg := gif.GIF{}
 		gifImg, err := gif.DecodeAll(imageFile)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 		}
 
 		for _, img := range gifImg.Image {
@@ -11154,7 +9179,7 @@ func writeImageWithTemplate(w http.ResponseWriter, img *image.Image) {
 		log.Println("unable to parse image template.")
 	} else {
 		data := map[string]interface{}{"Image": str}
-		fmt.Println(str)
+		//fmt.Println(str)
 		if err = tmpl.Execute(w, data); err != nil {
 			log.Println("unable to execute template.")
 		}
@@ -11210,7 +9235,7 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 	}
 	//else {
 	// 	data := map[string]interface{}{"Image": str}
-	// 	fmt.Println(str)
+	// 	//fmt.Println(str)
 	// 	if err = tmpl.Execute(w, data); err != nil {
 	// 		log.Println("unable to execute template.")
 	// 	}
@@ -11230,7 +9255,7 @@ func GetImage(w http.ResponseWriter, r *http.Request) {
 
 	// //CUser := article.CUser
 	// //EType := article.EType
-	// //fmt.Println(CUser)
+	// ////fmt.Println(CUser)
 
 	// ress99, err := db.Query("UPDATE raotdb.tblconfig SET getlastdt = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), ref4='" + res41 + "' WHERE configdetail = 'truckentry' ")
 	// defer ress99.Close()
@@ -11304,17 +9329,17 @@ func GetLicenseIMGBase64(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -11322,7 +9347,7 @@ func GetLicenseIMGBase64(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -11356,7 +9381,7 @@ func GetLicenseIMGBase64(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -11402,7 +9427,7 @@ func GetLicenseIMGBase64(w http.ResponseWriter, r *http.Request) {
 	_ = writer.WriteField("OCREngine", "2")
 	err = writer.Close()
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 
@@ -11410,7 +9435,7 @@ func GetLicenseIMGBase64(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	req.Header.Add("apikey", "helloworld")
@@ -11418,17 +9443,17 @@ func GetLicenseIMGBase64(w http.ResponseWriter, r *http.Request) {
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	var articleimg IMGGenerated
 	json.Unmarshal(body, &articleimg)
@@ -11436,7 +9461,7 @@ func GetLicenseIMGBase64(w http.ResponseWriter, r *http.Request) {
 	boxes := []AppLicense{}
 
 	if articleimg.ParsedResults[0].ParsedText != "" {
-		fmt.Println(articleimg.ParsedResults[0].ParsedText)
+		//fmt.Println(articleimg.ParsedResults[0].ParsedText)
 
 		var lines []string = regexp.MustCompile("\r?\n").Split(articleimg.ParsedResults[0].ParsedText, -1)
 
@@ -11477,17 +9502,17 @@ func GetCheckPointTranDetail(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -11495,7 +9520,7 @@ func GetCheckPointTranDetail(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -11529,7 +9554,7 @@ func GetCheckPointTranDetail(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -11570,16 +9595,16 @@ func GetCheckPointTranDetail(w http.ResponseWriter, r *http.Request) {
 	// 	panic(err)
 	// }
 
-	var (
-		key []byte
-		t   *jwt.Token
-		s   string
-	)
+	// var (
+	// 	key []byte
+	// 	t   *jwt.Token
+	// 	s   string
+	// )
 
-	key = []byte("RAOTSMART")
-	t = jwt.New(jwt.SigningMethodHS256)
-	s, err = t.SignedString(key)
-	fmt.Println(s)
+	// key = []byte("RAOTSMART")
+	// t = jwt.New(jwt.SigningMethodHS256)
+	// s, err = t.SignedString(key)
+	//fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	ress3, err2 := db.Query("SELECT TransportSPID, TransportID, CustomName, CusAddress, ifnull(CusPhone,'')CusPhone, ContainerType, ContainerNo, ContainerSideNo,TruckTypeID, TruckLicenseNo, TruckLicenseCountry, TruckLicenseTrail, TruckLicenseTrailCountry,ToCustomDetail, CustomID, TransferDT, NetWeight,GrossWeight,ShippingName, RubberType, ifnull(GrossWeightOnSite,'')GrossWeightOnSite,ifnull(EstWeightOnSite,'')EstWeightOnSite, ifnull(Calctype,'')Calctype, ifnull(TimeOnSite,'')TimeOnSite, ifnull(Transubstatus,'')Transubstatus, ifnull(weightID,'')weightID  FROM raotdb.tbltransportsubdetail WHERE TransportID in (SELECT TransportID FROM raotdb.tbltransport WHERE cessID = '" + CTime + "' ) ")
@@ -11621,24 +9646,24 @@ func GetCheckPointTranDetail(w http.ResponseWriter, r *http.Request) {
 			// req, err := http.NewRequest(method, url, payload)
 
 			// if err != nil {
-			// 	fmt.Println(err)
+			// 	//fmt.Println(err)
 			// 	return
 			// }
 			// req.Header.Add("Content-Type", "application/json")
 
 			// res, err := client.Do(req)
 			// if err != nil {
-			// 	fmt.Println(err)
+			// 	//fmt.Println(err)
 			// 	return
 			// }
 			// defer res.Body.Close()
 
 			// body, err := ioutil.ReadAll(res.Body)
 			// if err != nil {
-			// 	fmt.Println(err)
+			// 	//fmt.Println(err)
 			// 	return
 			// }
-			// fmt.Println(string(body))
+			// //fmt.Println(string(body))
 
 			// ress9999, err := db.Query("INSERT INTO raotdb.tblapilog (apiname,apimessage, createdt) Values ('" + url + "','" + string(body) + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )   ")
 			// defer ress9999.Close()
@@ -11735,17 +9760,17 @@ func GetCheckPointTranDetailGPS(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -11753,7 +9778,7 @@ func GetCheckPointTranDetailGPS(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -11787,7 +9812,7 @@ func GetCheckPointTranDetailGPS(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -11837,7 +9862,7 @@ func GetCheckPointTranDetailGPS(w http.ResponseWriter, r *http.Request) {
 	// key = []byte("RAOTSMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 	// s, err = t.SignedString(key)
-	// fmt.Println(s)
+	// //fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	ress3, err2 := db.Query("SELECT TransportSPID, TransportID, CustomName, CusAddress, ifnull(CusPhone,'')CusPhone, ContainerType, ContainerNo, ContainerSideNo,TruckTypeID, TruckLicenseNo, TruckLicenseCountry, TruckLicenseTrail, TruckLicenseTrailCountry,ToCustomDetail, CustomID, TransferDT, NetWeight,GrossWeight,ShippingName, RubberType, ifnull(GrossWeightOnSite,'')GrossWeightOnSite,ifnull(EstWeightOnSite,'')EstWeightOnSite, ifnull(Calctype,'')Calctype, ifnull(TimeOnSite,'')TimeOnSite, ifnull(Transubstatus,'')Transubstatus, ifnull(weightID,'')weightID  FROM raotdb.tbltransportsubdetail WHERE TransportID in (SELECT TransportID FROM raotdb.tbltransport WHERE cessID = '" + CTime + "' ) ")
@@ -11920,24 +9945,24 @@ func GetCheckPointTranDetailGPS(w http.ResponseWriter, r *http.Request) {
 			req, err := http.NewRequest(method, url, payload)
 
 			if err != nil {
-				fmt.Println(err)
+				//fmt.Println(err)
 				return
 			}
 			req.Header.Add("Content-Type", "application/json")
 
 			res, err := client.Do(req)
 			if err != nil {
-				fmt.Println(err)
+				//fmt.Println(err)
 				return
 			}
 			defer res.Body.Close()
 
 			body, err := ioutil.ReadAll(res.Body)
 			if err != nil {
-				fmt.Println(err)
+				//fmt.Println(err)
 				return
 			}
-			fmt.Println(string(body))
+			//fmt.Println(string(body))
 
 			ress9999, err := db.Query("INSERT INTO raotdb.tblapilog (apiname,apimessage, createdt) Values ('" + url + "','" + string(body) + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )   ")
 			defer ress9999.Close()
@@ -11995,17 +10020,17 @@ func GetGPSLicense(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -12013,7 +10038,7 @@ func GetGPSLicense(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -12047,7 +10072,7 @@ func GetGPSLicense(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -12098,24 +10123,24 @@ func GetGPSLicense(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	req.Header.Add("Content-Type", "application/json")
 
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	ress9998, err := db.Query("INSERT INTO raotdb.tblapilog (apiname,apimessage, createdt) Values ('" + url + "','" + string(body) + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )   ")
 	defer ress9998.Close()
@@ -12168,17 +10193,17 @@ func GetCheckPoint(w http.ResponseWriter, r *http.Request) {
 
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -12186,7 +10211,7 @@ func GetCheckPoint(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -12220,7 +10245,7 @@ func GetCheckPoint(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -12254,16 +10279,16 @@ func GetCheckPoint(w http.ResponseWriter, r *http.Request) {
 	}
 	/////
 
-	var (
-		key []byte
-		t   *jwt.Token
-		s   string
-	)
+	// var (
+	// 	key []byte
+	// 	t   *jwt.Token
+	// 	s   string
+	// )
 
-	key = []byte("RAOTSMART")
-	t = jwt.New(jwt.SigningMethodHS256)
-	s, err = t.SignedString(key)
-	fmt.Println(s)
+	// key = []byte("RAOTSMART")
+	// t = jwt.New(jwt.SigningMethodHS256)
+	// s, err = t.SignedString(key)
+	//fmt.Println(s)
 
 	SearchTxt := strings.Replace(article.SearchTxt, " ", "", -1)
 	SearchStatus := article.SearchStatus
@@ -12366,17 +10391,17 @@ func GetCessTran(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -12384,7 +10409,7 @@ func GetCessTran(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -12418,7 +10443,7 @@ func GetCessTran(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -12459,16 +10484,16 @@ func GetCessTran(w http.ResponseWriter, r *http.Request) {
 	// 	panic(err)
 	// }
 
-	var (
-		key []byte
-		t   *jwt.Token
-		s   string
-	)
+	// var (
+	// 	key []byte
+	// 	t   *jwt.Token
+	// 	s   string
+	// )
 
-	key = []byte("RAOTSMART")
-	t = jwt.New(jwt.SigningMethodHS256)
-	s, err = t.SignedString(key)
-	fmt.Println(s)
+	// key = []byte("RAOTSMART")
+	// t = jwt.New(jwt.SigningMethodHS256)
+	// s, err = t.SignedString(key)
+	//fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	ress3, err2 := db.Query("SELECT transportID as Appid, cessID as AppType, rubberDesc as Version ,customerDetail as LastestDT, customName as CustomDetail ,ifnull(tranStatus,'') as TranStatus, shipStartDT,netWeight,notifier  FROM raotdb.tbltransport WHERE cessID  = '" + TranId + "' ")
@@ -12549,17 +10574,17 @@ func GetCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -12567,7 +10592,7 @@ func GetCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -12601,7 +10626,7 @@ func GetCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -12640,16 +10665,16 @@ func GetCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	// 	panic(err)
 	// }
 
-	var (
-		key []byte
-		t   *jwt.Token
-		s   string
-	)
+	// var (
+	// 	key []byte
+	// 	t   *jwt.Token
+	// 	s   string
+	// )
 
-	key = []byte("RAOTSMART")
-	t = jwt.New(jwt.SigningMethodHS256)
-	s, err = t.SignedString(key)
-	fmt.Println(s)
+	// key = []byte("RAOTSMART")
+	// t = jwt.New(jwt.SigningMethodHS256)
+	// s, err = t.SignedString(key)
+	//fmt.Println(s)
 
 	strsql := "SELECT idcheckpointlocation as Appid, locationname as AppType, ifnull( locationresponse,'') as Version ,locationdetail as LastestDT,ifnull(locationGPS,'') as locationGPS FROM raotdb.tblcheckpointlocation  "
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
@@ -12707,17 +10732,17 @@ func GetConfigWeight(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -12725,7 +10750,7 @@ func GetConfigWeight(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -12759,7 +10784,7 @@ func GetConfigWeight(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -12800,16 +10825,16 @@ func GetConfigWeight(w http.ResponseWriter, r *http.Request) {
 	// 	panic(err)
 	// }
 
-	var (
-		key []byte
-		t   *jwt.Token
-		s   string
-	)
+	// var (
+	// 	key []byte
+	// 	t   *jwt.Token
+	// 	s   string
+	// )
 
-	key = []byte("RAOTSMART")
-	t = jwt.New(jwt.SigningMethodHS256)
-	s, err = t.SignedString(key)
-	fmt.Println(s)
+	// key = []byte("RAOTSMART")
+	// t = jwt.New(jwt.SigningMethodHS256)
+	// s, err = t.SignedString(key)
+	//fmt.Println(s)
 
 	strsql := "SELECT weightname as Appid, weightcustomname as AppType, weightresponsename as Version ,createdt as LastestDT FROM raotdb.tblweight"
 
@@ -12877,17 +10902,17 @@ func ConfigWeight(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -12895,7 +10920,7 @@ func ConfigWeight(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -12929,7 +10954,7 @@ func ConfigWeight(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -12972,7 +10997,7 @@ func ConfigWeight(w http.ResponseWriter, r *http.Request) {
 	key = []byte("RAOTSMART")
 	t = jwt.New(jwt.SigningMethodHS256)
 	s, err = t.SignedString(key)
-	fmt.Println(s)
+	//fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	ress3, err2 := db.Query("SELECT weightname as Appid, weightcustomname as AppType, weightresponsename as Version ,createdt as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + Weight + "' ")
@@ -13092,17 +11117,17 @@ func SetJobDetail(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStartJob
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.JobID)
+	//fmt.Println("UserID", article.JobID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -13110,7 +11135,7 @@ func SetJobDetail(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -13141,11 +11166,11 @@ func SetJobDetail(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 	//CheckPointResponse := article.CessID
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('SetJobDetail',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -13224,13 +11249,13 @@ func SetConsent(w http.ResponseWriter, r *http.Request) {
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -13238,7 +11263,7 @@ func SetConsent(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -13269,11 +11294,11 @@ func SetConsent(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 	//CheckPointResponse := article.CessID
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('SetConsent',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -13347,17 +11372,17 @@ func GetStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -13365,7 +11390,7 @@ func GetStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -13399,7 +11424,7 @@ func GetStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -13425,11 +11450,11 @@ func GetStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 	}
 	/////
 
-	CUser := article.CUser
+	//CUser := article.CUser
 	CheckPointResponse := article.CheckPointResponse
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	// if WHName == "" {
 	// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -13451,7 +11476,7 @@ func GetStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 	// key = []byte("RAOTSMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 	// s, err = t.SignedString(key)
-	// fmt.Println(s)
+	// //fmt.Println(s)
 	cntjob := 0
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
@@ -13565,17 +11590,17 @@ func GetRepTrader(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -13583,7 +11608,7 @@ func GetRepTrader(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -13616,10 +11641,10 @@ func GetRepTrader(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('GetRepTrader',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -13688,17 +11713,17 @@ func GetRepWeightChecked(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -13706,7 +11731,7 @@ func GetRepWeightChecked(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -13737,7 +11762,7 @@ func GetRepWeightChecked(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('GetRepWeightChecked',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -13748,7 +11773,7 @@ func GetRepWeightChecked(w http.ResponseWriter, r *http.Request) {
 	///
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 	//strsql := "SELECT transferDT, rubberType, customName, ifnull(cessID,'')cessID, transportID, transportSPID, licenseMY, truckLicenseNo, truckLicenseCountry, ifnull(truckLPRlicenseOverwrite,'')truckLPRlicenseOverwrite, ifnull(truckLPRlicenseCountryOverwrite,'')truckLPRlicenseCountryOverwrite, truckTypeID,ifnull(checkpointname,'')checkpointname, ifnull(checkpointcode,'')checkpointcode,ifnull( name,'')name, ifnull(locationresponse,'')locationresponse, ifnull(grouporganize,'')grouporganize, ifnull(transubstatus,'')transubstatus, ifnull(arrivalDT,'')arrivalDT, ifnull(netWeight,'')netWeight, ifnull(estWeightOnSite,'')estWeightOnSite, ifnull(netallweight,'')netallweight, ifnull(SumEstWeightOnSite,'')SumEstWeightOnSite FROM raotdb.vw_repweightchecked"
 	strsql := "SELECT transferDT, rubberType, customName, ifnull(cessID,'')cessID, transportID, transportSPID, CASE WHEN truckLPRlicenseCountryOverwrite like '%มาเล%' THEN CONCAT(truckLPRlicenseOverwrite , '-มาเลเซีย') ELSE ''  END as licenseMY, truckLicenseNo, truckLicenseCountry, ifnull(truckLPRlicenseOverwrite,'')truckLPRlicenseOverwrite, ifnull(truckLPRlicenseCountryOverwrite,'')truckLPRlicenseCountryOverwrite, truckTypeID,ifnull(checkpointname,'')checkpointname, ifnull(checkpointcode,'')checkpointcode,ifnull( name,'')name, ifnull(locationresponse,'')locationresponse, ifnull(grouporganize,'')grouporganize, ifnull(transubstatus,'')transubstatus, ifnull(arrivalDT,'')arrivalDT, ifnull(netWeight,'')netWeight, ifnull(estWeightOnSite,'')estWeightOnSite, ifnull(netallweight,'')netallweight, ifnull(SumEstWeightOnSite,'')SumEstWeightOnSite FROM raotdb.vw_repweightchecked"
 
@@ -13850,17 +11875,17 @@ func GetRepRubberType(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -13868,7 +11893,7 @@ func GetRepRubberType(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -13901,7 +11926,7 @@ func GetRepRubberType(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('GetRepRubberType',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -13913,7 +11938,7 @@ func GetRepRubberType(w http.ResponseWriter, r *http.Request) {
 
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 	strsql := "SELECT distinct(rubberType)rubberType FROM raotdb.vw_reptradertruck"
 
 	// if article.SearchTxt != "" {
@@ -13972,17 +11997,17 @@ func GetRepTraderTruck(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -13990,7 +12015,7 @@ func GetRepTraderTruck(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -14023,7 +12048,7 @@ func GetRepTraderTruck(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('GetRepTraderTruck',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -14035,7 +12060,7 @@ func GetRepTraderTruck(w http.ResponseWriter, r *http.Request) {
 
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 	strsql := "SELECT '' as transportSPID, '' as  transportID,name_th as customName, ifnull(tax_id,'')cusCitizenID, '' as  cusAddress, ifnull(phone,'')cusPhone,'' as containerType,'' as containerNo,'' as containerSideNo, ifnull(truck_type,'') as truckTypeID, ifnull(license_number_th,'') as truckLicenseNo,ifnull(license_province_th,'') as truckLicenseCountry,'' as truckLicenseTrail,'' as truckLicenseTrailCountry, '' as toCustomDetail, '' as  customID, '' as  transferDT,ifnull(weight_kg,'') as  netWeight,ifnull(weight_kg,'') as grossWeight,'' as  shippingName,'' as  totalBox,ifnull(registration_type,'') as rubberType,  '' as createDT,  '' as modifyDT, '' as transubstatus, '' as grossWeightOnSite, '' as estWeightOnSite,'' as calctype,  '' as timeOnSite,  '' as weightID, '' as userID, '' as truckLPRlicenseOverwrite, '' as truckLPRlicenseCountryOverwrite, '' as truckLPRTypeOverwrite, '' as truckLPRTypeTruckOverwrite, ifnull(gps_provider_name,'') as GPSProvider, ifnull(gps_box_id,'') as GPSBoxID,ifnull(license_number_my,'') as TruckLicenseNoMY FROM raotdb.vw_tradertruck  "
 
 	if article.SearchTxt != "" && article.SearchCustomname != "" {
@@ -14109,17 +12134,17 @@ func APITruckCheckInOut(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckInOut
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.CustomerName)
+	//fmt.Println("UserID", article.CustomerName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	if len(reqHeader) == 0 {
 
@@ -14128,7 +12153,7 @@ func APITruckCheckInOut(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -14318,17 +12343,17 @@ func SndDatatoCESS1(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -14336,7 +12361,7 @@ func SndDatatoCESS1(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -14439,17 +12464,17 @@ func SetDatatoCumtomer(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -14457,7 +12482,7 @@ func SetDatatoCumtomer(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -14491,24 +12516,24 @@ func SetDatatoCumtomer(w http.ResponseWriter, r *http.Request) {
 		req, err := http.NewRequest(method, url, payload)
 
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
 		req.Header.Add("Content-Type", "application/json")
 
 		res, err := client.Do(req)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
 		defer res.Body.Close()
 
 		body, err := ioutil.ReadAll(res.Body)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
-		fmt.Println(string(body))
+		//fmt.Println(string(body))
 
 		var LoadTruck TruckRAOT
 		jsonData := []byte(string(body))
@@ -14519,13 +12544,13 @@ func SetDatatoCumtomer(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println(js)
+		//fmt.Println(js)
 
 		json.Unmarshal([]byte(body), &LoadTruck)
 
-		//fmt.Println(string(logistic.Data.Booking[0].BookingID))
-		fmt.Println(LoadTruck.Access)
-		fmt.Println(LoadTruck.Refresh)
+		////fmt.Println(string(logistic.Data.Booking[0].BookingID))
+		//fmt.Println(LoadTruck.Access)
+		//fmt.Println(LoadTruck.Refresh)
 
 		tokenkey = LoadTruck.Access
 		raottokenrefresh = LoadTruck.Refresh
@@ -14551,26 +12576,26 @@ func SetDatatoCumtomer(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	//req.Header.Add("Authorization", "f7b8c2512a00f0ca3eac801e3bfc03d95de4e39aa3bef17e3ba67c8709f18f01")
 	req.Header.Add("Authorization", "Bearer "+tokenkey)
 	req.Header.Add("Content-Type", "application/json")
-	fmt.Println(req.Header)
+	//fmt.Println(req.Header)
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	defer res.Body.Close()
 
 	body2, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
-	fmt.Println(string(body2))
+	//fmt.Println(string(body2))
 
 	// var TruckRAOT TruckRAOTDetail
 	// jsonData2 := []byte(string(body2))
@@ -14625,7 +12650,7 @@ func SetDatatoCumtomer(w http.ResponseWriter, r *http.Request) {
 	// key = []byte("RAOTSMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 	// s, err = t.SignedString(key)
-	// fmt.Println(s)
+	// //fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	//ress3, err2 := db.Query("SELECT weightid as Appid, checkpointcode as AppType, checkpointname as Version ,createdt as LastestDT FROM raotdb.tblcheckpoint WHERE weightid  = '" + WHName + "' ")
@@ -14682,17 +12707,17 @@ func SetWidget(w http.ResponseWriter, r *http.Request) {
 	var article PWAWidget
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.UserID)
+	//fmt.Println("UserID", article.UserID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -14700,7 +12725,7 @@ func SetWidget(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -14791,17 +12816,17 @@ func SndNotiTracking(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -14809,7 +12834,7 @@ func SndNotiTracking(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -14901,17 +12926,17 @@ func GetDashboard(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -14919,7 +12944,7 @@ func GetDashboard(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -15001,17 +13026,17 @@ func GetNoti(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -15019,7 +13044,7 @@ func GetNoti(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -15102,17 +13127,17 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -15120,7 +13145,7 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -15154,24 +13179,24 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 		req, err := http.NewRequest(method, url, payload)
 
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
 		req.Header.Add("Content-Type", "application/json")
 
 		res, err := client.Do(req)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
 		defer res.Body.Close()
 
 		body, err := ioutil.ReadAll(res.Body)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
-		fmt.Println(string(body))
+		//fmt.Println(string(body))
 
 		var LoadTruck TruckRAOT
 		jsonData := []byte(string(body))
@@ -15182,13 +13207,13 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println(js)
+		//fmt.Println(js)
 
 		json.Unmarshal([]byte(body), &LoadTruck)
 
-		//fmt.Println(string(logistic.Data.Booking[0].BookingID))
-		fmt.Println(LoadTruck.Access)
-		fmt.Println(LoadTruck.Refresh)
+		////fmt.Println(string(logistic.Data.Booking[0].BookingID))
+		//fmt.Println(LoadTruck.Access)
+		//fmt.Println(LoadTruck.Refresh)
 
 		tokenkey = LoadTruck.Access
 		raottokenrefresh = LoadTruck.Refresh
@@ -15205,26 +13230,26 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	//req.Header.Add("Authorization", "f7b8c2512a00f0ca3eac801e3bfc03d95de4e39aa3bef17e3ba67c8709f18f01")
 	req.Header.Add("Authorization", "Bearer "+tokenkey)
 	req.Header.Add("Content-Type", "application/json")
-	fmt.Println(req.Header)
+	//fmt.Println(req.Header)
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	defer res.Body.Close()
 
 	body2, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
-	fmt.Println(string(body2))
+	//fmt.Println(string(body2))
 
 	var TruckRAOT TruckRAOTDetailTrader
 	jsonData2 := []byte(string(body2))
@@ -15235,13 +13260,13 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(js2)
+	//fmt.Println(js2)
 
 	json.Unmarshal([]byte(body2), &TruckRAOT)
 
-	//fmt.Println(string(logistic.Data.Booking[0].BookingID))
-	fmt.Println(TruckRAOT[0].ID)
-	fmt.Println(TruckRAOT[0].LicenseNumberTh)
+	////fmt.Println(string(logistic.Data.Booking[0].BookingID))
+	//fmt.Println(TruckRAOT[0].ID)
+	//fmt.Println(TruckRAOT[0].LicenseNumberTh)
 
 	dns := getDNSString(dblogin, userlogin, passlogin, conn) //(dblogin, userlogin, passlogin, conn)
 	db, err := sql.Open("mysql", dns)
@@ -15255,10 +13280,10 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('GetTruck',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -15291,26 +13316,26 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 		req, err := http.NewRequest(method, url, nil)
 
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
 		//req.Header.Add("Authorization", "f7b8c2512a00f0ca3eac801e3bfc03d95de4e39aa3bef17e3ba67c8709f18f01")
 		req.Header.Add("Authorization", "Bearer "+tokenkey)
 		req.Header.Add("Content-Type", "application/json")
-		fmt.Println(req.Header)
+		//fmt.Println(req.Header)
 		res, err := client.Do(req)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
 		defer res.Body.Close()
 
 		body2, err := ioutil.ReadAll(res.Body)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 			return
 		}
-		fmt.Println(string(body2))
+		//fmt.Println(string(body2))
 
 		var trailers TrailersRAOTDetailTrader
 		jsonData2 := []byte(string(body2))
@@ -15321,13 +13346,13 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println(js2)
+		//fmt.Println(js2)
 
 		json.Unmarshal([]byte(body2), &trailers)
 
-		//fmt.Println(string(logistic.Data.Booking[0].BookingID))
-		fmt.Println(trailers[0].ID)
-		fmt.Println(trailers[0].LicenseNumberTh)
+		////fmt.Println(string(logistic.Data.Booking[0].BookingID))
+		//fmt.Println(trailers[0].ID)
+		//fmt.Println(trailers[0].LicenseNumberTh)
 
 		// dns := getDNSString(dblogin, userlogin, passlogin, conn)
 		// db, err := sql.Open("mysql", dns)
@@ -15341,10 +13366,10 @@ func GetTruck(w http.ResponseWriter, r *http.Request) {
 		// }
 		// defer db.Close()
 
-		CUser := article.CUser
+		//CUser := article.CUser
 		//EType := article.EType
 
-		fmt.Println(CUser)
+		//fmt.Println(CUser)
 
 		// if WHName == "" {
 		// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -15424,17 +13449,17 @@ func GetTrader(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -15442,7 +13467,7 @@ func GetTrader(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -15476,7 +13501,7 @@ func GetTrader(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -15492,7 +13517,7 @@ func GetTrader(w http.ResponseWriter, r *http.Request) {
 	// StartDT := article.StartDT
 	// StopDT := article.StopDT
 	// CheckPointID := article.CheckPointID
-	CUser := article.CUser
+	//CUser := article.CUser
 	//EType := article.EType
 
 	// keep log request
@@ -15504,7 +13529,7 @@ func GetTrader(w http.ResponseWriter, r *http.Request) {
 	}
 	/////
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	// if WHName == "" {
 	// 	log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -15526,7 +13551,7 @@ func GetTrader(w http.ResponseWriter, r *http.Request) {
 	// key = []byte("RAOTSMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 	// s, err = t.SignedString(key)
-	// fmt.Println(s)
+	// //fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	//ress3, err2 := db.Query("SELECT weightid as Appid, checkpointcode as AppType, checkpointname as Version ,createdt as LastestDT FROM raotdb.tblcheckpoint WHERE weightid  = '" + WHName + "' ")
@@ -15589,17 +13614,17 @@ func SetCalculate(w http.ResponseWriter, r *http.Request) {
 	var article PWASetCalculate
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.Authorization)
+	//fmt.Println("UserID", article.Authorization)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -15607,7 +13632,7 @@ func SetCalculate(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -15641,7 +13666,7 @@ func SetCalculate(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -15703,7 +13728,7 @@ func SetCalculate(w http.ResponseWriter, r *http.Request) {
 	CUser := article.CUser
 	EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	if CUser == "" {
 		//log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -15823,17 +13848,17 @@ func ConfigStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -15841,7 +13866,7 @@ func ConfigStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -15875,7 +13900,7 @@ func ConfigStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -15906,7 +13931,7 @@ func ConfigStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 	CUser := article.CUser
 	EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	if WHName == "" {
 		//log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -15931,7 +13956,7 @@ func ConfigStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 	// key = []byte("RAOTSMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 	// s, err = t.SignedString(key)
-	// fmt.Println(s)
+	// //fmt.Println(s)
 	strsql := ""
 	if EType == "add" {
 		//log.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -16122,24 +14147,24 @@ func ConfigStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 				req, err := http.NewRequest(method, url, payload)
 
 				if err != nil {
-					fmt.Println(err)
+					//fmt.Println(err)
 					return
 				}
 				req.Header.Add("Content-Type", "application/json")
 
 				res, err := client.Do(req)
 				if err != nil {
-					fmt.Println(err)
+					//fmt.Println(err)
 					return
 				}
 				defer res.Body.Close()
 
-				body, err := ioutil.ReadAll(res.Body)
+				//body, err := ioutil.ReadAll(res.Body)
 				if err != nil {
-					fmt.Println(err)
+					//fmt.Println(err)
 					return
 				}
-				fmt.Println(string(body))
+				//fmt.Println(string(body))
 
 				defer ress3.Close()
 				err = ress3.Close()
@@ -16169,17 +14194,17 @@ func ConfigCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	var article PWASendLocation
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.LocationID)
+	//fmt.Println("UserID", article.LocationID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -16187,7 +14212,7 @@ func ConfigCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -16221,7 +14246,7 @@ func ConfigCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -16249,7 +14274,7 @@ func ConfigCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	LocationGPS := article.LocationGPS
 	EType := article.EType
 
-	fmt.Println(LocationID)
+	//fmt.Println(LocationID)
 
 	/// SEND TO GPS
 
@@ -16268,14 +14293,14 @@ func ConfigCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	req.Header.Add("Content-Type", "application/json")
 
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	defer res.Body.Close()
@@ -16283,10 +14308,10 @@ func ConfigCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		//APItTruckCheckInOut
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	ress9998, err := db.Query("INSERT INTO raotdb.tblapilog (apiname,apimessage, createdt) Values ('" + url + "','" + string(body) + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )   ")
 	defer ress9998.Close()
@@ -16316,7 +14341,7 @@ func ConfigCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 	key = []byte("RAOTSMART")
 	t = jwt.New(jwt.SigningMethodHS256)
 	s, err = t.SignedString(key)
-	fmt.Println(s)
+	//fmt.Println(s)
 
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
 	ress3, err2 := db.Query("SELECT idcheckpointlocation as Appid, locationname as AppType, ifnull(locationresponse,'') as Version ,ifnull(createdt,'') as LastestDT FROM raotdb.tblcheckpointlocation WHERE idcheckpointlocation  = '" + LocationID + "' ")
@@ -16434,17 +14459,17 @@ func SendWeight(w http.ResponseWriter, r *http.Request) {
 	var article PWASendWeight
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -16452,7 +14477,7 @@ func SendWeight(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -16518,7 +14543,7 @@ func SendWeight(w http.ResponseWriter, r *http.Request) {
 	key = []byte("PWASMART0805401073")
 	t = jwt.New(jwt.SigningMethodHS256)
 	s, err = t.SignedString(key)
-	fmt.Println(s)
+	//fmt.Println(s)
 
 	ress3, err2 := db.Query("SELECT userid as AppType, weightid as Version FROM raotdb.tbluser WHERE username = '0805401073' ")
 	//defer ress3.Close()
@@ -16598,17 +14623,17 @@ func SetRAOTUser(w http.ResponseWriter, r *http.Request) {
 	var article GetRaotUser
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.UserName)
+	//fmt.Println("UserID", article.UserName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -16616,7 +14641,7 @@ func SetRAOTUser(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -16659,7 +14684,7 @@ func SetRAOTUser(w http.ResponseWriter, r *http.Request) {
 	}
 	/////
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	expiredAt := time.Now().Add(time.Duration(time.Second) * 1).Unix()
 	strexpiredAt := strconv.FormatInt(expiredAt, 10)
@@ -16771,17 +14796,17 @@ func SetRAOTUserRollback(w http.ResponseWriter, r *http.Request) {
 	var article GetRaotUser
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.UserName)
+	//fmt.Println("UserID", article.UserName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -16789,7 +14814,7 @@ func SetRAOTUserRollback(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -16832,7 +14857,7 @@ func SetRAOTUserRollback(w http.ResponseWriter, r *http.Request) {
 	}
 	/////
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	expiredAt := time.Now().Add(time.Duration(time.Second) * 1).Unix()
 	strexpiredAt := strconv.FormatInt(expiredAt, 10)
@@ -16939,17 +14964,17 @@ func SetRAOTUserPosition(w http.ResponseWriter, r *http.Request) {
 	var article AppSetUserPositionRAOT
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("Positionname", article.Positionname)
+	////fmt.Println("Positionname", article.Positionname)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -16957,7 +14982,7 @@ func SetRAOTUserPosition(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	////fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -16988,10 +15013,10 @@ func SetRAOTUserPosition(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.UserID
+	//CUser := article.UserID
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	////fmt.Println(CUser)
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('SetRAOTUserPosition',requestcount+1,'" + channel[0] + "','" + article.UserID + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -17021,7 +15046,7 @@ func SetRAOTUserPosition(w http.ResponseWriter, r *http.Request) {
 	// key = []byte("RAOTSMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 	// s, err = t.SignedString(key)
-	// fmt.Println(s)
+	// //fmt.Println(s)
 	expiredAt := time.Now().Add(time.Duration(time.Second) * 1).Unix()
 	strexpiredAt := strconv.FormatInt(expiredAt, 10)
 	//ress3, err2 := db.Query("SELECT Wid as Appid, WHName as AppType, OnlineWeight as Version ,CDateTime as LastestDT FROM raotdb.tblweight WHERE weightname  = '" + WHName + "' ")
@@ -17120,17 +15145,17 @@ func GetRAOTUser(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("User", article.User)
+	////fmt.Println("User", article.User)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -17138,7 +15163,7 @@ func GetRAOTUser(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	////fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -17169,7 +15194,7 @@ func GetRAOTUser(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 	//EType := article.EType
 
 	// keep log request
@@ -17181,7 +15206,7 @@ func GetRAOTUser(w http.ResponseWriter, r *http.Request) {
 	}
 	/////
 
-	fmt.Println(CUser)
+	////fmt.Println(CUser)
 
 	strsql := "SELECT id as DBID, username, name, ifnull(surename,'')surename, position, department, locationresponse, ifnull(grouporganize,'')grouporganize, email, permission, ifnull(lastlogindt,'')lastlogindt, ifnull(logincounter,'')logincounter, ifnull(keycloakUserRole,'')keycloakUserRole FROM raotdb.vw_user_role  Order by id  "
 
@@ -17246,17 +15271,17 @@ func GetRAOTUserBackup(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("User", article.User)
+	////fmt.Println("User", article.User)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -17264,7 +15289,7 @@ func GetRAOTUserBackup(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	////fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -17295,7 +15320,7 @@ func GetRAOTUserBackup(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 	//EType := article.EType
 
 	// keep log request
@@ -17307,7 +15332,7 @@ func GetRAOTUserBackup(w http.ResponseWriter, r *http.Request) {
 	}
 	/////
 
-	fmt.Println(CUser)
+	////fmt.Println(CUser)
 
 	strsql := "SELECT id as DBID, username, name, ifnull(surename,'')surename, position, department, locationresponse, ifnull(grouporganize,'')grouporganize, email, permission, ifnull(lastlogindt,'')lastlogindt, ifnull(logincounter,'')logincounter, ifnull(keycloakUserRole,'')keycloakUserRole FROM raotdb.vw_user_role_backup  Order by id  "
 
@@ -17375,17 +15400,17 @@ func SetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 	var article PWAResponseLocation
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.CUser)
+	////fmt.Println("UserID", article.CUser)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -17393,7 +15418,7 @@ func SetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	////fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -17424,7 +15449,7 @@ func SetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('SetRAOTResponselocation',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -17434,11 +15459,11 @@ func SetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 	}
 	///
 	//EType := article.EType
-	expiredAt := time.Now().Add(time.Duration(time.Second) * 1).Unix()
-	strexpiredAt := strconv.FormatInt(expiredAt, 10)
+	//expiredAt := time.Now().Add(time.Duration(time.Second) * 1).Unix()
+	//strexpiredAt := strconv.FormatInt(expiredAt, 10)
 
-	fmt.Println(CUser)
-	ress3, err2 := db.Query("SELECT dbid, locationresponsename FROM raotdb.tbllocationresponse WHERE locationresponsename = '" + article.ResponseLocationName + "' ORDER BY dbid  ")
+	////fmt.Println(CUser)
+	ress3, err2 := db.Query("SELECT dbid, locationresponsename FROM raotdb.tbllocationresponse WHERE dbid = '" + article.CUser + "' ORDER BY dbid  ")
 
 	//defer ress3.Close()
 	boxes := []AppReturnResponseLocationRAOT{}
@@ -17464,10 +15489,21 @@ func SetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 		if cnt >= 0 {
 
 			if article.EType != "delete" {
-				ress99, err := db.Query("INSERT INTO raotdb.tbllocationresponse (dbid,  locationResponsename, createdt) Values ('" + strexpiredAt + "','" + article.ResponseLocationName + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ")
-				defer ress99.Close()
-				if err != nil {
-					panic(err)
+
+				if article.EType == "edit" {
+					ress99, err := db.Query("INSERT INTO raotdb.tbllocationresponse (dbid,  locationResponsename, createdt) Values ('" + article.CUser + "','" + article.ResponseLocationName + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') ) ON DUPLICATE KEY UPDATE locationResponsename = '" + article.ResponseLocationName + "'   ")
+					defer ress99.Close()
+					if err != nil {
+						panic(err)
+					}
+				}
+
+				if article.EType == "add" {
+					ress99, err := db.Query("INSERT INTO raotdb.tbllocationresponse (dbid,  locationResponsename, createdt) SELECT  MAX(dbid)+1 ,'" + article.ResponseLocationName + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') FROM raotdb.tbllocationresponse   ")
+					defer ress99.Close()
+					if err != nil {
+						panic(err)
+					}
 				}
 
 				boxes = append(boxes, AppReturnResponseLocationRAOT{DBID: "1", LocationResponsename: article.ResponseLocationName})
@@ -17533,17 +15569,17 @@ func GetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	////fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -17551,7 +15587,7 @@ func GetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	////fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -17582,7 +15618,7 @@ func GetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('GetRAOTResponselocation',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -17593,7 +15629,7 @@ func GetRAOTResponselocation(w http.ResponseWriter, r *http.Request) {
 	///
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	////fmt.Println(CUser)
 
 	strsql := "SELECT dbid, locationresponsename FROM raotdb.tbllocationresponse ORDER BY dbid  "
 
@@ -17654,17 +15690,17 @@ func GetRAOTGroup(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	////fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -17672,7 +15708,7 @@ func GetRAOTGroup(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -17703,7 +15739,7 @@ func GetRAOTGroup(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('GetRAOTGroup',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -17718,7 +15754,7 @@ func GetRAOTGroup(w http.ResponseWriter, r *http.Request) {
 	if article.SearchTxt != "" {
 		strsql = "SELECT dbid, groupname as locationresponsename FROM raotdb.tblraotgroup WHERE groupname like '%" + article.SearchTxt + "%' ORDER BY dbid "
 	}
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 	ress3, err2 := db.Query(strsql)
 
 	//defer ress3.Close()
@@ -17772,17 +15808,17 @@ func SetRAOTGroup(w http.ResponseWriter, r *http.Request) {
 	var article PWAResponseLocation
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.ResponseLocationName)
+	//fmt.Println("UserID", article.ResponseLocationName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -17790,7 +15826,7 @@ func SetRAOTGroup(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -17821,7 +15857,7 @@ func SetRAOTGroup(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	CUser := article.CUser
+	//CUser := article.CUser
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('SetRAOTGroup',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -17835,7 +15871,7 @@ func SetRAOTGroup(w http.ResponseWriter, r *http.Request) {
 	expiredAt := time.Now().Add(time.Duration(time.Second) * 1).Unix()
 	strexpiredAt := strconv.FormatInt(expiredAt, 10)
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 	ress3, err2 := db.Query("SELECT dbid, groupname as locationresponsename FROM raotdb.tblraotgroup WHERE groupname = '" + article.ResponseLocationName + "' ORDER BY dbid  ")
 
 	//defer ress3.Close()
@@ -17930,17 +15966,17 @@ func GetRAOTUserPosition(w http.ResponseWriter, r *http.Request) {
 	var article PWASendCheckpointStart
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.WHName)
+	//fmt.Println("UserID", article.WHName)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -17948,7 +15984,7 @@ func GetRAOTUserPosition(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -17982,7 +16018,7 @@ func GetRAOTUserPosition(w http.ResponseWriter, r *http.Request) {
 	CUser := article.PositionName
 	//EType := article.EType
 
-	fmt.Println(CUser)
+	//fmt.Println(CUser)
 
 	// keep log request
 
@@ -18058,17 +16094,17 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	var article PWALogin
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.UserID)
+	//fmt.Println("UserID", article.UserID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -18076,7 +16112,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa < 0 {
 		respok := make(map[string]string)
@@ -18110,7 +16146,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -18135,29 +16171,29 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	MobileType := article.UserID
 	VersionNow := article.PassWord
 	toKen := article.Token
-	fmt.Println(toKen)
+	//fmt.Println(toKen)
 
-	var (
-		key []byte
-		t   *jwt.Token
-		s   string
-	)
+	// var (
+	// 	key []byte
+	// 	t   *jwt.Token
+	// 	s   string
+	// )
 
-	key = []byte("PWASMART")
-	t = jwt.New(jwt.SigningMethodHS256)
+	// key = []byte("PWASMART")
+	// t = jwt.New(jwt.SigningMethodHS256)
 
 	userData := map[string]interface{}{"USERID": MobileType, "VERSION": VersionNow}
 
 	// accessToken, err := Sign(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 86400) // data -> secretkey env name -> expiredAt // Production
-	// fmt.Println(accessToken)
+	// //fmt.Println(accessToken)
 	accessToken := ""
 
-	s, err = t.SignedString(key)
-	fmt.Println(s)
+	//s, err = t.SignedString(key)
+	//fmt.Println(s)
 
 	/////  SSO Check ////
-
-	url := "https://cess-sso.olive.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	url := "http://61.19.236.5/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	//url := "https://cess-sso.olive.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 	method := "POST"
 
 	//toKen = "7383b48a-df2d-4561-93a4-c42e46f09f6b.5ea3beb9-225c-4a66-930d-a0feed1e865d.379cc971-ac0a-4369-8a25-fc4624f5ea15"
@@ -18171,30 +16207,30 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	var article2 SSOAccessToken
 	json.Unmarshal(body, &article2)
 
-	fmt.Println("body", article2.AccessToken)
-	fmt.Println("ExpireToken", article2.ExpiresIn)
+	//fmt.Println("body", article2.AccessToken)
+	//fmt.Println("ExpireToken", article2.ExpiresIn)
 
 	tokenString := article2.AccessToken
 	claims := jwt.MapClaims{}
@@ -18213,9 +16249,9 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// roles := claims["roles"]
-	fmt.Println("Email", claims["email"])
-	fmt.Println("Role", claims["realm_access"])
-	fmt.Println("Name", claims["name"])
+	//fmt.Println("Email", claims["email"])
+	//fmt.Println("Role", claims["realm_access"])
+	//fmt.Println("Name", claims["name"])
 
 	str_realm_access := fmt.Sprintf("%v", claims["realm_access"])
 	fmt.Println("realm_access", str_realm_access)
@@ -18224,12 +16260,12 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	realm_access := claims["realm_access"]
 
 	b, _ := json.Marshal(realm_access)
-	//fmt.Println(string(b))
+	////fmt.Println(string(b))
 
 	var rAOTRole RAOTRole
 	json.Unmarshal(b, &rAOTRole)
 
-	fmt.Println("body", rAOTRole.Roles[2])
+	//fmt.Println("body", rAOTRole.Roles[2])
 
 	userRole := rAOTRole.Roles[0]
 	roleLength := len(rAOTRole.Roles)
@@ -18251,8 +16287,8 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	// role := realm_access["role"]
 	// respok["Token"] = accessToken //QR
 	// respok["TokenExpireDT"] = strexpiredAt
-	// fmt.Println("JWTToken", role)
-	fmt.Println("realm_access", realm_access)
+	// //fmt.Println("JWTToken", role)
+	//fmt.Println("realm_access", realm_access)
 
 	ExpiresIn := strconv.Itoa(article2.ExpiresIn)
 
@@ -18314,7 +16350,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 				i64 := int64(mf64)
 				// if err != nil {
 				// 	accessToken, err := SignRAOT(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 86400) // data -> secretkey env name -> expiredAt // Production
-				// 	fmt.Println(accessToken)
+				// 	//fmt.Println(accessToken)
 
 				// 	if err != nil {
 				// 		panic(err)
@@ -18337,7 +16373,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 
 				if expiredAt > i64 {
 					// accessToken, err := Sign(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 86400) // data -> secretkey env name -> expiredAt // Production
-					// fmt.Println(accessToken)
+					// //fmt.Println(accessToken)
 
 					// if err != nil {
 					// 	panic(err)
@@ -18362,7 +16398,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 
 			} else {
 				accessToken, err := SignRAOT(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 86400) // data -> secretkey env name -> expiredAt // Production
-				fmt.Println(accessToken)
+				//fmt.Println(accessToken)
 
 				if err != nil {
 					panic(err)
@@ -18442,17 +16478,17 @@ func ChkApp(w http.ResponseWriter, r *http.Request) {
 	var article PWALogin
 	json.Unmarshal(reqBody, &article)
 
-	fmt.Println("UserID", article.UserID)
+	//fmt.Println("UserID", article.UserID)
 
 	reqHeader := r.Header["Authorization"]
 
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
 
 		aa = ChkAuth(auth, channel)
@@ -18460,7 +16496,7 @@ func ChkApp(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -18496,7 +16532,7 @@ func ChkApp(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -18511,7 +16547,7 @@ func ChkApp(w http.ResponseWriter, r *http.Request) {
 	MobileType := article.UserID
 	VersionNow := article.PassWord
 	toKen := article.Token
-	fmt.Println(toKen)
+	//fmt.Println(toKen)
 
 	var (
 		key []byte
@@ -18525,7 +16561,7 @@ func ChkApp(w http.ResponseWriter, r *http.Request) {
 	userData := map[string]interface{}{"USERID": MobileType, "VERSION": VersionNow}
 
 	// accessToken, err := Sign(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 86400) // data -> secretkey env name -> expiredAt // Production
-	// fmt.Println(accessToken)
+	// //fmt.Println(accessToken)
 	accessToken := ""
 
 	s, err = t.SignedString(key)
@@ -18579,7 +16615,7 @@ func ChkApp(w http.ResponseWriter, r *http.Request) {
 				i64, err := strconv.ParseInt(event.TkenExpiredt, 10, 64)
 				if err != nil {
 					accessToken, err := SignRAOT(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 86400) // data -> secretkey env name -> expiredAt // Production
-					fmt.Println(accessToken)
+					//fmt.Println(accessToken)
 
 					if err != nil {
 						panic(err)
@@ -18602,7 +16638,7 @@ func ChkApp(w http.ResponseWriter, r *http.Request) {
 
 				if expiredAt > i64 {
 					// accessToken, err := Sign(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 86400) // data -> secretkey env name -> expiredAt // Production
-					// fmt.Println(accessToken)
+					// //fmt.Println(accessToken)
 
 					// if err != nil {
 					// 	panic(err)
@@ -18627,7 +16663,7 @@ func ChkApp(w http.ResponseWriter, r *http.Request) {
 
 			} else {
 				accessToken, err := SignRAOT(userData, "9C0459C63EFB8231A9E23063BF0D413ADCAEFED8D2745B9E1CD5CB070E616BA8", 86400) // data -> secretkey env name -> expiredAt // Production
-				fmt.Println(accessToken)
+				//fmt.Println(accessToken)
 
 				if err != nil {
 					panic(err)
@@ -18707,13 +16743,13 @@ func OMSGetOrder(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -18749,7 +16785,7 @@ func OMSGetOrder(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -18807,13 +16843,13 @@ func OMSUpdateBookMark(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -18849,7 +16885,7 @@ func OMSUpdateBookMark(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -18889,13 +16925,13 @@ func OMSGetCOD(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -18931,7 +16967,7 @@ func OMSGetCOD(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -18989,13 +17025,13 @@ func OMSGetBankAccount(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -19031,7 +17067,7 @@ func OMSGetBankAccount(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -19202,7 +17238,7 @@ func OMSGetBankAccount(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 
-	//fmt.Println(article.Id)
+	////fmt.Println(article.Id)
 
 	// firstEvent := Event5{}
 	// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -19252,7 +17288,7 @@ func OMSGetBankAccount(w http.ResponseWriter, r *http.Request) {
 
 	//counter := 0
 	// sqlstr := "INSERT INTO THPDMPDB.tblpaymentaccount (TrackingID, AccountID, AccountName, PhoneNo, Email, BankName, BankAccNo, BankType, PromptPayID, CreateDT, UserType, PrimaryTransferAccount,AmountPrice,ComCode ) Values ('" + article.TrackingID + "','" + article.AccountID + "','" + article.AccountName + "','" + article.PhoneNo + "','" + article.Email + "','" + article.BankName + "','" + article.BankAccNo + "','" + article.BankType + "','" + article.PromptPayID + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'" + article.UserType + "','" + article.PrimaryTransferAccount + "', '" + article.AmountPrice + "', '" + article.ComCode + "')"
-	// fmt.Println(sqlstr)
+	// //fmt.Println(sqlstr)
 	ress3, err2 := db.Query("INSERT INTO THPDMPDB.tblpaymentaccount (TrackingID, AccountID, AccountName, PhoneNo, Email, BankName, BankAccNo, BankAccName, BankType, PromptPayID, CreateDT, UserType, PrimaryTransferAccount,AmountPrice,ComCode,TaxID,BankCode,Ref3,Ref1 ) Values ('" + article.TrackingID + "','" + article.AccountID + "','" + article.AccountName + "','" + article.PhoneNo + "','" + article.Email + "','" + article.BankName + "','" + article.BankAccNo + "','" + article.BankAccName + "','" + article.BankType + "','" + article.PromptPayID + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'),'" + article.UserType + "','" + article.PrimaryTransferAccount + "', '" + article.AmountPrice + "', '" + article.ComCode + "', '" + article.TaxID + "', '" + article.BankCode + "','" + article.Corporation + "' ,'" + receiptaddress + "' )")
 	//defer ress3.Close()
 	if err2 != nil {
@@ -19428,7 +17464,7 @@ func OMSMobileUpdateLoginMember(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -19523,13 +17559,13 @@ func OMSMobileUpdateLoginMemberWithAuth(w http.ResponseWriter, r *http.Request) 
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -19617,7 +17653,7 @@ func OMSMobileUpdateLoginMemberWithAuth(w http.ResponseWriter, r *http.Request) 
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -19727,7 +17763,7 @@ func OMSMobileGetMember(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -19779,7 +17815,7 @@ func OMSMobileGetMember(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -19840,13 +17876,13 @@ func CheckUser(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -19878,7 +17914,7 @@ func CheckUser(w http.ResponseWriter, r *http.Request) {
 			connectDb()
 		}
 		if DB.Stats().OpenConnections != 0 {
-			fmt.Println(DB.Stats().OpenConnections)
+			//fmt.Println(DB.Stats().OpenConnections)
 		} else {
 			connectDb()
 		}
@@ -19957,13 +17993,13 @@ func OMSMobileGetMemberWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -19998,7 +18034,7 @@ func OMSMobileGetMemberWithAuth(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -20050,7 +18086,7 @@ func OMSMobileGetMemberWithAuth(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -20111,13 +18147,13 @@ func OMSMobileGetPostcodeWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -20153,7 +18189,7 @@ func OMSMobileGetPostcodeWithAuth(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -20178,7 +18214,7 @@ func OMSMobileGetPostcodeWithAuth(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -20262,7 +18298,7 @@ func OMSMobileGetPostcode(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -20287,7 +18323,7 @@ func OMSMobileGetPostcode(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -20371,7 +18407,7 @@ func OMSMobileSelectOrder(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -20396,7 +18432,7 @@ func OMSMobileSelectOrder(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -20484,13 +18520,13 @@ func OMSMobileExtraRate(w http.ResponseWriter, r *http.Request) {
 	// }
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -20513,7 +18549,7 @@ func OMSMobileExtraRate(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -20523,7 +18559,7 @@ func OMSMobileExtraRate(w http.ResponseWriter, r *http.Request) {
 	strsql := "SELECT RateID,RateName,RatePrice FROM thpddb.tblrateextra "
 
 	ress2, err := db.Query(strsql)
-	fmt.Println(err)
+	//fmt.Println(err)
 
 	if err == nil {
 
@@ -20609,13 +18645,13 @@ func OMSMobileChkMerchant(w http.ResponseWriter, r *http.Request) {
 	// }
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -20638,7 +18674,7 @@ func OMSMobileChkMerchant(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -20648,7 +18684,7 @@ func OMSMobileChkMerchant(w http.ResponseWriter, r *http.Request) {
 	strsql := "SELECT PhoneNumber,CitizenID FROM thpdmpdb.tblmerchant WHERE PhoneNumber = '" + article.MobileType + "'"
 
 	ress2, err := db.Query(strsql)
-	fmt.Println(err)
+	//fmt.Println(err)
 
 	if err == nil {
 
@@ -20732,13 +18768,13 @@ func OMSUpdateTMS(w http.ResponseWriter, r *http.Request) {
 	// }
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -20761,7 +18797,7 @@ func OMSUpdateTMS(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -20872,17 +18908,17 @@ func OMSUpdateTMS(w http.ResponseWriter, r *http.Request) {
 
 	resp2, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		//return err.Error()
 	}
 	defer resp2.Body.Close()
 
 	body, err := ioutil.ReadAll(resp2.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		//return string(err.Error())
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackingID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + ", " + spayload + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
 	defer ress3.Close()
@@ -20935,13 +18971,13 @@ func OMSMobileKeepLog(w http.ResponseWriter, r *http.Request) {
 	// }
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -20964,7 +19000,7 @@ func OMSMobileKeepLog(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21019,7 +19055,7 @@ func OMSMobileDiscount(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21044,7 +19080,7 @@ func OMSMobileDiscount(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -21128,7 +19164,7 @@ func OMSMobileGetJobDriverBookingMatchAlready(w http.ResponseWriter, r *http.Req
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21153,7 +19189,7 @@ func OMSMobileGetJobDriverBookingMatchAlready(w http.ResponseWriter, r *http.Req
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -21214,10 +19250,10 @@ func OMSMobileGetJobDriverBookingMatchAlreadyWithAuth(w http.ResponseWriter, r *
 
 	reqHeader := r.Header["Authorization"]
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -21253,7 +19289,7 @@ func OMSMobileGetJobDriverBookingMatchAlreadyWithAuth(w http.ResponseWriter, r *
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21284,7 +19320,7 @@ func OMSMobileGetJobDriverBookingMatchAlreadyWithAuth(w http.ResponseWriter, r *
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -21358,7 +19394,7 @@ func OMSMobileGetJobDriverBooking(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21383,7 +19419,7 @@ func OMSMobileGetJobDriverBooking(w http.ResponseWriter, r *http.Request) {
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -21448,10 +19484,10 @@ func OMSMobileGetJobDriverBookingWithAuth(w http.ResponseWriter, r *http.Request
 
 	reqHeader := r.Header["Authorization"]
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -21487,7 +19523,7 @@ func OMSMobileGetJobDriverBookingWithAuth(w http.ResponseWriter, r *http.Request
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21512,7 +19548,7 @@ func OMSMobileGetJobDriverBookingWithAuth(w http.ResponseWriter, r *http.Request
 
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -21590,7 +19626,7 @@ func OMSMobileSelectOrderWithIMG(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21613,7 +19649,7 @@ func OMSMobileSelectOrderWithIMG(w http.ResponseWriter, r *http.Request) {
 	//firstEvent2 := Event5{}
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -21681,13 +19717,13 @@ func OMSMobileSelectOrderWithIMGWithAuth(w http.ResponseWriter, r *http.Request)
 	var article DriverTracking
 	json.Unmarshal(reqBody, &article)
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -21722,7 +19758,7 @@ func OMSMobileSelectOrderWithIMGWithAuth(w http.ResponseWriter, r *http.Request)
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21745,7 +19781,7 @@ func OMSMobileSelectOrderWithIMGWithAuth(w http.ResponseWriter, r *http.Request)
 	//firstEvent2 := Event5{}
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -21814,13 +19850,13 @@ func OMSMobileSelectOrderFromBookingWithAuth(w http.ResponseWriter, r *http.Requ
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -21855,7 +19891,7 @@ func OMSMobileSelectOrderFromBookingWithAuth(w http.ResponseWriter, r *http.Requ
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21878,7 +19914,7 @@ func OMSMobileSelectOrderFromBookingWithAuth(w http.ResponseWriter, r *http.Requ
 	//firstEvent2 := Event5{}
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -21961,7 +19997,7 @@ func OMSMobileSelectOrderFromBooking(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -21984,7 +20020,7 @@ func OMSMobileSelectOrderFromBooking(w http.ResponseWriter, r *http.Request) {
 	//firstEvent2 := Event5{}
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -22054,13 +20090,13 @@ func OMSCheckCarrierGetJob(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -22095,7 +20131,7 @@ func OMSCheckCarrierGetJob(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -22125,7 +20161,7 @@ func OMSCheckCarrierGetJob(w http.ResponseWriter, r *http.Request) {
 	//firstEvent2 := Event5{}
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -22194,13 +20230,13 @@ func OMSMobileSelectOrderNoIMGWithAuth(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &article)
 
 	reqHeader := r.Header["Authorization"]
-	//fmt.Println("Header", reqHeader)
+	////fmt.Println("Header", reqHeader)
 
 	reqHeaderChannel := r.Header["Channel"]
-	//fmt.Println("Header", reqHeaderChannel)
+	////fmt.Println("Header", reqHeaderChannel)
 
 	aa := ChkAuth(reqHeader, reqHeaderChannel)
-	fmt.Println("aa", aa)
+	//fmt.Println("aa", aa)
 
 	if aa <= 0 {
 		respok := make(map[string]string)
@@ -22235,7 +20271,7 @@ func OMSMobileSelectOrderNoIMGWithAuth(w http.ResponseWriter, r *http.Request) {
 	// 	connectDb()
 	// }
 	// if DB.Stats().OpenConnections != 0 {
-	// 	fmt.Println(DB.Stats().OpenConnections)
+	// 	//fmt.Println(DB.Stats().OpenConnections)
 	// } else {
 	// 	connectDb()
 	// }
@@ -22264,7 +20300,7 @@ func OMSMobileSelectOrderNoIMGWithAuth(w http.ResponseWriter, r *http.Request) {
 	//firstEvent2 := Event5{}
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -22347,7 +20383,7 @@ func OMSMobileSelectOrderNoIMG(w http.ResponseWriter, r *http.Request) {
 		connectDb()
 	}
 	if DB.Stats().OpenConnections != 0 {
-		fmt.Println(DB.Stats().OpenConnections)
+		//fmt.Println(DB.Stats().OpenConnections)
 	} else {
 		connectDb()
 	}
@@ -22370,7 +20406,7 @@ func OMSMobileSelectOrderNoIMG(w http.ResponseWriter, r *http.Request) {
 	//firstEvent2 := Event5{}
 	//datett := article.Date
 	if typefind != "" {
-		//fmt.Println(article.Id)
+		////fmt.Println(article.Id)
 
 		// firstEvent := Event5{}
 		// err = selectOMSOrder(db, article.MobileID, article.Token, &firstEvent)
@@ -22444,10 +20480,10 @@ func API(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 
 	bs := string(body)
-	fmt.Println(bs)
+	//fmt.Println(bs)
 
 	res1 := strings.Split(bs, "&")
-	fmt.Println(strings.Split(res1[4], "=")[1])
+	//fmt.Println(strings.Split(res1[4], "=")[1])
 
 	res41 := strings.Split(res1[4], "=")[1]
 
@@ -22474,7 +20510,7 @@ func API(w http.ResponseWriter, r *http.Request) {
 
 	// //CUser := article.CUser
 	// //EType := article.EType
-	// //fmt.Println(CUser)
+	// ////fmt.Println(CUser)
 
 	boxes := []AppReturnTruckEntry{}
 
@@ -22627,8 +20663,8 @@ func handleRequests() {
 
 	//http.Handle("/", v3.NewHandler("My API", "/swagger.json", "/"))
 	//<<<<<<< HEAD
-	//log.Fatal(http.ListenAndServe(":8080", myRouter)) // production
-	log.Fatal(http.ListenAndServe(":80", myRouter)) // production
+	log.Fatal(http.ListenAndServe(":8080", myRouter)) // production RAOT
+	//log.Fatal(http.ListenAndServe(":80", myRouter)) // production
 	//log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
 	//log.Fatal(http.ListenAndServe(":9080", myRouter)) // test
 	//=======
