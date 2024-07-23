@@ -16189,11 +16189,11 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	accessToken := ""
 
 	//s, err = t.SignedString(key)
-	//fmt.Println(s)
+	fmt.Println(toKen)
 
 	/////  SSO Check ////
 
-	url := "http://10.99.71.64/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	url := "http://10.99.20.96/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 	//url := "http://61.19.236.5/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 	//url := "https://cess-sso.olive.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 	method := "POST"
