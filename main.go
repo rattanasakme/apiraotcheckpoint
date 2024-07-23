@@ -3415,8 +3415,8 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	//fmt.Println(t.String())
 	fmt.Println(t.Format("2006-01-02 15:04:05"))
-	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.3 "+userlogin)
-	//fmt.Println("Endpoint Hit: homePage")
+	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.4 "+userlogin)
+	//fmt.Println("Endpoint Hit: homePage"
 
 	// version V 1.0.2
 	// j  ecit for sent update driver to DX and stamp update mobileorder
@@ -16112,7 +16112,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	//fmt.Println("aa", aa)
+	fmt.Println("ChkAuth", aa)
 
 	if aa < 0 {
 		respok := make(map[string]string)
@@ -16223,7 +16223,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
-	//fmt.Println(string(body))
+	fmt.Println(string(body))
 
 	var article2 SSOAccessToken
 	json.Unmarshal(body, &article2)
@@ -16259,12 +16259,13 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	realm_access := claims["realm_access"]
 
 	b, _ := json.Marshal(realm_access)
-	////fmt.Println(string(b))
+
+	fmt.Println(string(b))
 
 	var rAOTRole RAOTRole
 	json.Unmarshal(b, &rAOTRole)
 
-	//fmt.Println("body", rAOTRole.Roles[2])
+	fmt.Println("Roles", rAOTRole.Roles[2])
 
 	userRole := rAOTRole.Roles[0]
 	roleLength := len(rAOTRole.Roles)
@@ -16288,7 +16289,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	// respok["TokenExpireDT"] = strexpiredAt
 	// //fmt.Println("JWTToken", role)
 	//fmt.Println("realm_access", realm_access)
-
+	fmt.Println("email", email)
 	ExpiresIn := strconv.Itoa(article2.ExpiresIn)
 
 	// ress99, err := db.Query("INSERT INTO THPDMPDB.tblmobileapiloghit (ApiName, HitCount, LastHitDT) Values ('OMSGetBankAccount','1',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') ) ON DUPLICATE KEY UPDATE LastHitDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), HitCount = HitCount + 1   ")
@@ -20662,9 +20663,9 @@ func handleRequests() {
 
 	//http.Handle("/", v3.NewHandler("My API", "/swagger.json", "/"))
 	//<<<<<<< HEAD
-	log.Fatal(http.ListenAndServe(":8080", myRouter)) // production RAOT
+	//log.Fatal(http.ListenAndServe(":8080", myRouter)) // production RAOT
 	//log.Fatal(http.ListenAndServe(":80", myRouter)) // production
-	//log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
+	log.Fatal(http.ListenAndServe(":8081", myRouter)) // test
 	//log.Fatal(http.ListenAndServe(":9080", myRouter)) // test
 	//=======
 	//log.Fatal(http.ListenAndServe(":80", myRouter)) // production
