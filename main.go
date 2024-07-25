@@ -3415,7 +3415,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	//fmt.Println(t.String())
 	fmt.Println(t.Format("2006-01-02 15:04:05"))
-	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.4 "+userlogin)
+	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.5 ")
 	//fmt.Println("Endpoint Hit: homePage"
 
 	// version V 1.0.2
@@ -9027,7 +9027,9 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 		//return
 	}
 
-	url := "https://cess-api.olive.co.th/api/v1/public/scan-license-plate/"
+	//url := "https://cess-api.olive.co.th/api/v1/public/scan-license-plate/"
+
+	url := "https://lpr-server.smartcess.raot.co.th/api/v1/public/scan-license-plate/"
 	method := "POST"
 
 	payload := strings.NewReader(`{"image": "` + img64 + `"}`)
@@ -16192,8 +16194,8 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(toKen)
 
 	/////  SSO Check ////
-
-	url := "http://10.99.20.96/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	url := "http://cess-sso.smartcess.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	//url := "http://10.99.20.96/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 	//url := "http://61.19.236.5/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 	//url := "https://cess-sso.olive.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 	method := "POST"
