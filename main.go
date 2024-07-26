@@ -3415,7 +3415,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	//fmt.Println(t.String())
 	fmt.Println(t.Format("2006-01-02 15:04:05"))
-	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.5 ")
+	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.5 Prd")
 	//fmt.Println("Endpoint Hit: homePage"
 
 	// version V 1.0.2
@@ -9029,7 +9029,7 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 
 	//url := "https://cess-api.olive.co.th/api/v1/public/scan-license-plate/"
 
-	url := "https://lpr-server.smartcess.raot.co.th/api/v1/public/scan-license-plate/"
+	url := "http://lpr-server.smartcess.raot.co.th/api/v1/public/scan-license-plate/"
 	method := "POST"
 
 	payload := strings.NewReader(`{"image": "` + img64 + `"}`)
@@ -9055,8 +9055,8 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// req.Header.Add("apikey", "helloworld")
-
 	// req.Header.Set("Content-Type", writer.FormDataContentType())
+
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", "f7b8c2512a00f0ca3eac801e3bfc03d95de4e39aa3bef17e3ba67c8709f18f01")
 
