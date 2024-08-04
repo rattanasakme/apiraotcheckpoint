@@ -217,6 +217,7 @@ type PWASendCheckpointStart struct {
 	SearchRubberType       string `json:"SearchRubberType"`
 	SearchResponse         string `json:"SearchResponse"`
 	SearchLocationName     string `json:"SearchLocationName"`
+	Weight                 string `json:"Weight"`
 }
 type PWASendCheckpointStartJob struct {
 	JobID         string `json:"JobID"`
@@ -629,6 +630,19 @@ type (
 		WHAddressTH     string `json:"WHAddressTH"`
 	}
 )
+type CESS1ACCESS struct {
+	Status      bool   `json:"status"`
+	Message     string `json:"message"`
+	Description string `json:"description"`
+	Data        struct {
+		Token        string `json:"token"`
+		RefreshToken string `json:"refreshToken"`
+	} `json:"data"`
+	TransactionID       string `json:"transactionID"`
+	TransactionDateTime string `json:"transactionDateTime"`
+	Success             bool   `json:"success"`
+}
+
 type TruckRAOT struct {
 	Refresh string `json:"refresh"`
 	Access  string `json:"access"`
@@ -2097,6 +2111,13 @@ type TruckNoti struct {
 	TransportSPID string
 	CustomName    string
 }
+
+type CessDeclareInvoice struct {
+	CessID         string
+	Declaration_id string
+	Custom_name    string
+	Invoice_no     string
+}
 type TruckTrader struct {
 	ID                  string
 	License_number_th   string
@@ -3415,7 +3436,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	//fmt.Println(t.String())
 	fmt.Println(t.Format("2006-01-02 15:04:05"))
-	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.5 Prd")
+	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.7 Prd")
 	//fmt.Println("Endpoint Hit: homePage"
 
 	// version V 1.0.2
@@ -4198,7 +4219,7 @@ func OMSMobileConnect(w http.ResponseWriter, r *http.Request) {
 
 		//counter := 0
 		drivername := strings.Split(article.DriverName, ",")[0]
-		drivercompany := strings.Split(article.DriverName, ",")[1]
+		//drivercompany := strings.Split(article.DriverName, ",")[1]
 
 		ress, err := db.Query("UPDATE THPDMPDB.tblJobMaster SET JobDriverID = '" + article.DriverID + "',JobDriverName = '" + drivername + "', JobTruckPlate = '" + article.Plate + "' , FTLFinalPrice= '" + article.FinalPrice + "' , JobAssignDT = NOW() , jobupdatedt = NOW()  WHERE JobID in (SELECT JobID FROM THPDMPDB.tblOrderMaster WHERE TrackingID = '" + article.TrackingID + "' ) ")
 		defer ress.Close()
@@ -4207,10 +4228,10 @@ func OMSMobileConnect(w http.ResponseWriter, r *http.Request) {
 		} else {
 
 			/// ยิง api เลือกคนขับ
-			UpdateAPIDriverToLoadboard(db, article.TrackingID, article.DriverID, drivercompany)
+			//UpdateAPIDriverToLoadboard(db, article.TrackingID, article.DriverID, drivercompany)
 
 			// ยิงเสริม
-			UpdateAPIDriverToLoadboard2(db, article.TrackingID, article.DriverID, drivercompany)
+			//UpdateAPIDriverToLoadboard2(db, article.TrackingID, article.DriverID, drivercompany)
 
 			ress2, err2 := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET CustomerSelect = '1', CustomConfirmDT = NOW() WHERE  TrackingID = '" + article.TrackingID + "' and DriverName = '" + drivername + "' ")
 			defer ress2.Close()
@@ -4289,7 +4310,7 @@ func OMSMobileUpdateDriverJobMaster(w http.ResponseWriter, r *http.Request) {
 
 		//counter := 0
 		drivername := strings.Split(article.DriverName, ",")[0]
-		drivercompany := strings.Split(article.DriverName, ",")[1]
+		//drivercompany := strings.Split(article.DriverName, ",")[1]
 
 		ress, err := db.Query("UPDATE THPDMPDB.tblJobMaster SET JobDriverID = '" + article.DriverID + "',JobDriverName = '" + drivername + "', JobTruckPlate = '" + article.Plate + "' , FTLFinalPrice= '" + article.FinalPrice + "' , JobAssignDT = NOW() , jobupdatedt = NOW()  WHERE JobID in (SELECT JobID FROM THPDMPDB.tblOrderMaster WHERE JobID = '" + article.TrackingID + "' ) ")
 		defer ress.Close()
@@ -4298,10 +4319,10 @@ func OMSMobileUpdateDriverJobMaster(w http.ResponseWriter, r *http.Request) {
 		} else {
 
 			/// ยิง api เลือกคนขับ
-			UpdateAPIDriverToLoadboard(db, article.TrackingID, article.DriverID, drivercompany)
+			//UpdateAPIDriverToLoadboard(db, article.TrackingID, article.DriverID, drivercompany)
 
 			// ยิงเสริม
-			UpdateAPIDriverToLoadboard2(db, article.TrackingID, article.DriverID, drivercompany)
+			//	UpdateAPIDriverToLoadboard2(db, article.TrackingID, article.DriverID, drivercompany)
 
 			ress2, err2 := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET CustomerSelect = '1', CustomConfirmDT = NOW() WHERE  TrackingID = '" + article.TrackingID + "' and DriverName = '" + drivername + "' ")
 			defer ress2.Close()
@@ -4412,7 +4433,7 @@ func OMSMobileUpdateDriverJobMasterWithAuth(w http.ResponseWriter, r *http.Reque
 
 		//counter := 0
 		drivername := strings.Split(article.DriverName, ",")[0]
-		drivercompany := strings.Split(article.DriverName, ",")[1]
+		//drivercompany := strings.Split(article.DriverName, ",")[1]
 
 		ress, err := db.Query("UPDATE THPDMPDB.tblJobMaster SET JobDriverID = '" + article.DriverID + "',JobDriverName = '" + drivername + "', JobTruckPlate = '" + article.Plate + "' , FTLFinalPrice= '" + article.FinalPrice + "' , JobAssignDT = NOW() , jobupdatedt = NOW()  WHERE JobID in (SELECT JobID FROM THPDMPDB.tblOrderMaster WHERE JobID = '" + article.TrackingID + "' ) ")
 		defer ress.Close()
@@ -4435,7 +4456,7 @@ func OMSMobileUpdateDriverJobMasterWithAuth(w http.ResponseWriter, r *http.Reque
 			}
 
 			/// ยิง api เลือกคนขับ
-			UpdateAPIDriverToLoadboard(db, article.TrackingID, article.DriverID, drivercompany)
+			//UpdateAPIDriverToLoadboard(db, article.TrackingID, article.DriverID, drivercompany)
 
 			resp := make(map[string]string)
 			resp["TrackingID"] = article.TrackingID
@@ -5791,188 +5812,6 @@ func CancelJobToLoadboard2(trackID string, remark string) string {
 	if err == nil {
 	}
 
-	return string("ok")
-}
-func UpdateAPIDriverToLoadboard(db *sql.DB, trackID string, carrier_id string, drivername string) string {
-
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-	// if DB.Ping() != nil {
-	// 	connectDb()
-	// }
-	// if DB.Stats().OpenConnections != 0 {
-	// 	//fmt.Println(DB.Stats().OpenConnections)
-	// } else {
-	// 	connectDb()
-	// }
-	// db := DB
-	// defer db.Close()
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-
-	var app_id = "de_oms"
-	var app_key = "dx1234"
-
-	var emp Con_no
-	emp.con_no = trackID
-
-	//var data []byte
-	//// Convert struct to json
-	//data, _ = json.MarshalIndent(emp, "", "    ")
-
-	payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
-
-	method := "POST"
-	url := tmsapi + "API/BrokerGateways/selectCarrier"
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, payload)
-	if err != nil {
-		panic(err)
-	}
-
-	req.Header.Add("app_id", app_id)
-	req.Header.Add("app_key", app_key)
-	req.Header.Add("Content-Type", "application/json")
-
-	resp2, err := client.Do(req)
-	if err != nil {
-		//fmt.Println(err)
-		return err.Error()
-	}
-	defer resp2.Body.Close()
-
-	body, err := ioutil.ReadAll(resp2.Body)
-	if err != nil {
-		//fmt.Println(err)
-		return string(err.Error())
-	}
-	//fmt.Println(string(body))
-
-	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
-	// //fmt.Println(string(sqlstr))
-
-	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-	defer ress3.Close()
-	if err2 != nil {
-		panic(err)
-	}
-
-	ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET PriceUnit = '1'  WHERE TrackingID = '" + trackID + "'  ")
-	defer ress.Close()
-	if err != nil {
-		panic(err)
-	} else {
-		/// SMS ให้คนขับ ///
-		//SendMessageToDriver(trackID, "0850270971", carrier_id, drivername)
-
-	}
-	if err == nil {
-	}
-
-	return string("ok")
-}
-func UpdateAPIDriverToLoadboard2(db *sql.DB, trackID string, carrier_id string, drivername string) string {
-
-	//dns := getDNSString("THPDMPDB", "admin", "dedb<>10!", "thpd-dedb.cluster-ro-crcn7eiyated.ap-southeast-1.rds.amazonaws.com")
-	// dns := getDNSString(dblogin, userlogin, passlogin, conn)
-	// db, err := sql.Open("mysql", dns)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer db.Close()
-	// if DB.Ping() != nil {
-	// 	connectDb()
-	// }
-	// if DB.Stats().OpenConnections != 0 {
-	// 	//fmt.Println(DB.Stats().OpenConnections)
-	// } else {
-	// 	connectDb()
-	// }
-	// db := DB
-	// defer db.Close()
-	// err := db.Ping()
-	// if err != nil {
-	// 	connectDb()
-
-	// }
-
-	var app_id = "de_oms"
-	var app_key = "dx1234"
-
-	var emp Con_no
-	emp.con_no = trackID
-
-	//var data []byte
-	//// Convert struct to json
-	//data, _ = json.MarshalIndent(emp, "", "    ")
-
-	payload := strings.NewReader(`{"con_no": "` + trackID + `" ,"carrier_id": "` + carrier_id + `"}`)
-
-	method := "POST"
-	url := "https://demo-api.dxplace.com/API/BrokerGateways/selectCarrier"
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, payload)
-	if err != nil {
-		panic(err)
-	}
-
-	req.Header.Add("app_id", app_id)
-	req.Header.Add("app_key", app_key)
-	req.Header.Add("Content-Type", "application/json")
-
-	resp2, err := client.Do(req)
-	if err != nil {
-		//fmt.Println(err)
-		return err.Error()
-	}
-	defer resp2.Body.Close()
-
-	body, err := ioutil.ReadAll(resp2.Body)
-	if err != nil {
-		//fmt.Println(err)
-		return string(err.Error())
-	}
-	//fmt.Println(string(body))
-
-	// sqlstr := "INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  "
-	// //fmt.Println(string(sqlstr))
-
-	ress3, err2 := db.Query("INSERT INTO  THPDMPDB.tblMobileAPILog ( TrackingID, APIName, LogResponse, CreateDT) Values  ( '" + trackID + "' , '" + strings.ReplaceAll(url, "'", `\'`) + "', '" + strings.ReplaceAll(string(body), "'", `\'`) + "', CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'))  ")
-	defer ress3.Close()
-	if err2 != nil {
-		panic(err)
-	}
-
-	// ress, err := db.Query("UPDATE THPDMPDB.tblMobileOMSJobDriverBooking SET PriceUnit = '1'  WHERE TrackingID = '" + trackID + "'  ")
-	// defer ress.Close()
-	// if err != nil {
-	// 	panic(err)
-	// } else {
-	// 	/// SMS ให้คนขับ ///
-
-	// 	//SendMessageToDriver(trackID, "0850270971", carrier_id, drivername)
-
-	// }
-	// if err == nil {
-	// }
 	return string("ok")
 }
 
@@ -9029,7 +8868,7 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 
 	//url := "https://cess-api.olive.co.th/api/v1/public/scan-license-plate/"
 
-	url := "http://lpr-server.smartcess.raot.co.th/api/v1/public/scan-license-plate/"
+	url := "https://lpr-server.raot.co.th/api/v1/public/scan-license-plate/"
 	method := "POST"
 
 	payload := strings.NewReader(`{"image": "` + img64 + `"}`)
@@ -9097,7 +8936,8 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 		w.Write(b)
 
 	} else {
-		boxes = append(boxes, AppLicense{Id: 1, License: fmt.Sprint(err)})
+		//boxes = append(boxes, AppLicense{Id: 1, License: fmt.Sprint(err)})
+		boxes = append(boxes, AppLicense{Id: 1, License: "ไม่พบข้อมูล!"})
 
 		b, _ := json.Marshal(boxes)
 
@@ -9932,7 +9772,9 @@ func GetCheckPointTranDetailGPS(w http.ResponseWriter, r *http.Request) {
 
 			/// SEND TO GPS
 
-			url := "https://api-smart-gps.aimer-psc.tech/v1/gps-data/find-license"
+			//url := "https://api-smart-gps.aimer-psc.tech/v1/gps-data/find-license"
+			//url := "http://webapp.smartcess.raot.co.th/dashboard/v1/gps-data/find-license"
+			url := "https://webapp.raot.co.th/dashboard/v1/gps-data/find-license"
 			method := "POST"
 			// ทดสอบได้แค่ 65-6175
 
@@ -10109,14 +9951,16 @@ func GetGPSLicense(w http.ResponseWriter, r *http.Request) {
 	}
 
 	/// SEND TO GPS
-
-	url := "https://api-smart-gps.aimer-psc.tech/v1/gps-data/find-license"
+	//url := "http://webapp.smartcess.raot.co.th/dashboard/v1/gps-data/find-license"
+	url := "https://webapp.raot.co.th/dashboard/v1/gps-data/find-license"
+	//url := "https://api-smart-gps.aimer-psc.tech/v1/gps-data/find-license"
 	method := "POST"
 	// ทดสอบได้แค่ 65-6175
 
 	// 	payload := strings.NewReader(`{
 	// "license_num": "` + article.WHName + `"
 	// }`)
+
 	payload := strings.NewReader(`{
 	"license_num": "ษ-9763"
 	}`)
@@ -12339,6 +12183,7 @@ func APITruckCheckInOut(w http.ResponseWriter, r *http.Request) {
 	//counter = 0
 
 }
+
 func SndDatatoCESS1(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 
@@ -12355,9 +12200,10 @@ func SndDatatoCESS1(w http.ResponseWriter, r *http.Request) {
 	aa := 0
 	auth := []string{article.Authorization}
 	channel := []string{article.Channel}
+	cessid := article.WHName
+	totalweight := article.Weight
 	////fmt.Println("Header", reqHeaderChannel)
 	if len(reqHeader) == 0 {
-
 		aa = ChkAuth(auth, channel)
 	} else {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
@@ -12382,9 +12228,6 @@ func SndDatatoCESS1(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// var TruckRAOT TruckRAOTDetail
-	// jsonData2 := []byte(string(body2))
-
 	dns := getDNSString(dblogin, userlogin, passlogin, conn) //
 	db, err := sql.Open("mysql", dns)
 
@@ -12396,6 +12239,173 @@ func SndDatatoCESS1(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	defer db.Close()
+	// var TruckRAOT TruckRAOTDetail
+	// jsonData2 := []byte(string(body2))
+
+	ress33, err2 := db.Query("SELECT cess_id, declaration_id, custom_name, invoice_no FROM raotdb.vw_cessdeclarinvoice WHERE  cess_id = '" + cessid + "' ")
+	declaration_id := ""
+	custom_name := ""
+	invoice_no := ""
+	//defer ress3.Close()
+	//boxes := []TruckTrader{}
+	if err2 == nil {
+
+		cnt := 0
+
+		for ress33.Next() {
+
+			cnt++
+
+			var event CessDeclareInvoice
+			//JobID := ress2.Scan(&event.JobID)
+			err := ress33.Scan(&event.CessID, &event.Declaration_id, &event.Custom_name, &event.Invoice_no)
+			if err != nil {
+				panic(err)
+			}
+
+			// declaration_id = event.Declaration_id
+			// custom_name = event.Custom_name
+			// invoice_no = event.Invoice_no
+
+			declaration_id = "A0121641000462"
+			custom_name = event.Custom_name
+			invoice_no = "ST.64/0827"
+			cessid = "ERL19011-63/00013"
+			//boxes = append(boxes, TruckTrader{ID: event.ID, License_number_th: event.License_number_th, License_province_th: event.License_province_th, License_number_my: event.License_number_my, Registration_type: event.Registration_type, Ttruck_type: event.Ttruck_type, Weight_kg: event.Weight_kg, Gps_box_id: event.Gps_box_id, Gps_provider_name: event.Gps_provider_name, Company: event.Company, Status: event.Status})
+			break
+		}
+
+	}
+
+	//// ส่งข้อมูลไปยัง CESS1
+
+	now := time.Now()
+	tUnix := now.Unix()
+	//strtUnix := strconv.FormatInt(tUnix, 10)
+	unixTimeUTC := time.Unix(tUnix, 0) //gives unix time stamp in utc
+	//unixTimeUTC := now.Unix() //gives unix time stamp in utc
+
+	unitTimeInRFC3339 := unixTimeUTC.Format(time.RFC3339) // converts utc time to RFC3339 format
+	unitTimeInRFC3339 = strings.Replace(unitTimeInRFC3339, "+07:00", "", -1)
+
+	url := "http://10.99.101.206/smartcess_api/Auth/loginInterface"
+	method := "POST"
+
+	payload := strings.NewReader(`{
+			"username": "smartcess2",
+			"password": "sSM@rtce$$2",
+			"ipAddress": "",
+			"isAgreement": true
+		}`)
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+
+	if err != nil {
+		//fmt.Println(err)
+		return
+	}
+	req.Header.Add("Content-Type", "application/json")
+
+	res, err := client.Do(req)
+	if err != nil {
+		//fmt.Println(err)
+		return
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		//fmt.Println(err)
+		return
+	}
+	//fmt.Println(string(body))
+
+	var LoadTruck CESS1ACCESS
+	jsonData := []byte(string(body))
+
+	js := CESS1ACCESS{}
+
+	json.Unmarshal(jsonData, &js)
+	if err != nil {
+		panic(err)
+	}
+	//fmt.Println(js)
+
+	json.Unmarshal([]byte(body), &LoadTruck)
+
+	raottokenrefresh = LoadTruck.Data.Token
+
+	url = "http://10.99.101.206/smartcess_api/Interface/Inspect/Add"
+	method = "PUT"
+
+	payload = strings.NewReader(`{
+		    "declareNo":"` + declaration_id + `",
+			"invoiceNo":"` + invoice_no + `",
+			"licenseNo":"` + cessid + `",
+			"inspectNo":1,
+			"inspectWeight":"` + totalweight + `",
+			"inspectDate":"` + unitTimeInRFC3339 + `",
+			"location":"` + custom_name + `",
+			"remark":""
+		}`)
+
+	// payload = strings.NewReader(`{
+	//     "declareNo":"` + declaration_id + `",
+	// 	"invoiceNo":"` + invoice_no + `",
+	// 	"licenseNo":"` + cessid + `",
+	// 	"inspectNo":1,
+	// 	"inspectWeight":"` + totalweight + `",
+	// 	"inspectDate":"` + unitTimeInRFC3339 + `",
+	// 	"location":"` + custom_name + `",
+	// 	"remark":""
+	// }`)
+
+	fmt.Println(payload)
+
+	client = &http.Client{}
+	req, err = http.NewRequest(method, url, payload)
+
+	if err != nil {
+		//fmt.Println(err)
+		return
+	}
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Authorization", "Bearer "+raottokenrefresh)
+
+	res, err = client.Do(req)
+	if err != nil {
+		//fmt.Println(err)
+		return
+	}
+	defer res.Body.Close()
+
+	body, err = ioutil.ReadAll(res.Body)
+	if err != nil {
+		//fmt.Println(err)
+		return
+	}
+	fmt.Println(string(body))
+
+	result1 := strings.Index(string(body), "เกิดข้อผิดพลาด")
+	if result1 >= 0 {
+
+		boxes := []TruckTrader{}
+		boxes = append(boxes, TruckTrader{ID: "error", License_number_th: "error", License_province_th: "error", License_number_my: "error", Registration_type: "error", Ttruck_type: "error", Weight_kg: "error", Gps_box_id: "error", Gps_provider_name: "error", Company: "error", Status: "error"})
+		b, _ := json.Marshal(boxes)
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Write(b)
+		//w.Write(jsonResp)
+		return
+
+		//panic(err)
+	}
+
+	ress9997, err := db.Query("INSERT INTO raotdb.tblapilog (apiname,apimessage, createdt) Values ('" + url + "','" + string(body) + "',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )   ")
+	defer ress9997.Close()
+	if err != nil {
+		panic(err)
+	}
 
 	// keep log request
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('SndDatatoCESS1',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -12506,7 +12516,8 @@ func SetDatatoCumtomer(w http.ResponseWriter, r *http.Request) {
 	tokenkey := raottokenrefresh
 
 	if raottokenrefresh == "" {
-		url := "https://cess-export.olive.co.th/api/token/"
+		//url := "https://cess-export.olive.co.th/api/token/"
+		url := "https://register.raot.co.th/api/token/"
 		method := "POST"
 
 		payload := strings.NewReader(`{
@@ -12566,12 +12577,14 @@ func SetDatatoCumtomer(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("timeUnix: %d\n", tUnix)
 	str := strconv.FormatInt(tUnix, 10)
 
-	url := "https://cess-export.olive.co.th/api/declaration_invoices/DELARE_1/"
+	//url := "https://cess-export.olive.co.th/api/declaration_invoices/DELARE_1/"
+	//url := "http://register.smartcess.raot.co.th/api/declaration_invoices/DELARE_1/"
+	url := "https://register.raot.co.th/api/declaration_invoices/DELARE_1/"
 	method := "PUT"
 	payload := strings.NewReader(`{
 		"declaration_id": "` + article.WHName + `",
 		"net_weight": "` + article.CUser + `",
-		"status": "` + article.PositionName + `", 
+		"status": "` + article.PositionName + `",
 		"status_updated_at": "` + str + `"
 	}`)
 	client := &http.Client{}
@@ -14130,7 +14143,10 @@ func ConfigStartCheckPoint(w http.ResponseWriter, r *http.Request) {
 					panic(err)
 				}
 
-				url := "https://api-smart-gps.aimer-psc.tech/v1/check-point/create"
+				//url := "https://api-smart-gps.aimer-psc.tech/v1/check-point/create"
+				//url := "http://webapp.smartcess.raot.co.th/dashboard/v1/check-point/create"
+				url := "https://webapp.raot.co.th/dashboard/v1/check-point/create"
+
 				method := "POST"
 
 				payload := strings.NewReader(`{
@@ -14280,7 +14296,10 @@ func ConfigCheckPointLocation(w http.ResponseWriter, r *http.Request) {
 
 	/// SEND TO GPS
 
-	url := "https://api-smart-gps.aimer-psc.tech/v1/check-point/create"
+	//url := "https://api-smart-gps.aimer-psc.tech/v1/check-point/create"
+	//url := "http://webapp.smartcess.raot.co.th/dashboard/v1/check-point/create"
+	url := "http:s//webapp.raot.co.th/dashboard/v1/check-point/create"
+
 	method := "POST"
 
 	payload := strings.NewReader(`{
@@ -16114,7 +16133,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 		aa = ChkAuth(reqHeader, reqHeaderChannel)
 	}
 
-	fmt.Println("ChkAuth", aa)
+	//fmt.Println("ChkAuth", aa)
 
 	if aa < 0 {
 		respok := make(map[string]string)
@@ -16160,7 +16179,6 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 
 	// }
 	//var m MyStruct
-
 	// keep log request
 
 	ress9999, err := db.Query("INSERT INTO raotdb.tblapirepuestlog (apiname, requestcount,channel,lastuser, lastrequestDT) Values ('GetSSOAccesstoken',requestcount+1,'" + channel[0] + "','" + article.CUser + "' ,CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') )  ON DUPLICATE KEY UPDATE lastrequestDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), requestcount = requestcount + 1 , channel = '" + channel[0] + "' ")
@@ -16191,13 +16209,12 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	accessToken := ""
 
 	//s, err = t.SignedString(key)
-	fmt.Println(toKen)
+	//fmt.Println(toKen)
 
 	/////  SSO Check ////
-	url := "http://cess-sso.smartcess.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
-	//url := "http://10.99.20.96/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
-	//url := "http://61.19.236.5/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
-	//url := "https://cess-sso.olive.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	//url := "http://cess-sso.smartcess.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	url := "https://cess-sso.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+
 	method := "POST"
 	//toKen = "7383b48a-df2d-4561-93a4-c42e46f09f6b.5ea3beb9-225c-4a66-930d-a0feed1e865d.379cc971-ac0a-4369-8a25-fc4624f5ea15"
 
@@ -16227,7 +16244,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	var article2 SSOAccessToken
 	json.Unmarshal(body, &article2)
@@ -16264,7 +16281,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 
 	b, _ := json.Marshal(realm_access)
 
-	fmt.Println(string(b))
+	//fmt.Println(string(b))
 
 	var rAOTRole RAOTRole
 	json.Unmarshal(b, &rAOTRole)
@@ -16293,7 +16310,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	// respok["TokenExpireDT"] = strexpiredAt
 	// //fmt.Println("JWTToken", role)
 	//fmt.Println("realm_access", realm_access)
-	fmt.Println("email", email)
+	//fmt.Println("email", email)
 	ExpiresIn := strconv.Itoa(article2.ExpiresIn)
 
 	// ress99, err := db.Query("INSERT INTO THPDMPDB.tblmobileapiloghit (ApiName, HitCount, LastHitDT) Values ('OMSGetBankAccount','1',CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00') ) ON DUPLICATE KEY UPDATE LastHitDT = CONVERT_TZ(CURRENT_TIME(),'+00:00','+7:00'), HitCount = HitCount + 1   ")
