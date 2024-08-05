@@ -16019,7 +16019,8 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 
 	/////  SSO Check ////
 	//url := "http://cess-sso.smartcess.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
-	url := "http://cess-sso.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	url := "https://cess-sso.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	//url := "https://cess-sso.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 
 	method := "POST"
 	//toKen = "7383b48a-df2d-4561-93a4-c42e46f09f6b.5ea3beb9-225c-4a66-930d-a0feed1e865d.379cc971-ac0a-4369-8a25-fc4624f5ea15"
@@ -16027,7 +16028,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	payload := strings.NewReader("grant_type=authorization_code&redirect_uri=" + MobileType + "Login&code=" + toKen + "&client_id=authen-checkpoint&client_secret=snC5ZhNlfZGtsl4L3ES3sEX2HZ5p3WjU")
 
 	//payload := strings.NewReader("grant_type=client_credentials&redirect_uri=https%253A%252F%252Foauth.tools%252Fcallback%252Fcode&code= " + toKen + "&client_id=authen-checkpoint&client_secret=DPCfvNgYsOuS5aBwBinVwnO33VnXpO1W")
-
+	fmt.Println(payload)
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 
