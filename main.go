@@ -3436,7 +3436,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	//fmt.Println(t.String())
 	fmt.Println(t.Format("2006-01-02 15:04:05"))
-	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.7 Prd")
+	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.8 Prd")
 	//fmt.Println("Endpoint Hit: homePage"
 
 	// version V 1.0.2
@@ -16019,7 +16019,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 
 	/////  SSO Check ////
 	//url := "http://cess-sso.smartcess.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
-	url := "https://cess-sso.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	url := "http://cess-sso.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 	//url := "https://cess-sso.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 
 	method := "POST"
