@@ -16019,7 +16019,7 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 
 	/////  SSO Check ////
 	//url := "http://cess-sso.smartcess.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
-	url := "https://cess-sso.raot.co.th/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
+	url := "http://61.19.236.5/realms/SmartCESS-CheckPoint/protocol/openid-connect/token"
 
 	method := "POST"
 	//toKen = "7383b48a-df2d-4561-93a4-c42e46f09f6b.5ea3beb9-225c-4a66-930d-a0feed1e865d.379cc971-ac0a-4369-8a25-fc4624f5ea15"
