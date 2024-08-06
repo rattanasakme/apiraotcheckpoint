@@ -3436,7 +3436,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	//fmt.Println(t.String())
 	fmt.Println(t.Format("2006-01-02 15:04:05"))
-	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.8 Prd")
+	fmt.Fprintf(w, "WELCOME TO CHECKPOINT-API version 1.0.9 Prd")
 	//fmt.Println("Endpoint Hit: homePage"
 
 	// version V 1.0.2
@@ -8674,7 +8674,7 @@ func GetLicenseIMGBase64LPR(w http.ResponseWriter, r *http.Request) {
 
 	//url := "https://cess-api.olive.co.th/api/v1/public/scan-license-plate/"
 
-	url := "https://lpr-server.raot.co.th/api/v1/public/scan-license-plate/"
+	url := "http://lpr-server.raot.co.th/api/v1/public/scan-license-plate/"
 	method := "POST"
 
 	payload := strings.NewReader(`{"image": "` + img64 + `"}`)
@@ -16004,7 +16004,6 @@ func GetSSOAccesstoken(w http.ResponseWriter, r *http.Request) {
 	// 	t   *jwt.Token
 	// 	s   string
 	// )
-
 	// key = []byte("PWASMART")
 	// t = jwt.New(jwt.SigningMethodHS256)
 
